@@ -14,6 +14,8 @@
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="canonical" href="https://caracasluxuryestate.com/">
+  <link rel="icon" type="image/svg+xml" href="/logo-caracas.svg">
+  <link rel="apple-touch-icon" href="/logo-caracas.svg">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
   <!-- ═══ OPEN GRAPH ═══ -->
@@ -114,9 +116,12 @@ button{font-family:inherit}
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:24px 64px;transition:all .45s var(--t);background:linear-gradient(to bottom,rgba(10,10,10,.55),transparent)}
 nav.scrolled{background:rgba(10,10,10,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:14px 64px;border-bottom:1px solid rgba(201,168,76,.18)}
-.nav-logo,.nav-logo:visited{display:flex;flex-direction:column;gap:3px;text-decoration:none!important;color:inherit}
-.nav-logo-main{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold);letter-spacing:4.5px;font-weight:400;text-transform:uppercase;line-height:1;text-decoration:none}
-.nav-logo-sub{font-size:9.5px;letter-spacing:3px;color:rgba(255,255,255,.62);text-transform:uppercase;font-weight:400;line-height:1;text-decoration:none}
+.nav-logo,.nav-logo:visited{display:flex;align-items:center;gap:14px;text-decoration:none!important;color:inherit}
+.brand-mark{width:46px;height:46px;flex-shrink:0;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+.brand-mark.invert{filter:none}
+.nav-logo-text{display:flex;flex-direction:column;gap:4px}
+.nav-logo-main{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold);letter-spacing:4.5px;font-weight:400;text-transform:uppercase;line-height:1;text-decoration:none;white-space:nowrap}
+.nav-logo-sub{font-size:9.5px;letter-spacing:3px;color:rgba(255,255,255,.62);text-transform:uppercase;font-weight:400;line-height:1;text-decoration:none;white-space:nowrap}
 .nav-links{display:flex;gap:36px;align-items:center}
 .nav-links a{color:rgba(255,255,255,.78);text-decoration:none;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;padding:6px 0}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--t)}
@@ -341,20 +346,30 @@ h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-
 .form-disc{font-size:11px;color:var(--muted);margin-top:16px;text-align:center;line-height:1.7}
 
 /* ── FOOTER ── */
-footer{background:var(--ink);padding:60px 64px 36px;border-top:1px solid rgba(201,168,76,.18)}
+footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(201,168,76,.22)}
 .ft-inner{max-width:1280px;margin:0 auto}
-.ft-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);gap:48px}
-.ft-brand{max-width:340px}
-.ft-brand .ft-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);letter-spacing:4.5px;font-weight:400;display:block;margin-bottom:14px;text-transform:uppercase}
-.ft-brand p{font-size:13px;color:rgba(255,255,255,.7);letter-spacing:.3px;line-height:1.7}
-.ft-brand p+p{margin-top:8px;font-size:12px;color:rgba(255,255,255,.5);font-style:italic}
-.ft-nav{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 44px}
-.ft-nav a{font-size:11px;letter-spacing:2.2px;color:rgba(255,255,255,.7);text-decoration:none;text-transform:uppercase;transition:color .3s;padding:4px 0;font-weight:500}
-.ft-nav a:hover{color:var(--gold)}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:64px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1);align-items:start}
+.ft-brand-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.ft-brand-head .brand-mark{width:54px;height:54px}
+.ft-brand-head .ft-logo-stack{display:flex;flex-direction:column;gap:5px}
+.ft-brand .ft-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);letter-spacing:4px;font-weight:400;text-transform:uppercase;line-height:1}
+.ft-brand .ft-logo-sub{font-size:10px;letter-spacing:2.6px;color:rgba(255,255,255,.65);text-transform:uppercase;line-height:1;font-weight:500}
+.ft-brand p{font-size:14px;color:rgba(255,255,255,.78);letter-spacing:.2px;line-height:1.7;margin-bottom:10px}
+.ft-brand p.tagline{font-size:13px;color:var(--gold-light);font-style:italic;letter-spacing:.4px;margin-top:8px;font-family:'Cormorant Garamond',serif;font-weight:400}
+.ft-col-title{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(201,168,76,.25);display:flex;align-items:center;gap:10px}
+.ft-col-title::before{content:'';width:14px;height:1px;background:var(--gold)}
+.ft-nav{display:flex;flex-direction:column;gap:11px}
+.ft-nav a{font-size:12px;letter-spacing:1.8px;color:rgba(255,255,255,.78);text-decoration:none;text-transform:uppercase;transition:color .3s,padding-left .3s;font-weight:500}
+.ft-nav a:hover{color:var(--gold);padding-left:6px}
+.ft-contact{display:flex;flex-direction:column;gap:14px}
+.ft-contact-item{display:flex;flex-direction:column;gap:4px}
+.ft-contact-label{font-size:9px;letter-spacing:2.4px;color:var(--gold);text-transform:uppercase;font-weight:600}
+.ft-contact-val{font-size:13px;color:rgba(255,255,255,.85);letter-spacing:.2px;line-height:1.5;font-weight:400}
+.ft-contact-val a{color:inherit;text-decoration:none;transition:color .3s}
+.ft-contact-val a:hover{color:var(--gold)}
 .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
-.ft-bottom p{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px}
-.ft-email a{font-size:12px;color:var(--gold-light);text-decoration:none;letter-spacing:.3px;transition:color .3s;font-weight:500}
-.ft-email a:hover{color:var(--gold)}
+.ft-bottom p{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.5px}
+.ft-bottom .ft-bottom-meta{font-size:11px;color:rgba(255,255,255,.4);font-style:italic}
 
 /* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--t),transform .8s var(--t)}
@@ -376,7 +391,9 @@ footer{background:var(--ink);padding:60px 64px 36px;border-top:1px solid rgba(20
   .am-grid{grid-template-columns:1fr 1fr}
   .sec-grid{grid-template-columns:1fr}
   .sec-stats{grid-template-columns:repeat(2,1fr)}
-  footer{padding:48px 40px 32px}
+  footer{padding:56px 40px 32px}
+  .ft-top{grid-template-columns:1fr 1fr;gap:48px}
+  .ft-brand{grid-column:span 2}
 }
 @media(max-width:768px){
   nav,nav.scrolled{padding:14px 22px}
@@ -393,9 +410,11 @@ footer{background:var(--ink);padding:60px 64px 36px;border-top:1px solid rgba(20
   .dossier-form{flex-direction:column;border:none;gap:10px}
   .dossier-form input{border:1px solid rgba(201,168,76,.4)}
   .dossier-form button{padding:18px}
-  footer{padding:36px 22px 28px}
-  .ft-top{flex-direction:column;gap:32px}
-  .ft-nav{grid-template-columns:1fr}
+  footer{padding:48px 22px 28px}
+  .ft-top{grid-template-columns:1fr;gap:36px;padding-bottom:36px;margin-bottom:32px}
+  .ft-brand{grid-column:auto}
+  .nav-logo-text{display:none}
+  .brand-mark{width:42px;height:42px}
   .price-value{font-size:38px}
   .ov-text p{font-size:15px}
   .hstat-n{font-size:28px}
@@ -416,8 +435,11 @@ footer{background:var(--ink);padding:60px 64px 36px;border-top:1px solid rgba(20
 <!-- ═══ NAV ═══ -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <a href="/" class="nav-logo" aria-label="Caracas Luxury Estate Home">
-    <span class="nav-logo-main">Caracas Luxury Estate</span>
-    <span class="nav-logo-sub">La Trinidad · Baruta · Caracas</span>
+    <img class="brand-mark" src="logo-caracas.svg" alt="" aria-hidden="true" width="46" height="46">
+    <span class="nav-logo-text">
+      <span class="nav-logo-main">Caracas Luxury Estate</span>
+      <span class="nav-logo-sub">La Trinidad &middot; Baruta &middot; Caracas</span>
+    </span>
   </a>
   <div class="nav-links">
     <a href="#overview">Overview</a>
@@ -824,24 +846,50 @@ footer{background:var(--ink);padding:60px 64px 36px;border-top:1px solid rgba(20
   <div class="ft-inner">
     <div class="ft-top">
       <div class="ft-brand">
-        <span class="ft-logo">Caracas Luxury Estate</span>
-        <p>La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
-        <p style="margin-top:8px">The most secure private estate in Venezuela</p>
+        <div class="ft-brand-head">
+          <img class="brand-mark" src="logo-caracas.svg" alt="" aria-hidden="true" width="54" height="54">
+          <div class="ft-logo-stack">
+            <span class="ft-logo">Caracas Luxury Estate</span>
+            <span class="ft-logo-sub">La Trinidad &middot; Baruta &middot; Caracas</span>
+          </div>
+        </div>
+        <p>An ultra-luxury private estate set against the &Aacute;vila National Park, offering complete autonomy, military-grade security and timeless residential architecture.</p>
+        <p class="tagline">The most secure private residence in Venezuela.</p>
       </div>
-      <nav class="ft-nav" aria-label="Footer navigation">
-        <a href="#overview">Overview</a>
-        <a href="security.html">Security & Autonomy</a>
-        <a href="amenities.html">Amenities & Lifestyle</a>
-        <a href="location.html">Location & Views</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Private Showing</a>
-        <a href="#dossier">Investment Dossier</a>
-      </nav>
+
+      <div class="ft-col">
+        <h4 class="ft-col-title">Explore</h4>
+        <nav class="ft-nav" aria-label="Footer navigation">
+          <a href="#overview">Overview</a>
+          <a href="security.html">Security &amp; Autonomy</a>
+          <a href="amenities.html">Amenities &amp; Lifestyle</a>
+          <a href="location.html">Location &amp; Views</a>
+          <a href="#faq">FAQ</a>
+          <a href="#dossier">Investment Dossier</a>
+        </nav>
+      </div>
+
+      <div class="ft-col">
+        <h4 class="ft-col-title">Private Inquiries</h4>
+        <div class="ft-contact">
+          <div class="ft-contact-item">
+            <span class="ft-contact-label">Direct</span>
+            <span class="ft-contact-val"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></span>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-label">Showings</span>
+            <span class="ft-contact-val">By appointment only</span>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-label">Discretion</span>
+            <span class="ft-contact-val">Strict NDA &middot; Qualified buyers</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="ft-bottom">
-      <p>&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
-      <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></div>
-      <p>Private showings by appointment only</p>
+      <p>&copy; 2025 Caracas Luxury Estate &middot; All rights reserved</p>
+      <p class="ft-bottom-meta">Ultra-luxury private listing &middot; Information confidential</p>
     </div>
   </div>
 </footer>
