@@ -1900,6 +1900,7 @@ const I18N = {
 
   /* Expose API */
   window.CLE_I18N = { apply: applyLang, current: getInitialLang };
+  window.I18N = I18N;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
