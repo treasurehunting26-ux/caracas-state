@@ -83,6 +83,13 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-cont
 .nav-cta{border:1px solid rgba(201,168,76,.5)!important;color:var(--gold)!important;padding:10px 22px}
 .nav-cta:hover{background:var(--gold)!important;color:var(--black)!important}
 .nav-cta::after{display:none!important}
+.nav-right{display:flex;align-items:center;gap:24px}
+.lang-switch{display:inline-flex;align-items:center;gap:0;padding:3px;border:1px solid rgba(201,168,76,.45);background:rgba(10,10,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;padding:7px 11px;cursor:pointer;transition:color .25s,background .25s;line-height:1;position:relative}
+.lang-btn::after{display:none!important}
+.lang-btn:hover{color:#e8c876}
+.lang-btn.active{color:#0a0a0a;background:var(--gold)}
+.lang-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* BREADCRUMB */
 .breadcrumb{padding:108px 72px 0;background:var(--off)}
@@ -246,8 +253,10 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
   footer{padding:48px 40px}
 }
 @media(max-width:768px){
-  nav{padding:14px 24px}
+  nav{padding:14px 18px}
   .nav-links{display:none}
+  .nav-right{gap:0}
+  .lang-btn{font-size:10px;letter-spacing:1.2px;padding:6px 9px}
   .breadcrumb,.page-hero,.si,.gallery-header,.gallery-note-bottom{padding-left:24px;padding-right:24px}
   .well-grid,.ent-grid,.unique-grid,.staff-grid{grid-template-columns:1fr}
   .gast-features{grid-template-columns:1fr}
@@ -267,21 +276,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <span class="nav-logo-main">Caracas Luxury Estate</span>
     <span class="nav-logo-sub">La Trinidad · Baruta · Caracas</span>
   </a>
-  <div class="nav-links">
-    <a href="index.html">Overview</a>
-    <a href="security.html">Security</a>
-    <a href="amenities.html" class="active">Amenities</a>
-    <a href="location.html">Location</a>
-    <a href="index.html#contact" class="nav-cta">Private Showing</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav.overview">Overview</a>
+      <a href="security.html" data-i18n="nav.security">Security</a>
+      <a href="amenities.html" class="active" data-i18n="nav.amenities">Amenities</a>
+      <a href="location.html" data-i18n="nav.location">Location</a>
+      <a href="index.html#contact" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
   </div>
 </nav>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
-    <a href="index.html">Home</a>
+    <a href="index.html" data-i18n="crumb.home">Home</a>
     <span>/</span>
-    <span>Amenities &amp; Lifestyle</span>
+    <span data-i18n="crumb.amenities">Amenities &amp; Lifestyle</span>
   </div>
 </div>
 
@@ -289,15 +305,15 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <header class="page-hero">
   <div class="page-hero-grid">
     <div class="reveal">
-      <p class="page-tag">Amenities &amp; Lifestyle</p>
-      <h1>Your Private<br><em>Country Club</em></h1>
-      <p class="page-hero-desc">Specialized spaces rarely found in private residences. Every leisure pursuit, wellness need, and social occasion is catered for within the estate's own grounds.</p>
+      <p class="page-tag" data-i18n="ax.tag">Amenities &amp; Lifestyle</p>
+      <h1><span data-i18n="ax.h1.l1">Your Private</span><br><em data-i18n="ax.h1.l2">Country Club</em></h1>
+      <p class="page-hero-desc" data-i18n="ax.intro">Specialized spaces rarely found in private residences. Every leisure pursuit, wellness need, and social occasion is catered for within the estate's own grounds.</p>
     </div>
     <div class="am-count-grid reveal d1">
-      <div class="am-count"><span class="am-count-n">12</span><span class="am-count-l">Bedrooms</span></div>
-      <div class="am-count"><span class="am-count-n">10</span><span class="am-count-l">Bathrooms</span></div>
-      <div class="am-count"><span class="am-count-n">4</span><span class="am-count-l">Kitchens</span></div>
-      <div class="am-count"><span class="am-count-n">20+</span><span class="am-count-l">Amenity Spaces</span></div>
+      <div class="am-count"><span class="am-count-n">12</span><span class="am-count-l" data-i18n="ax.cnt1.l">Bedrooms</span></div>
+      <div class="am-count"><span class="am-count-n">10</span><span class="am-count-l" data-i18n="ax.cnt2.l">Bathrooms</span></div>
+      <div class="am-count"><span class="am-count-n">4</span><span class="am-count-l" data-i18n="ax.cnt3.l">Kitchens</span></div>
+      <div class="am-count"><span class="am-count-n">20+</span><span class="am-count-l" data-i18n="ax.cnt4.l">Amenity Spaces</span></div>
     </div>
   </div>
 </header>
@@ -313,28 +329,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
         <div class="lq-img-accent"></div>
       </div>
       <div class="reveal d1">
-        <p class="sl">Living Quarters</p>
-        <h2>Master Suite &<br><em>Living Quarters</em></h2>
-        <p style="font-size:14px;color:var(--muted);line-height:1.95;font-weight:300;margin-bottom:32px">Twelve oversized bedrooms, each designed as a private sanctuary with the finest materials and finishes. The principal suites combine architectural grandeur with intimate comfort.</p>
+        <p class="sl" data-i18n="ax.lq.label">Living Quarters</p>
+        <h2><span data-i18n="ax.lq.h2.l1">Master Suite &</span><br><em data-i18n="ax.lq.h2.l2">Living Quarters</em></h2>
+        <p style="font-size:14px;color:var(--muted);line-height:1.95;font-weight:300;margin-bottom:32px" data-i18n="ax.lq.intro">Twelve oversized bedrooms, each designed as a private sanctuary with the finest materials and finishes. The principal suites combine architectural grandeur with intimate comfort.</p>
         <div class="lq-specs">
           <div class="lq-spec">
-            <div class="lq-spec-name">Oversized Bedrooms<span>Each with premium finishes and natural light</span></div>
+            <div class="lq-spec-name"><span data-i18n="ax.lq.s1.n">Oversized Bedrooms</span><span data-i18n="ax.lq.s1.s">Each with premium finishes and natural light</span></div>
             <div class="lq-spec-val">12</div>
           </div>
           <div class="lq-spec">
-            <div class="lq-spec-name">Designer Bathrooms<span>Marble finishes throughout</span></div>
+            <div class="lq-spec-name"><span data-i18n="ax.lq.s2.n">Designer Bathrooms</span><span data-i18n="ax.lq.s2.s">Marble finishes throughout</span></div>
             <div class="lq-spec-val">10</div>
           </div>
           <div class="lq-spec">
-            <div class="lq-spec-name">Principal Suites<span>Walk-in closets &amp; private Jacuzzis</span></div>
+            <div class="lq-spec-name"><span data-i18n="ax.lq.s3.n">Principal Suites</span><span data-i18n="ax.lq.s3.s">Walk-in closets &amp; private Jacuzzis</span></div>
             <div class="lq-spec-val">3+</div>
           </div>
           <div class="lq-spec">
-            <div class="lq-spec-name">Guest Apartment<span>Fully independent, private entrance</span></div>
+            <div class="lq-spec-name"><span data-i18n="ax.lq.s4.n">Guest Apartment</span><span data-i18n="ax.lq.s4.s">Fully independent, private entrance</span></div>
             <div class="lq-spec-val">1</div>
           </div>
           <div class="lq-spec">
-            <div class="lq-spec-name">Internal Elevator<span>Connects all floors seamlessly</span></div>
+            <div class="lq-spec-name"><span data-i18n="ax.lq.s5.n">Internal Elevator</span><span data-i18n="ax.lq.s5.s">Connects all floors seamlessly</span></div>
             <div class="lq-spec-val">1</div>
           </div>
         </div>
@@ -346,40 +362,40 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- WELLNESS -->
 <section class="wellness" id="wellness" aria-label="Wellness and spa facilities">
   <div class="si">
-    <p class="sl reveal">Wellness &amp; Spa</p>
-    <h2 class="reveal" style="color:var(--white)">A Complete<br><em>Wellness Sanctuary</em></h2>
+    <p class="sl reveal" data-i18n="ax.well.label">Wellness &amp; Spa</p>
+    <h2 class="reveal" style="color:var(--white)"><span data-i18n="ax.well.h2.l1">A Complete</span><br><em data-i18n="ax.well.h2.l2">Wellness Sanctuary</em></h2>
     <div class="well-grid">
       <article class="well-card reveal">
-        <p class="well-card-cat">Fitness</p>
-        <h3>Professional Gym</h3>
-        <p>A fully equipped professional-grade gymnasium within the estate grounds — designed for serious athletic training with high-end equipment and dedicated space for all fitness disciplines.</p>
+        <p class="well-card-cat" data-i18n="ax.well1.cat">Fitness</p>
+        <h3 data-i18n="ax.well1.h">Professional Gym</h3>
+        <p data-i18n="ax.well1.p">A fully equipped professional-grade gymnasium within the estate grounds — designed for serious athletic training with high-end equipment and dedicated space for all fitness disciplines.</p>
         <ul>
-          <li>Professional-grade equipment throughout</li>
-          <li>Dedicated cardio and strength zones</li>
-          <li>Natural light and ventilation</li>
-          <li>Private, no shared facilities</li>
+          <li data-i18n="ax.well1.l1">Professional-grade equipment throughout</li>
+          <li data-i18n="ax.well1.l2">Dedicated cardio and strength zones</li>
+          <li data-i18n="ax.well1.l3">Natural light and ventilation</li>
+          <li data-i18n="ax.well1.l4">Private, no shared facilities</li>
         </ul>
       </article>
       <article class="well-card reveal d1">
-        <p class="well-card-cat">Thermal Experience</p>
-        <h3>Sauna &amp; Turkish Bath</h3>
-        <p>A complete thermal wellness circuit featuring both a traditional Finnish sauna and an authentic Turkish bath — a private spa experience of the highest standard within your own residence.</p>
+        <p class="well-card-cat" data-i18n="ax.well2.cat">Thermal Experience</p>
+        <h3 data-i18n="ax.well2.h">Sauna &amp; Turkish Bath</h3>
+        <p data-i18n="ax.well2.p">A complete thermal wellness circuit featuring both a traditional Finnish sauna and an authentic Turkish bath — a private spa experience of the highest standard within your own residence.</p>
         <ul>
-          <li>Traditional Finnish sauna</li>
-          <li>Authentic Turkish bath / hammam</li>
-          <li>Dedicated relaxation space</li>
-          <li>Private — no shared access</li>
+          <li data-i18n="ax.well2.l1">Traditional Finnish sauna</li>
+          <li data-i18n="ax.well2.l2">Authentic Turkish bath / hammam</li>
+          <li data-i18n="ax.well2.l3">Dedicated relaxation space</li>
+          <li data-i18n="ax.well2.l4">Private — no shared access</li>
         </ul>
       </article>
       <article class="well-card reveal d2">
-        <p class="well-card-cat">Aquatics</p>
-        <h3>Outdoor Swimming Pool</h3>
-        <p>A private outdoor swimming pool set within the estate's lush tropical gardens — offering an unparalleled leisure experience with complete privacy and serene natural surroundings.</p>
+        <p class="well-card-cat" data-i18n="ax.well3.cat">Aquatics</p>
+        <h3 data-i18n="ax.well3.h">Outdoor Swimming Pool</h3>
+        <p data-i18n="ax.well3.p">A private outdoor swimming pool set within the estate's lush tropical gardens — offering an unparalleled leisure experience with complete privacy and serene natural surroundings.</p>
         <ul>
-          <li>Full-size outdoor swimming pool</li>
-          <li>Set within tropical garden grounds</li>
-          <li>Complete visual privacy</li>
-          <li>Adjacent entertaining terrace</li>
+          <li data-i18n="ax.well3.l1">Full-size outdoor swimming pool</li>
+          <li data-i18n="ax.well3.l2">Set within tropical garden grounds</li>
+          <li data-i18n="ax.well3.l3">Complete visual privacy</li>
+          <li data-i18n="ax.well3.l4">Adjacent entertaining terrace</li>
         </ul>
       </article>
     </div>
@@ -390,61 +406,61 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <section class="gallery-full" id="gallery" aria-label="Amenities photo gallery">
   <div class="gallery-header reveal">
     <div>
-      <p class="sl" style="color:var(--gold)">Gallery</p>
-      <h2 style="color:var(--white);margin-bottom:0">Every Space,<br>Extraordinary</h2>
+      <p class="sl" style="color:var(--gold)" data-i18n="ax.gal.label">Gallery</p>
+      <h2 style="color:var(--white);margin-bottom:0"><span data-i18n="ax.gal.h2.l1">Every Space,</span><br><span data-i18n="ax.gal.h2.l2">Extraordinary</span></h2>
     </div>
-    <p class="gallery-note">Full high-resolution gallery<br>available to qualified buyers</p>
+    <p class="gallery-note" data-i18n-html="ax.gal.note.html">Full high-resolution gallery<br>available to qualified buyers</p>
   </div>
   <div class="gal-masonry">
     <div class="gm reveal">
       <img src="living-aerial-1.jpg" alt="Grand living room aerial view with double-height ceilings and panoramic mezzanine" loading="lazy" width="900" height="280">
-      <div class="gm-label">Grand Living Room</div>
+      <div class="gm-label" data-i18n="ax.gal.l1">Grand Living Room</div>
     </div>
     <div class="gm reveal d1">
       <img src="kitchen-island.jpg" alt="Professional kitchen island with Viking range and granite countertops" loading="lazy" width="400" height="280">
-      <div class="gm-label">Gourmet Kitchen</div>
+      <div class="gm-label" data-i18n="ax.gal.l2">Gourmet Kitchen</div>
     </div>
     <div class="gm reveal d1">
       <img src="kitchen-wide.jpg" alt="Full kitchen overview with cherry wood cabinets and professional appliances" loading="lazy" width="400" height="280">
-      <div class="gm-label">Kitchen · Full View</div>
+      <div class="gm-label" data-i18n="ax.gal.l3">Kitchen · Full View</div>
     </div>
     <div class="gm reveal d2">
       <img src="living-aerial-2.jpg" alt="Living room with stone fireplace, designer furniture and curated art" loading="lazy" width="900" height="280">
-      <div class="gm-label">Living Room · Fireplace</div>
+      <div class="gm-label" data-i18n="ax.gal.l4">Living Room · Fireplace</div>
     </div>
   </div>
-  <p class="gallery-note-bottom">Photographs of the gym, pool, cinema room, chapel and all private spaces available exclusively upon verified request.</p>
+  <p class="gallery-note-bottom" data-i18n="ax.gal.bottom">Photographs of the gym, pool, cinema room, chapel and all private spaces available exclusively upon verified request.</p>
 </section>
 
 <!-- ENTERTAINMENT -->
 <section class="entertainment" id="entertainment" aria-label="Entertainment facilities">
   <div class="si">
-    <p class="sl reveal">Entertainment</p>
-    <h2 class="reveal">World-Class<br><em>Entertainment</em></h2>
+    <p class="sl reveal" data-i18n="ax.ent.label">Entertainment</p>
+    <h2 class="reveal"><span data-i18n="ax.ent.h2.l1">World-Class</span><br><em data-i18n="ax.ent.h2.l2">Entertainment</em></h2>
     <div class="ent-grid">
       <article class="ent-card reveal">
         <span class="ent-card-num">01</span>
-        <p class="ent-cat">Cinema</p>
-        <h3>State-of-the-Art Cinema Room</h3>
-        <p>A professionally equipped private cinema room delivers an immersive theatrical experience within the comfort of your own estate. Designed with acoustic engineering and premium projection technology for an unrivaled private screening experience.</p>
+        <p class="ent-cat" data-i18n="ax.ent1.cat">Cinema</p>
+        <h3 data-i18n="ax.ent1.h">State-of-the-Art Cinema Room</h3>
+        <p data-i18n="ax.ent1.p">A professionally equipped private cinema room delivers an immersive theatrical experience within the comfort of your own estate. Designed with acoustic engineering and premium projection technology for an unrivaled private screening experience.</p>
       </article>
       <article class="ent-card reveal d1">
         <span class="ent-card-num">02</span>
-        <p class="ent-cat">Recreation</p>
-        <h3>Game Room</h3>
-        <p>A dedicated game room provides a sophisticated recreational space for both family use and private entertaining — offering a complete leisure destination without leaving the estate's grounds.</p>
+        <p class="ent-cat" data-i18n="ax.ent2.cat">Recreation</p>
+        <h3 data-i18n="ax.ent2.h">Game Room</h3>
+        <p data-i18n="ax.ent2.p">A dedicated game room provides a sophisticated recreational space for both family use and private entertaining — offering a complete leisure destination without leaving the estate's grounds.</p>
       </article>
       <article class="ent-card reveal">
         <span class="ent-card-num">03</span>
-        <p class="ent-cat">Sports</p>
-        <h3>Basketball &amp; Multipurpose Court</h3>
-        <p>A full-size professional basketball and multipurpose sports court provides an exceptional active recreation facility — a rarely found amenity within a private residential estate at this level.</p>
+        <p class="ent-cat" data-i18n="ax.ent3.cat">Sports</p>
+        <h3 data-i18n="ax.ent3.h">Basketball &amp; Multipurpose Court</h3>
+        <p data-i18n="ax.ent3.p">A full-size professional basketball and multipurpose sports court provides an exceptional active recreation facility — a rarely found amenity within a private residential estate at this level.</p>
       </article>
       <article class="ent-card reveal d1">
         <span class="ent-card-num">04</span>
-        <p class="ent-cat">Social</p>
-        <h3>Entertaining Terraces</h3>
-        <p>Expansive terraces designed and scaled for high-profile social events and diplomatic gatherings — seamlessly connecting interior and exterior spaces to accommodate large private occasions with elegance.</p>
+        <p class="ent-cat" data-i18n="ax.ent4.cat">Social</p>
+        <h3 data-i18n="ax.ent4.h">Entertaining Terraces</h3>
+        <p data-i18n="ax.ent4.p">Expansive terraces designed and scaled for high-profile social events and diplomatic gatherings — seamlessly connecting interior and exterior spaces to accommodate large private occasions with elegance.</p>
       </article>
     </div>
   </div>
@@ -453,44 +469,44 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- UNIQUE SPACES -->
 <section class="unique" id="unique-spaces" aria-label="Unique private spaces">
   <div class="si">
-    <p class="sl reveal">One of a Kind</p>
-    <h2 class="reveal">Singular Spaces<br><em>Found Nowhere Else</em></h2>
+    <p class="sl reveal" data-i18n="ax.uq.label">One of a Kind</p>
+    <h2 class="reveal"><span data-i18n="ax.uq.h2.l1">Singular Spaces</span><br><em data-i18n="ax.uq.h2.l2">Found Nowhere Else</em></h2>
     <div class="unique-grid">
       <article class="uq-card reveal">
         <span class="uq-icon">I</span>
-        <p class="uq-cat">Spiritual</p>
-        <h3>Private Chapel</h3>
-        <p>A fully appointed private chapel with capacity for 50 to 100 guests — an extraordinary amenity providing a sacred, intimate space for private ceremonies, reflection, and spiritual practice within the estate.</p>
+        <p class="uq-cat" data-i18n="ax.uq1.cat">Spiritual</p>
+        <h3 data-i18n="ax.uq1.h">Private Chapel</h3>
+        <p data-i18n="ax.uq1.p">A fully appointed private chapel with capacity for 50 to 100 guests — an extraordinary amenity providing a sacred, intimate space for private ceremonies, reflection, and spiritual practice within the estate.</p>
       </article>
       <article class="uq-card reveal d1">
         <span class="uq-icon">II</span>
-        <p class="uq-cat">Personal Care</p>
-        <h3>Dedicated Hair Salon</h3>
-        <p>A fully equipped private hair salon eliminates any need to leave the estate for personal care — offering complete privacy and convenience for residents and guests at all times.</p>
+        <p class="uq-cat" data-i18n="ax.uq2.cat">Personal Care</p>
+        <h3 data-i18n="ax.uq2.h">Dedicated Hair Salon</h3>
+        <p data-i18n="ax.uq2.p">A fully equipped private hair salon eliminates any need to leave the estate for personal care — offering complete privacy and convenience for residents and guests at all times.</p>
       </article>
       <article class="uq-card reveal d2">
         <span class="uq-icon">III</span>
-        <p class="uq-cat">Curated Storage</p>
-        <h3>Specialized Shoe Room</h3>
-        <p>A dedicated, climate-controlled shoe room designed for the care and display of an extensive collection — a hallmark of the estate's commitment to providing specialized storage for every lifestyle need.</p>
+        <p class="uq-cat" data-i18n="ax.uq3.cat">Curated Storage</p>
+        <h3 data-i18n="ax.uq3.h">Specialized Shoe Room</h3>
+        <p data-i18n="ax.uq3.p">A dedicated, climate-controlled shoe room designed for the care and display of an extensive collection — a hallmark of the estate's commitment to providing specialized storage for every lifestyle need.</p>
       </article>
       <article class="uq-card reveal">
         <span class="uq-icon">IV</span>
-        <p class="uq-cat">Atelier</p>
-        <h3>Sewing Room &amp; Atelier</h3>
-        <p>A dedicated sewing room and private atelier provides a creative workspace of the highest standard — a rare and thoughtful inclusion for residents who value craftsmanship and personal creative expression.</p>
+        <p class="uq-cat" data-i18n="ax.uq4.cat">Atelier</p>
+        <h3 data-i18n="ax.uq4.h">Sewing Room &amp; Atelier</h3>
+        <p data-i18n="ax.uq4.p">A dedicated sewing room and private atelier provides a creative workspace of the highest standard — a rare and thoughtful inclusion for residents who value craftsmanship and personal creative expression.</p>
       </article>
       <article class="uq-card reveal d1">
         <span class="uq-icon">V</span>
-        <p class="uq-cat">Knowledge</p>
-        <h3>Library &amp; Studio</h3>
-        <p>A sprawling private library and studio space offers a refined sanctuary for intellectual work, reading, and creative pursuits — designed with the gravitas and quality befitting a residence of this caliber.</p>
+        <p class="uq-cat" data-i18n="ax.uq5.cat">Knowledge</p>
+        <h3 data-i18n="ax.uq5.h">Library &amp; Studio</h3>
+        <p data-i18n="ax.uq5.p">A sprawling private library and studio space offers a refined sanctuary for intellectual work, reading, and creative pursuits — designed with the gravitas and quality befitting a residence of this caliber.</p>
       </article>
       <article class="uq-card reveal d2">
         <span class="uq-icon">VI</span>
-        <p class="uq-cat">Mobility</p>
-        <h3>Internal Panoramic Elevator</h3>
-        <p>A private internal elevator connecting all levels of the estate provides seamless, effortless movement throughout — a feature that combines practical convenience with architectural elegance.</p>
+        <p class="uq-cat" data-i18n="ax.uq6.cat">Mobility</p>
+        <h3 data-i18n="ax.uq6.h">Internal Panoramic Elevator</h3>
+        <p data-i18n="ax.uq6.p">A private internal elevator connecting all levels of the estate provides seamless, effortless movement throughout — a feature that combines practical convenience with architectural elegance.</p>
       </article>
     </div>
   </div>
@@ -504,26 +520,26 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
         <img src="kitchen-wide.jpg" alt="Professional gourmet kitchen with Viking appliances, cherry wood cabinets and granite island, ultra-luxury estate Caracas" loading="lazy" width="800" height="520">
       </div>
       <div class="gast-info reveal d1">
-        <p class="sl">Gastronomy</p>
-        <h2>4 Gourmet<br><em>Kitchens</em></h2>
-        <p>Four fully equipped professional kitchens — each designed to the standard of a Michelin-starred restaurant kitchen, providing unparalleled culinary capability for private dining, large-scale entertaining, and staff operations.</p>
-        <p>Viking professional-grade appliances, granite islands, cherry wood cabinetry, and marble floors define a culinary environment of absolute excellence.</p>
+        <p class="sl" data-i18n="ax.gst.label">Gastronomy</p>
+        <h2><span data-i18n="ax.gst.h2.l1">4 Gourmet</span><br><em data-i18n="ax.gst.h2.l2">Kitchens</em></h2>
+        <p data-i18n="ax.gst.p1">Four fully equipped professional kitchens — each designed to the standard of a Michelin-starred restaurant kitchen, providing unparalleled culinary capability for private dining, large-scale entertaining, and staff operations.</p>
+        <p data-i18n="ax.gst.p2">Viking professional-grade appliances, granite islands, cherry wood cabinetry, and marble floors define a culinary environment of absolute excellence.</p>
         <div class="gast-features">
           <div class="gf">
-            <p class="gf-title">Viking Appliances</p>
-            <p class="gf-desc">Professional-grade ranges, refrigerators and ventilation throughout</p>
+            <p class="gf-title" data-i18n="ax.gst.f1.t">Viking Appliances</p>
+            <p class="gf-desc" data-i18n="ax.gst.f1.d">Professional-grade ranges, refrigerators and ventilation throughout</p>
           </div>
           <div class="gf">
-            <p class="gf-title">Granite Islands</p>
-            <p class="gf-desc">Full preparation islands in each kitchen with premium stone surfaces</p>
+            <p class="gf-title" data-i18n="ax.gst.f2.t">Granite Islands</p>
+            <p class="gf-desc" data-i18n="ax.gst.f2.d">Full preparation islands in each kitchen with premium stone surfaces</p>
           </div>
           <div class="gf">
-            <p class="gf-title">Cherry Wood Cabinetry</p>
-            <p class="gf-desc">Custom-fitted cabinetry in premium cherry wood throughout</p>
+            <p class="gf-title" data-i18n="ax.gst.f3.t">Cherry Wood Cabinetry</p>
+            <p class="gf-desc" data-i18n="ax.gst.f3.d">Custom-fitted cabinetry in premium cherry wood throughout</p>
           </div>
           <div class="gf">
-            <p class="gf-title">Marble Floors</p>
-            <p class="gf-desc">Polished marble flooring providing a refined and hygienic kitchen environment</p>
+            <p class="gf-title" data-i18n="ax.gst.f4.t">Marble Floors</p>
+            <p class="gf-desc" data-i18n="ax.gst.f4.d">Polished marble flooring providing a refined and hygienic kitchen environment</p>
           </div>
         </div>
       </div>
@@ -534,28 +550,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- STAFF QUARTERS -->
 <section class="staff" id="staff" aria-label="Staff and service quarters">
   <div class="si">
-    <p class="sl reveal">Service Infrastructure</p>
-    <h2 class="reveal">Complete Staff<br><em>Quarters</em></h2>
+    <p class="sl reveal" data-i18n="ax.stf.label">Service Infrastructure</p>
+    <h2 class="reveal"><span data-i18n="ax.stf.h2.l1">Complete Staff</span><br><em data-i18n="ax.stf.h2.l2">Quarters</em></h2>
     <div class="staff-grid">
       <div class="st-card reveal">
         <span class="st-num">I</span>
-        <p class="st-title">Service Staff Rooms</p>
-        <p class="st-desc">Dedicated accommodation for household service staff, fully independent from the main residence</p>
+        <p class="st-title" data-i18n="ax.stf1.t">Service Staff Rooms</p>
+        <p class="st-desc" data-i18n="ax.stf1.d">Dedicated accommodation for household service staff, fully independent from the main residence</p>
       </div>
       <div class="st-card reveal d1">
         <span class="st-num">II</span>
-        <p class="st-title">Driver Quarters</p>
-        <p class="st-desc">Separate quarters for personal drivers, positioned for immediate operational availability</p>
+        <p class="st-title" data-i18n="ax.stf2.t">Driver Quarters</p>
+        <p class="st-desc" data-i18n="ax.stf2.d">Separate quarters for personal drivers, positioned for immediate operational availability</p>
       </div>
       <div class="st-card reveal d2">
         <span class="st-num">III</span>
-        <p class="st-title">10+ Parking Spaces</p>
-        <p class="st-desc">Covered parking for residents, guests and staff vehicles with direct estate access</p>
+        <p class="st-title" data-i18n="ax.stf3.t">10+ Parking Spaces</p>
+        <p class="st-desc" data-i18n="ax.stf3.d">Covered parking for residents, guests and staff vehicles with direct estate access</p>
       </div>
       <div class="st-card reveal d3">
         <span class="st-num">IV</span>
-        <p class="st-title">Fully Furnished</p>
-        <p class="st-desc">Sold with high-end international furnishings throughout — move-in ready from day one</p>
+        <p class="st-title" data-i18n="ax.stf4.t">Fully Furnished</p>
+        <p class="st-desc" data-i18n="ax.stf4.d">Sold with high-end international furnishings throughout — move-in ready from day one</p>
       </div>
     </div>
   </div>
@@ -564,12 +580,12 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- CTA -->
 <section class="am-cta" aria-label="Call to action">
   <div class="si">
-    <p class="sl reveal" style="justify-content:center">Private Showing</p>
-    <h2 class="reveal">Experience These Spaces<br><em>in Person</em></h2>
-    <p class="reveal">A curated private tour is available exclusively to qualified buyers. Contact us to arrange a discreet, personalized visit at your convenience.</p>
+    <p class="sl reveal" style="justify-content:center" data-i18n="pcta.label">Private Showing</p>
+    <h2 class="reveal"><span data-i18n="ax.cta.h2.l1">Experience These Spaces</span><br><em data-i18n="ax.cta.h2.l2">in Person</em></h2>
+    <p class="reveal" data-i18n="ax.cta.intro">A curated private tour is available exclusively to qualified buyers. Contact us to arrange a discreet, personalized visit at your convenience.</p>
     <div class="cta-actions reveal">
-      <a href="index.html#contact" class="btn-primary">Request Private Showing</a>
-      <a href="index.html#dossier" class="btn-ghost">Download Investment Dossier</a>
+      <a href="index.html#contact" class="btn-primary" data-i18n="pcta.btn.show">Request Private Showing</a>
+      <a href="index.html#dossier" class="btn-ghost" data-i18n="pcta.btn.dossier">Download Investment Dossier</a>
     </div>
   </div>
 </section>
@@ -580,27 +596,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <div class="ft-top">
       <div class="ft-brand">
         <span class="ft-logo">Caracas Luxury Estate</span>
-        <p>La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
-        <p style="margin-top:8px">The most secure private estate in Venezuela</p>
+        <p data-i18n-html="sub.ft.addr.html">La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
+        <p style="margin-top:8px" data-i18n="sub.ft.tag">The most secure private estate in Venezuela</p>
       </div>
       <nav class="ft-nav">
-        <a href="index.html">Overview</a>
-        <a href="security.html">Security &amp; Autonomy</a>
-        <a href="amenities.html">Amenities &amp; Lifestyle</a>
-        <a href="location.html">Location &amp; Views</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#contact">Private Showing</a>
-        <a href="index.html#dossier">Investment Dossier</a>
+        <a href="index.html" data-i18n="nav.overview">Overview</a>
+        <a href="security.html" data-i18n="crumb.security">Security &amp; Autonomy</a>
+        <a href="amenities.html" data-i18n="crumb.amenities">Amenities &amp; Lifestyle</a>
+        <a href="location.html" data-i18n="crumb.location">Location &amp; Views</a>
+        <a href="index.html#faq" data-i18n="sub.ft.nav.faq">FAQ</a>
+        <a href="index.html#contact" data-i18n="sub.ft.nav.show">Private Showing</a>
+        <a href="index.html#dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
       </nav>
     </div>
     <div class="ft-bottom">
-      <p>&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
+      <p data-i18n="sub.ft.copy">&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
       <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></div>
-      <p>Private showings by appointment only</p>
+      <p data-i18n="sub.ft.note">Private showings by appointment only</p>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js" defer></script>
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursorRing');
