@@ -140,8 +140,8 @@ footer nav{position:static !important;background:none !important;padding:0 !impo
 .nav-cta::after{display:none!important}
 
 /* ── LANGUAGE SWITCHER ── */
-.lang-switch{display:inline-flex;align-items:center;gap:0;padding:4px;border:1px solid rgba(201,168,76,.28);background:rgba(10,10,10,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.55);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:600;padding:7px 11px;cursor:pointer;transition:color .25s var(--t),background .25s var(--t);line-height:1;position:relative}
+.lang-switch{display:inline-flex;align-items:center;gap:0;padding:3px;border:1px solid rgba(201,168,76,.45);background:rgba(10,10,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;padding:7px 11px;cursor:pointer;transition:color .25s var(--t),background .25s var(--t);line-height:1;position:relative}
 .lang-btn::after{display:none!important}
 .lang-btn:hover{color:var(--gold-light)}
 .lang-btn.active{color:var(--ink);background:var(--gold)}
@@ -188,7 +188,7 @@ h1 strong{font-weight:500;display:block}
 /* ── DIVIDER ── */
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);opacity:.7}
 
-/* ── SECTIONS ── */
+/* ── SECTIONS ─��� */
 .si{max-width:1280px;margin:0 auto;padding:0 64px}
 .sl{font-size:11px;letter-spacing:3.2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:14px}
 .sl::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0}
@@ -412,8 +412,10 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   .ft-brand{grid-column:span 2}
 }
 @media(max-width:768px){
-  nav,nav.scrolled{padding:14px 22px}
+  nav,nav.scrolled{padding:14px 18px}
   .nav-links{display:none}
+  .nav-right{gap:0}
+  .lang-btn{font-size:10px;letter-spacing:1.2px;padding:6px 9px}
   .hero{min-height:640px}
   .hero-content{padding:0 22px 56px}
   .hero-hook{font-size:15px}
@@ -918,6 +920,7 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   </div>
 </footer>
 
+<script src="i18n.js" defer></script>
 <script>
 // Nav scroll
 const nav=document.getElementById('nav');
