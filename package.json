@@ -4,11 +4,8 @@
   "private": true,
   "description": "Caracas Luxury Estate - Ultra-luxury property landing page",
   "scripts": {
-    "dev": "serve . -l 3000 --no-clipboard --single",
-    "start": "serve . -l 3000 --no-clipboard --single",
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
     "build": "echo 'Static site, no build step required'"
-  },
-  "devDependencies": {
-    "serve": "^14.2.4"
   }
 }
