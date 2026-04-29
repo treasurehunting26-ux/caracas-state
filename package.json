@@ -1,0 +1,11 @@
+{
+  "name": "caracas-luxury-estate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Caracas Luxury Estate - Ultra-luxury property landing page",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "build": "echo 'Static site, no build step required'"
+  }
+}
