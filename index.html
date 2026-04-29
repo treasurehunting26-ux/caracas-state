@@ -114,8 +114,9 @@ button{font-family:inherit}
 *:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:24px 64px;transition:all .45s var(--t);background:linear-gradient(to bottom,rgba(10,10,10,.55),transparent)}
-nav.scrolled{background:rgba(10,10,10,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:14px 64px;border-bottom:1px solid rgba(201,168,76,.18)}
+body > nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:24px 64px;transition:all .45s var(--t);background:linear-gradient(to bottom,rgba(10,10,10,.55),transparent)}
+body > nav.scrolled{background:rgba(10,10,10,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:14px 64px;border-bottom:1px solid rgba(201,168,76,.18)}
+footer nav{position:static !important;background:none !important;padding:0 !important;border:none !important;display:flex !important;flex-direction:column !important;align-items:flex-start !important}
 .nav-logo,.nav-logo:visited{display:flex;align-items:center;gap:14px;text-decoration:none!important;color:inherit}
 .brand-mark{width:46px;height:46px;flex-shrink:0;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
 .brand-mark.invert{filter:none}
