@@ -68,6 +68,13 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-cont
 .nav-links a:hover::after{width:100%}
 .nav-cta{border:1px solid rgba(201,168,76,.5)!important;color:var(--gold)!important;padding:10px 22px;background:rgba(201,168,76,.08)!important}
 .nav-cta::after{display:none!important}
+.nav-right{display:flex;align-items:center;gap:24px}
+.lang-switch{display:inline-flex;align-items:center;gap:0;padding:3px;border:1px solid rgba(201,168,76,.45);background:rgba(10,10,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;padding:7px 11px;cursor:pointer;transition:color .25s,background .25s;line-height:1;position:relative}
+.lang-btn::after{display:none!important}
+.lang-btn:hover{color:#e8c876}
+.lang-btn.active{color:#0a0a0a;background:var(--gold)}
+.lang-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* BREADCRUMB */
 .breadcrumb{padding:108px 72px 0;background:var(--black)}
@@ -183,8 +190,10 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
   footer{padding:48px 40px}
 }
 @media(max-width:768px){
-  nav{padding:14px 24px}
+  nav{padding:14px 18px}
   .nav-links{display:none}
+  .nav-right{gap:0}
+  .lang-btn{font-size:10px;letter-spacing:1.2px;padding:6px 9px}
   .breadcrumb,.page-header,.contact-main{padding-left:24px;padding-right:24px}
   .process{padding:48px 24px}
   .process-inner{grid-template-columns:1fr 1fr}
@@ -206,29 +215,36 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <span class="nav-logo-main">Caracas Luxury Estate</span>
     <span class="nav-logo-sub">La Trinidad · Baruta · Caracas</span>
   </a>
-  <div class="nav-links">
-    <a href="index.html">Overview</a>
-    <a href="security.html">Security</a>
-    <a href="amenities.html">Amenities</a>
-    <a href="location.html">Location</a>
-    <a href="contact.html" class="nav-cta">Private Showing</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav.overview">Overview</a>
+      <a href="security.html" data-i18n="nav.security">Security</a>
+      <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+      <a href="location.html" data-i18n="nav.location">Location</a>
+      <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
   </div>
 </nav>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
-    <a href="index.html">Home</a>
+    <a href="index.html" data-i18n="crumb.home">Home</a>
     <span>/</span>
-    <span>Private Showing Request</span>
+    <span data-i18n="crumb.contact">Private Showing Request</span>
   </div>
 </div>
 
 <!-- PAGE HEADER -->
 <header class="page-header">
-  <p class="page-tag reveal">Private Contact</p>
-  <h1 class="reveal">Qualified Buyers<br><em>Only</em></h1>
-  <p class="reveal">This property is presented exclusively to verified qualified buyers. All inquiries are handled with absolute discretion. Responses within 24–48 hours.</p>
+  <p class="page-tag reveal" data-i18n="cx.tag">Private Contact</p>
+  <h1 class="reveal"><span data-i18n="cx.h1.l1">Qualified Buyers</span><br><em data-i18n="cx.h1.l2">Only</em></h1>
+  <p class="reveal" data-i18n="cx.intro">This property is presented exclusively to verified qualified buyers. All inquiries are handled with absolute discretion. Responses within 24–48 hours.</p>
 </header>
 
 <div class="divider"></div>
@@ -238,23 +254,23 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
   <div class="process-inner reveal">
     <div class="pr-step">
       <span class="pr-num">01</span>
-      <p class="pr-title">Submit Inquiry</p>
-      <p class="pr-desc">Complete the confidential qualification form with your details</p>
+      <p class="pr-title" data-i18n="cx.pr1.t">Submit Inquiry</p>
+      <p class="pr-desc" data-i18n="cx.pr1.d">Complete the confidential qualification form with your details</p>
     </div>
     <div class="pr-step">
       <span class="pr-num">02</span>
-      <p class="pr-title">Verification</p>
-      <p class="pr-desc">Your inquiry is reviewed within 24–48 hours by our team</p>
+      <p class="pr-title" data-i18n="cx.pr2.t">Verification</p>
+      <p class="pr-desc" data-i18n="cx.pr2.d">Your inquiry is reviewed within 24–48 hours by our team</p>
     </div>
     <div class="pr-step">
       <span class="pr-num">03</span>
-      <p class="pr-title">Receive Dossier</p>
-      <p class="pr-desc">Qualified buyers receive the full Investment & Security Prospectus</p>
+      <p class="pr-title" data-i18n="cx.pr3.t">Receive Dossier</p>
+      <p class="pr-desc" data-i18n="cx.pr3.d">Qualified buyers receive the full Investment & Security Prospectus</p>
     </div>
     <div class="pr-step">
       <span class="pr-num">04</span>
-      <p class="pr-title">Private Showing</p>
-      <p class="pr-desc">A discreet, personalized visit is arranged at your convenience</p>
+      <p class="pr-title" data-i18n="cx.pr4.t">Private Showing</p>
+      <p class="pr-desc" data-i18n="cx.pr4.d">A discreet, personalized visit is arranged at your convenience</p>
     </div>
   </div>
 </div>
@@ -265,107 +281,107 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 
     <!-- LEFT -->
     <div class="con-info reveal">
-      <h2>Schedule Your<br><em>Exclusive</em> Visit</h2>
-      <p class="intro">Our team is available to coordinate a private, personalized tour of the estate. All communications are treated with the strictest confidentiality.</p>
+      <h2><span data-i18n="cx.info.h2.l1">Schedule Your</span><br><span data-i18n-html="cx.info.h2.l2.html"><em>Exclusive</em> Visit</span></h2>
+      <p class="intro" data-i18n="cx.info.intro">Our team is available to coordinate a private, personalized tour of the estate. All communications are treated with the strictest confidentiality.</p>
 
       <div class="con-details">
         <div class="cd-item">
-          <span class="cd-label">Email</span>
+          <span class="cd-label" data-i18n="cx.cd1.l">Email</span>
           <span class="cd-value"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></span>
         </div>
         <div class="cd-item">
-          <span class="cd-label">Response</span>
-          <span class="cd-value">Within 24–48 hours</span>
+          <span class="cd-label" data-i18n="cx.cd2.l">Response</span>
+          <span class="cd-value" data-i18n="cx.cd2.v">Within 24–48 hours</span>
         </div>
         <div class="cd-item">
-          <span class="cd-label">Showings</span>
-          <span class="cd-value">By private appointment only</span>
+          <span class="cd-label" data-i18n="cx.cd3.l">Showings</span>
+          <span class="cd-value" data-i18n="cx.cd3.v">By private appointment only</span>
         </div>
         <div class="cd-item">
-          <span class="cd-label">Language</span>
-          <span class="cd-value">English &amp; Spanish</span>
+          <span class="cd-label" data-i18n="cx.cd4.l">Language</span>
+          <span class="cd-value" data-i18n="cx.cd4.v">English &amp; Spanish</span>
         </div>
       </div>
 
       <div class="tf-block">
-        <p class="tf-title">Qualification Form</p>
-        <p class="tf-desc">Prefer a streamlined process? Complete our brief Typeform qualification — takes under 2 minutes and ensures a faster response.</p>
+        <p class="tf-title" data-i18n="cx.tf.t">Qualification Form</p>
+        <p class="tf-desc" data-i18n="cx.tf.d">Prefer a streamlined process? Complete our brief Typeform qualification — takes under 2 minutes and ensures a faster response.</p>
         <a href="https://YOUR-TYPEFORM-LINK" class="btn-typeform" target="_blank" rel="noopener noreferrer">
-          Complete Qualification Form
+          <span data-i18n="cx.tf.btn">Complete Qualification Form</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <p class="con-disclaimer">By submitting an inquiry you confirm that you are a qualified buyer with genuine interest in a property listed at USD $10,000,000. All personal data is handled in accordance with strict confidentiality protocols and will not be shared with third parties under any circumstances.</p>
+      <p class="con-disclaimer" data-i18n="cx.disc">By submitting an inquiry you confirm that you are a qualified buyer with genuine interest in a property listed at USD $10,000,000. All personal data is handled in accordance with strict confidentiality protocols and will not be shared with third parties under any circumstances.</p>
     </div>
 
     <!-- RIGHT FORM -->
     <div class="con-form reveal d1">
       <div id="formContent">
         <div class="form-header">
-          <p class="form-title">Request a Private Showing</p>
-          <p class="form-sub">All fields marked <span class="required">*</span> are required · Strictly confidential</p>
+          <p class="form-title" data-i18n="cx.form.t">Request a Private Showing</p>
+          <p class="form-sub" data-i18n-html="cx.form.s.html">All fields marked <span class="required">*</span> are required · Strictly confidential</p>
         </div>
 
         <form novalidate id="contactForm">
           <div class="form-section">
-            <p class="form-section-title">Personal Information</p>
+            <p class="form-section-title" data-i18n="cx.form.sec1">Personal Information</p>
             <div class="form-row">
-              <div class="fg"><label for="fn">First Name <span class="required">*</span></label><input type="text" id="fn" placeholder="Your first name" autocomplete="given-name" required></div>
-              <div class="fg"><label for="ln">Last Name <span class="required">*</span></label><input type="text" id="ln" placeholder="Your last name" autocomplete="family-name" required></div>
+              <div class="fg"><label for="fn" data-i18n-html="cx.form.fn.html">First Name <span class="required">*</span></label><input type="text" id="fn" placeholder="Your first name" data-i18n-ph="cx.form.fn.ph" autocomplete="given-name" required></div>
+              <div class="fg"><label for="ln" data-i18n-html="cx.form.ln.html">Last Name <span class="required">*</span></label><input type="text" id="ln" placeholder="Your last name" data-i18n-ph="cx.form.ln.ph" autocomplete="family-name" required></div>
             </div>
-            <div class="fg"><label for="em">Email Address <span class="required">*</span></label><input type="email" id="em" placeholder="your@email.com" autocomplete="email" required></div>
-            <div class="fg"><label for="co">Country of Residence <span class="required">*</span></label><input type="text" id="co" placeholder="Country" required></div>
+            <div class="fg"><label for="em" data-i18n-html="cx.form.em.html">Email Address <span class="required">*</span></label><input type="email" id="em" placeholder="your@email.com" data-i18n-ph="cx.form.em.ph" autocomplete="email" required></div>
+            <div class="fg"><label for="co" data-i18n-html="cx.form.co.html">Country of Residence <span class="required">*</span></label><input type="text" id="co" placeholder="Country" data-i18n-ph="cx.form.co.ph" required></div>
           </div>
 
           <div class="form-section">
-            <p class="form-section-title">Buyer Profile</p>
+            <p class="form-section-title" data-i18n="cx.form.sec2">Buyer Profile</p>
             <div class="fg">
-              <label for="bt">Buyer Category <span class="required">*</span></label>
+              <label for="bt" data-i18n-html="cx.form.bt.html">Buyer Category <span class="required">*</span></label>
               <select id="bt" required>
-                <option value="" disabled selected>Select your profile</option>
-                <option>Private Individual / Family</option>
-                <option>Diplomatic Mission / Embassy</option>
-                <option>Corporate / Family Office</option>
-                <option>International Investor</option>
-                <option>Other</option>
+                <option value="" disabled selected data-i18n="cx.form.bt.0">Select your profile</option>
+                <option data-i18n="cx.form.bt.1">Private Individual / Family</option>
+                <option data-i18n="cx.form.bt.2">Diplomatic Mission / Embassy</option>
+                <option data-i18n="cx.form.bt.3">Corporate / Family Office</option>
+                <option data-i18n="cx.form.bt.4">International Investor</option>
+                <option data-i18n="cx.form.bt.5">Other</option>
               </select>
             </div>
             <div class="fg">
-              <label for="fin">Financing Method <span class="required">*</span></label>
+              <label for="fin" data-i18n-html="cx.form.fin.html">Financing Method <span class="required">*</span></label>
               <select id="fin" required>
-                <option value="" disabled selected>Select financing</option>
-                <option>Cash Purchase</option>
-                <option>Bank Financing</option>
-                <option>Other</option>
+                <option value="" disabled selected data-i18n="cx.form.fin.0">Select financing</option>
+                <option data-i18n="cx.form.fin.1">Cash Purchase</option>
+                <option data-i18n="cx.form.fin.2">Bank Financing</option>
+                <option data-i18n="cx.form.fin.3">Other</option>
               </select>
             </div>
             <div class="fg">
-              <label for="prev">Previous $1M+ Property Purchases</label>
+              <label for="prev" data-i18n="cx.form.prev">Previous $1M+ Property Purchases</label>
               <select id="prev">
-                <option value="" disabled selected>Select an option</option>
-                <option>Yes</option>
-                <option>No — First purchase at this level</option>
-                <option>Prefer not to say</option>
+                <option value="" disabled selected data-i18n="cx.form.prev.0">Select an option</option>
+                <option data-i18n="cx.form.prev.1">Yes</option>
+                <option data-i18n="cx.form.prev.2">No — First purchase at this level</option>
+                <option data-i18n="cx.form.prev.3">Prefer not to say</option>
               </select>
             </div>
           </div>
 
           <div class="form-section">
-            <p class="form-section-title">Your Inquiry</p>
-            <div class="fg"><label for="src">How did you hear about this property?</label><input type="text" id="src" placeholder="e.g. Google search, referral, LinkedIn..."></div>
-            <div class="fg"><label for="msg">Message <span class="required">*</span></label><textarea id="msg" placeholder="Please describe your interest in this property and your preferred timeline..." required></textarea></div>
+            <p class="form-section-title" data-i18n="cx.form.sec3">Your Inquiry</p>
+            <div class="fg"><label for="src" data-i18n="cx.form.src">How did you hear about this property?</label><input type="text" id="src" placeholder="e.g. Google search, referral, LinkedIn..." data-i18n-ph="cx.form.src.ph"></div>
+            <div class="fg"><label for="msg" data-i18n-html="cx.form.msg.html">Message <span class="required">*</span></label><textarea id="msg" placeholder="Please describe your interest in this property and your preferred timeline..." data-i18n-ph="cx.form.msg.ph" required></textarea></div>
           </div>
 
-          <button type="submit" class="btn-submit"><span>Submit Confidential Inquiry</span></button>
-          <p class="form-disc">Your inquiry is treated with absolute discretion. Information shared here will not be disclosed to any third party under any circumstances.</p>
+          <button type="submit" class="btn-submit"><span data-i18n="cx.form.submit">Submit Confidential Inquiry</span></button>
+          <p class="form-disc" data-i18n="cx.form.disc">Your inquiry is treated with absolute discretion. Information shared here will not be disclosed to any third party under any circumstances.</p>
         </form>
       </div>
 
       <div class="form-success" id="formSuccess">
         <div class="fs-icon">✓</div>
-        <p class="fs-title">Inquiry Received</p>
-        <p class="fs-desc">Thank you. Your inquiry has been received and will be reviewed within 24–48 hours. Qualified buyers will be contacted directly to arrange a private showing of the estate.<br><br>Please check your email at the address provided.</p>
+        <p class="fs-title" data-i18n="cx.fs.t">Inquiry Received</p>
+        <p class="fs-desc" data-i18n-html="cx.fs.d.html">Thank you. Your inquiry has been received and will be reviewed within 24–48 hours. Qualified buyers will be contacted directly to arrange a private showing of the estate.<br><br>Please check your email at the address provided.</p>
       </div>
     </div>
 
@@ -378,27 +394,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <div class="ft-top">
       <div class="ft-brand">
         <span class="ft-logo">Caracas Luxury Estate</span>
-        <p>La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
-        <p style="margin-top:8px">The most secure private estate in Venezuela</p>
+        <p data-i18n-html="sub.ft.addr.html">La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
+        <p style="margin-top:8px" data-i18n="sub.ft.tag">The most secure private estate in Venezuela</p>
       </div>
       <nav class="ft-nav">
-        <a href="index.html">Overview</a>
-        <a href="security.html">Security &amp; Autonomy</a>
-        <a href="amenities.html">Amenities &amp; Lifestyle</a>
-        <a href="location.html">Location &amp; Views</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="contact.html">Private Showing</a>
-        <a href="index.html#dossier">Investment Dossier</a>
+        <a href="index.html" data-i18n="nav.overview">Overview</a>
+        <a href="security.html" data-i18n="crumb.security">Security &amp; Autonomy</a>
+        <a href="amenities.html" data-i18n="crumb.amenities">Amenities &amp; Lifestyle</a>
+        <a href="location.html" data-i18n="crumb.location">Location &amp; Views</a>
+        <a href="index.html#faq" data-i18n="sub.ft.nav.faq">FAQ</a>
+        <a href="contact.html" data-i18n="sub.ft.nav.show">Private Showing</a>
+        <a href="index.html#dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
       </nav>
     </div>
     <div class="ft-bottom">
-      <p>&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
+      <p data-i18n="sub.ft.copy">&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
       <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">contact@caracasluxuryestate.com</a></div>
-      <p>Private showings by appointment only</p>
+      <p data-i18n="sub.ft.note">Private showings by appointment only</p>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js" defer></script>
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursorRing');
@@ -423,7 +440,8 @@ document.getElementById('contactForm').addEventListener('submit',function(e){
   const fin=document.getElementById('fin').value;
   const msg=document.getElementById('msg').value.trim();
   if(!fn||!em||!bt||!fin||!msg){
-    alert('Please complete all required fields before submitting.');
+    var dict=(window.I18N&&window.I18N[document.documentElement.lang])||{};
+    alert(dict['cx.alert.fields']||'Please complete all required fields before submitting.');
     return;
   }
   document.getElementById('formContent').style.display='none';

@@ -79,6 +79,13 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-cont
 .nav-cta{border:1px solid rgba(201,168,76,.5)!important;color:var(--gold)!important;padding:10px 22px}
 .nav-cta:hover{background:var(--gold)!important;color:var(--black)!important}
 .nav-cta::after{display:none!important}
+.nav-right{display:flex;align-items:center;gap:24px}
+.lang-switch{display:inline-flex;align-items:center;gap:0;padding:3px;border:1px solid rgba(201,168,76,.45);background:rgba(10,10,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;padding:7px 11px;cursor:pointer;transition:color .25s,background .25s;line-height:1;position:relative}
+.lang-btn::after{display:none!important}
+.lang-btn:hover{color:var(--gold-light,#e8c876)}
+.lang-btn.active{color:#0a0a0a;background:var(--gold)}
+.lang-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* BREADCRUMB */
 .breadcrumb{padding:108px 72px 0;background:var(--black)}
@@ -229,8 +236,10 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
   footer{padding:48px 40px}
 }
 @media(max-width:768px){
-  nav{padding:14px 24px}
+  nav{padding:14px 18px}
   .nav-links{display:none}
+  .nav-right{gap:0}
+  .lang-btn{font-size:10px;letter-spacing:1.2px;padding:6px 9px}
   .breadcrumb,.page-hero,.si{padding-left:24px;padding-right:24px}
   .access-grid{grid-template-columns:1fr}
   footer{padding:36px 24px}
@@ -249,21 +258,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <span class="nav-logo-main">Caracas Luxury Estate</span>
     <span class="nav-logo-sub">La Trinidad · Baruta · Caracas</span>
   </a>
-  <div class="nav-links">
-    <a href="index.html">Overview</a>
-    <a href="security.html" class="active">Security</a>
-    <a href="amenities.html">Amenities</a>
-    <a href="location.html">Location</a>
-    <a href="index.html#contact" class="nav-cta">Private Showing</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav.overview">Overview</a>
+      <a href="security.html" class="active" data-i18n="nav.security">Security</a>
+      <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+      <a href="location.html" data-i18n="nav.location">Location</a>
+      <a href="index.html#contact" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
   </div>
 </nav>
 
 <!-- BREADCRUMB (SEO) -->
 <div class="breadcrumb" aria-label="Breadcrumb navigation">
   <div class="breadcrumb-inner">
-    <a href="index.html">Home</a>
+    <a href="index.html" data-i18n="crumb.home">Home</a>
     <span>/</span>
-    <span>Security &amp; Autonomy</span>
+    <span data-i18n="crumb.security">Security &amp; Autonomy</span>
   </div>
 </div>
 
@@ -271,15 +287,15 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <header class="page-hero" aria-label="Security page header">
   <div class="page-hero-grid">
     <div class="ph-left reveal">
-      <p class="page-tag">Security &amp; Autonomy</p>
-      <h1>A True Private<br><em>Fortress</em></h1>
-      <p class="page-hero-desc">Engineered for total independence and uncompromising protection. Every system on this estate has been designed to operate without external dependency — under any circumstance.</p>
+      <p class="page-tag" data-i18n="sx.tag">Security &amp; Autonomy</p>
+      <h1><span data-i18n="sx.h1.l1">A True Private</span><br><em data-i18n="sx.h1.l2">Fortress</em></h1>
+      <p class="page-hero-desc" data-i18n="sx.intro">Engineered for total independence and uncompromising protection. Every system on this estate has been designed to operate without external dependency — under any circumstance.</p>
     </div>
     <div class="ph-right reveal d1">
-      <div class="ph-stat"><span class="ph-stat-n">300<small style="font-size:16px;opacity:.6">KVA</small></span><span class="ph-stat-l">Power Plant</span></div>
-      <div class="ph-stat"><span class="ph-stat-n">1M<small style="font-size:16px;opacity:.6">L</small></span><span class="ph-stat-l">Water Reserve</span></div>
-      <div class="ph-stat"><span class="ph-stat-n">30<small style="font-size:16px;opacity:.6">days</small></span><span class="ph-stat-l">Full Autonomy</span></div>
-      <div class="ph-stat"><span class="ph-stat-n">500<small style="font-size:16px;opacity:.6">m</small></span><span class="ph-stat-l">Private Roads</span></div>
+      <div class="ph-stat"><span class="ph-stat-n">300<small style="font-size:16px;opacity:.6">KVA</small></span><span class="ph-stat-l" data-i18n="sx.stat1.l">Power Plant</span></div>
+      <div class="ph-stat"><span class="ph-stat-n">1M<small style="font-size:16px;opacity:.6">L</small></span><span class="ph-stat-l" data-i18n="sx.stat2.l">Water Reserve</span></div>
+      <div class="ph-stat"><span class="ph-stat-n">30<small style="font-size:16px;opacity:.6" data-i18n="sx.stat3.u">days</small></span><span class="ph-stat-l" data-i18n="sx.stat3.l">Full Autonomy</span></div>
+      <div class="ph-stat"><span class="ph-stat-n">500<small style="font-size:16px;opacity:.6">m</small></span><span class="ph-stat-l" data-i18n="sx.stat4.l">Private Roads</span></div>
     </div>
   </div>
 </header>
@@ -289,59 +305,59 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- ARMORED INFRASTRUCTURE -->
 <section class="armored" id="armored" aria-label="Armored infrastructure details">
   <div class="si">
-    <p class="sl reveal">Physical Security</p>
-    <h2 class="reveal">Military-Grade<br><em>Armored Infrastructure</em></h2>
+    <p class="sl reveal" data-i18n="sx.arm.label">Physical Security</p>
+    <h2 class="reveal"><span data-i18n="sx.arm.h2.l1">Military-Grade</span><br><em data-i18n="sx.arm.h2.l2">Armored Infrastructure</em></h2>
 
     <div class="arm-grid">
       <article class="arm-card reveal">
         <span class="arm-card-num">01</span>
-        <p class="arm-card-tag">Perimeter Defense</p>
-        <h3>Reinforced Armored Walls</h3>
-        <p>The estate's perimeter is constructed with high-security reinforced walls engineered to military-grade ballistic resistance standards — a specification rarely found outside government installations and diplomatic compounds.</p>
+        <p class="arm-card-tag" data-i18n="sx.arm1.tag">Perimeter Defense</p>
+        <h3 data-i18n="sx.arm1.h">Reinforced Armored Walls</h3>
+        <p data-i18n="sx.arm1.p">The estate's perimeter is constructed with high-security reinforced walls engineered to military-grade ballistic resistance standards — a specification rarely found outside government installations and diplomatic compounds.</p>
         <ul class="spec-list">
-          <li>High-security reinforced concrete construction throughout the full perimeter</li>
-          <li>Designed to international ballistic resistance standards</li>
-          <li>Continuous perimeter with no structural vulnerabilities</li>
-          <li>Integrated with the dual-access road system for full operational control</li>
+          <li data-i18n="sx.arm1.l1">High-security reinforced concrete construction throughout the full perimeter</li>
+          <li data-i18n="sx.arm1.l2">Designed to international ballistic resistance standards</li>
+          <li data-i18n="sx.arm1.l3">Continuous perimeter with no structural vulnerabilities</li>
+          <li data-i18n="sx.arm1.l4">Integrated with the dual-access road system for full operational control</li>
         </ul>
       </article>
 
       <article class="arm-card reveal d1">
         <span class="arm-card-num">02</span>
-        <p class="arm-card-tag">Access Control</p>
-        <h3>Ballistic Doors & Entry Points</h3>
-        <p>All primary access points are secured with ballistic-grade doors providing multi-layer physical protection. Each entry point is independently controllable, ensuring that access can be managed with precision at all times.</p>
+        <p class="arm-card-tag" data-i18n="sx.arm2.tag">Access Control</p>
+        <h3 data-i18n="sx.arm2.h">Ballistic Doors & Entry Points</h3>
+        <p data-i18n="sx.arm2.p">All primary access points are secured with ballistic-grade doors providing multi-layer physical protection. Each entry point is independently controllable, ensuring that access can be managed with precision at all times.</p>
         <ul class="spec-list">
-          <li>Ballistic-rated doors at all principal entry points</li>
-          <li>Dual independent access: Lomas de Chispia and Sorocaima</li>
-          <li>Each access point independently operable</li>
-          <li>Strategic positioning allows selective access control at all times</li>
+          <li data-i18n="sx.arm2.l1">Ballistic-rated doors at all principal entry points</li>
+          <li data-i18n="sx.arm2.l2">Dual independent access: Lomas de Chispia and Sorocaima</li>
+          <li data-i18n="sx.arm2.l3">Each access point independently operable</li>
+          <li data-i18n="sx.arm2.l4">Strategic positioning allows selective access control at all times</li>
         </ul>
       </article>
 
       <article class="arm-card reveal">
         <span class="arm-card-num">03</span>
-        <p class="arm-card-tag">Internal Mobility</p>
-        <h3>500m Private Road Network</h3>
-        <p>Five hundred metres of internal private roads connect the estate's structures, access points, and helipad — providing complete internal mobility and strategic operational flexibility unavailable in standard residential properties.</p>
+        <p class="arm-card-tag" data-i18n="sx.arm3.tag">Internal Mobility</p>
+        <h3 data-i18n="sx.arm3.h">500m Private Road Network</h3>
+        <p data-i18n="sx.arm3.p">Five hundred metres of internal private roads connect the estate's structures, access points, and helipad — providing complete internal mobility and strategic operational flexibility unavailable in standard residential properties.</p>
         <ul class="spec-list">
-          <li>500 metres of paved internal private roadway</li>
-          <li>Connects all structures, access points and helipad zone</li>
-          <li>Accommodates multiple vehicles simultaneously</li>
-          <li>Designed for discrete, rapid movement within the estate</li>
+          <li data-i18n="sx.arm3.l1">500 metres of paved internal private roadway</li>
+          <li data-i18n="sx.arm3.l2">Connects all structures, access points and helipad zone</li>
+          <li data-i18n="sx.arm3.l3">Accommodates multiple vehicles simultaneously</li>
+          <li data-i18n="sx.arm3.l4">Designed for discrete, rapid movement within the estate</li>
         </ul>
       </article>
 
       <article class="arm-card reveal d1">
         <span class="arm-card-num">04</span>
-        <p class="arm-card-tag">Aerial Access</p>
-        <h3>Private Helipad</h3>
-        <p>A designated private helipad provides the ultimate option for swift, discreet arrival and departure — an asset of particular value for high-net-worth individuals, diplomatic personnel, and corporate executives requiring rapid, secure mobility.</p>
+        <p class="arm-card-tag" data-i18n="sx.arm4.tag">Aerial Access</p>
+        <h3 data-i18n="sx.arm4.h">Private Helipad</h3>
+        <p data-i18n="sx.arm4.p">A designated private helipad provides the ultimate option for swift, discreet arrival and departure — an asset of particular value for high-net-worth individuals, diplomatic personnel, and corporate executives requiring rapid, secure mobility.</p>
         <ul class="spec-list">
-          <li>Designated private helipad space on estate grounds</li>
-          <li>Accessible via internal road network for ground support</li>
-          <li>Provides complete independence from commercial transport infrastructure</li>
-          <li>Ideal for diplomatic, corporate and high-security operational needs</li>
+          <li data-i18n="sx.arm4.l1">Designated private helipad space on estate grounds</li>
+          <li data-i18n="sx.arm4.l2">Accessible via internal road network for ground support</li>
+          <li data-i18n="sx.arm4.l3">Provides complete independence from commercial transport infrastructure</li>
+          <li data-i18n="sx.arm4.l4">Ideal for diplomatic, corporate and high-security operational needs</li>
         </ul>
       </article>
     </div>
@@ -351,15 +367,15 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- POWER PLANT -->
 <section class="power" id="power" aria-label="Power plant and energy independence">
   <div class="si">
-    <p class="sl reveal">Energy Independence</p>
-    <h2 class="reveal" style="color:var(--white)">300 KVA<br><em>Full Power Autonomy</em></h2>
+    <p class="sl reveal" data-i18n="sx.pow.label">Energy Independence</p>
+    <h2 class="reveal" style="color:var(--white)"><span data-i18n="sx.pow.h2.l1">300 KVA</span><br><em data-i18n="sx.pow.h2.l2">Full Power Autonomy</em></h2>
 
     <div class="power-grid">
       <div class="power-visual reveal">
         <div class="power-circle">
           <div class="power-circle-inner">
             <span class="power-circle-n">300</span>
-            <span class="power-circle-l">KVA · Diesel Plant</span>
+            <span class="power-circle-l" data-i18n="sx.pow.circle.l">KVA · Diesel Plant</span>
           </div>
         </div>
       </div>
@@ -367,32 +383,32 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
       <div class="power-specs reveal d1">
         <div class="power-spec">
           <div class="power-spec-info">
-            <h3>Diesel Power Plant</h3>
-            <p>Industrial-grade 300 KVA generator providing complete independence from Venezuela's public electrical grid — ensuring uninterrupted operation of all estate systems at full capacity under any conditions.</p>
+            <h3 data-i18n="sx.pow1.h">Diesel Power Plant</h3>
+            <p data-i18n="sx.pow1.p">Industrial-grade 300 KVA generator providing complete independence from Venezuela's public electrical grid — ensuring uninterrupted operation of all estate systems at full capacity under any conditions.</p>
           </div>
           <div>
             <div class="power-spec-val">300</div>
-            <div class="power-spec-unit">KVA Output</div>
+            <div class="power-spec-unit" data-i18n="sx.pow1.u">KVA Output</div>
           </div>
         </div>
         <div class="power-spec">
           <div class="power-spec-info">
-            <h3>Full Autonomy Duration</h3>
-            <p>With a dedicated on-site diesel storage tank, the estate operates at full capacity for up to 30 consecutive days without any external fuel supply or grid connection required.</p>
+            <h3 data-i18n="sx.pow2.h">Full Autonomy Duration</h3>
+            <p data-i18n="sx.pow2.p">With a dedicated on-site diesel storage tank, the estate operates at full capacity for up to 30 consecutive days without any external fuel supply or grid connection required.</p>
           </div>
           <div>
             <div class="power-spec-val">30</div>
-            <div class="power-spec-unit">Days Autonomy</div>
+            <div class="power-spec-unit" data-i18n="sx.pow2.u">Days Autonomy</div>
           </div>
         </div>
         <div class="power-spec">
           <div class="power-spec-info">
-            <h3>Dedicated Fuel Storage</h3>
-            <p>On-site diesel tank with sufficient capacity to sustain full-estate operation for one month — covering all systems including climate control, security, kitchens, elevators, and lighting.</p>
+            <h3 data-i18n="sx.pow3.h">Dedicated Fuel Storage</h3>
+            <p data-i18n="sx.pow3.p">On-site diesel tank with sufficient capacity to sustain full-estate operation for one month — covering all systems including climate control, security, kitchens, elevators, and lighting.</p>
           </div>
           <div>
             <div class="power-spec-val">1</div>
-            <div class="power-spec-unit">Month Reserve</div>
+            <div class="power-spec-unit" data-i18n="sx.pow3.u">Month Reserve</div>
           </div>
         </div>
       </div>
@@ -403,28 +419,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- WATER RESERVE -->
 <section class="water" id="water" aria-label="Water reserve and storage">
   <div class="si">
-    <p class="sl reveal">Water Independence</p>
-    <h2 class="reveal" style="color:var(--white)">1,000,000 Litres<br><em>Water Reserve</em></h2>
+    <p class="sl reveal" data-i18n="sx.wat.label">Water Independence</p>
+    <h2 class="reveal" style="color:var(--white)"><span data-i18n="sx.wat.h2.l1">1,000,000 Litres</span><br><em data-i18n="sx.wat.h2.l2">Water Reserve</em></h2>
 
     <div class="water-grid">
       <div class="water-tank reveal">
-        <p class="tank-label">Primary Reserve Tank</p>
+        <p class="tank-label" data-i18n="sx.wat1.l">Primary Reserve Tank</p>
         <div class="tank-val">600,000</div>
-        <div class="tank-unit">Litres</div>
-        <p class="tank-desc">The primary water reserve tank holds 600,000 litres of fresh water — providing the estate's main supply independent of municipal infrastructure. Positioned for gravity-assisted distribution across all levels of the property.</p>
+        <div class="tank-unit" data-i18n="sx.wat1.u">Litres</div>
+        <p class="tank-desc" data-i18n="sx.wat1.d">The primary water reserve tank holds 600,000 litres of fresh water — providing the estate's main supply independent of municipal infrastructure. Positioned for gravity-assisted distribution across all levels of the property.</p>
       </div>
 
       <div class="water-tank reveal d1">
-        <p class="tank-label">Secondary Reserve Tank</p>
+        <p class="tank-label" data-i18n="sx.wat2.l">Secondary Reserve Tank</p>
         <div class="tank-val">400,000</div>
-        <div class="tank-unit">Litres</div>
-        <p class="tank-desc">A secondary 400,000 litre reserve tank provides backup capacity and redundancy — ensuring continuous water supply even in extended scenarios requiring the primary tank to be serviced or replenished.</p>
+        <div class="tank-unit" data-i18n="sx.wat1.u">Litres</div>
+        <p class="tank-desc" data-i18n="sx.wat2.d">A secondary 400,000 litre reserve tank provides backup capacity and redundancy — ensuring continuous water supply even in extended scenarios requiring the primary tank to be serviced or replenished.</p>
       </div>
 
       <div class="water-total reveal">
         <div>
-          <p class="water-total-label">Combined Water Storage</p>
-          <p class="water-total-note">Primary + Secondary Reserve · Complete Municipal Independence</p>
+          <p class="water-total-label" data-i18n="sx.wat.tot.l">Combined Water Storage</p>
+          <p class="water-total-note" data-i18n="sx.wat.tot.n">Primary + Secondary Reserve · Complete Municipal Independence</p>
         </div>
         <div class="water-total-val">1,000,000 L</div>
       </div>
@@ -435,24 +451,24 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- STRATEGIC ACCESS -->
 <section class="access" id="access" aria-label="Strategic access and mobility">
   <div class="si">
-    <p class="sl reveal">Strategic Access</p>
-    <h2 class="reveal" style="color:var(--white)">Designed for<br><em>Operational Flexibility</em></h2>
+    <p class="sl reveal" data-i18n="sx.acc.label">Strategic Access</p>
+    <h2 class="reveal" style="color:var(--white)"><span data-i18n="sx.acc.h2.l1">Designed for</span><br><em data-i18n="sx.acc.h2.l2">Operational Flexibility</em></h2>
 
     <div class="access-grid">
       <div class="access-card reveal">
         <span class="access-card-icon">I</span>
-        <h3>Lomas de Chispia Access</h3>
-        <p>Primary access point via Lomas de Chispia — the estate's main entry route, secured with armored infrastructure and designed for controlled, monitored vehicle access at all times.</p>
+        <h3 data-i18n="sx.acc1.h">Lomas de Chispia Access</h3>
+        <p data-i18n="sx.acc1.p">Primary access point via Lomas de Chispia — the estate's main entry route, secured with armored infrastructure and designed for controlled, monitored vehicle access at all times.</p>
       </div>
       <div class="access-card reveal d1">
         <span class="access-card-icon">II</span>
-        <h3>Sorocaima Access</h3>
-        <p>Independent secondary access via Sorocaima providing a completely separate entry and exit route — ensuring strategic mobility and operational continuity even if one access point is compromised.</p>
+        <h3 data-i18n="sx.acc2.h">Sorocaima Access</h3>
+        <p data-i18n="sx.acc2.p">Independent secondary access via Sorocaima providing a completely separate entry and exit route — ensuring strategic mobility and operational continuity even if one access point is compromised.</p>
       </div>
       <div class="access-card reveal d2">
         <span class="access-card-icon">III</span>
-        <h3>Aerial Access · Helipad</h3>
-        <p>Designated private helipad provides a third, fully independent access modality — bypassing all ground-level infrastructure entirely for the most discreet and rapid arrival and departure possible.</p>
+        <h3 data-i18n="sx.acc3.h">Aerial Access · Helipad</h3>
+        <p data-i18n="sx.acc3.p">Designated private helipad provides a third, fully independent access modality — bypassing all ground-level infrastructure entirely for the most discreet and rapid arrival and departure possible.</p>
       </div>
     </div>
   </div>
@@ -461,49 +477,49 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- COMPARISON TABLE -->
 <section class="comparison" id="comparison" aria-label="Security comparison">
   <div class="si">
-    <p class="sl reveal">Benchmark</p>
-    <h2 class="reveal">This Estate vs<br><em>Standard Luxury Residences</em></h2>
+    <p class="sl reveal" data-i18n="sx.cmp.label">Benchmark</p>
+    <h2 class="reveal"><span data-i18n="sx.cmp.h2.l1">This Estate vs</span><br><em data-i18n="sx.cmp.h2.l2">Standard Luxury Residences</em></h2>
 
     <div class="comp-table reveal">
       <div class="comp-header">
-        <div>Security Feature</div>
-        <div>Standard Luxury Home</div>
-        <div>This Estate</div>
+        <div data-i18n="sx.cmp.h.feat">Security Feature</div>
+        <div data-i18n="sx.cmp.h.std">Standard Luxury Home</div>
+        <div data-i18n="sx.cmp.h.est">This Estate</div>
       </div>
       <div class="comp-row">
-        <div class="feature">Armored perimeter walls</div>
-        <div class="standard"><span class="cross">✗</span> Standard construction</div>
-        <div class="estate"><span class="check">✓</span> Military-grade reinforced</div>
+        <div class="feature" data-i18n="sx.cmp.r1.f">Armored perimeter walls</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r1.s">Standard construction</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r1.e">Military-grade reinforced</span></div>
       </div>
       <div class="comp-row">
-        <div class="feature">Ballistic doors</div>
-        <div class="standard"><span class="cross">✗</span> Standard security doors</div>
-        <div class="estate"><span class="check">✓</span> Full ballistic rating</div>
+        <div class="feature" data-i18n="sx.cmp.r2.f">Ballistic doors</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r2.s">Standard security doors</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r2.e">Full ballistic rating</span></div>
       </div>
       <div class="comp-row">
-        <div class="feature">Power independence</div>
-        <div class="standard"><span class="cross">✗</span> Grid dependent</div>
-        <div class="estate"><span class="check">✓</span> 300KVA · 30 days autonomy</div>
+        <div class="feature" data-i18n="sx.cmp.r3.f">Power independence</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r3.s">Grid dependent</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r3.e">300KVA · 30 days autonomy</span></div>
       </div>
       <div class="comp-row">
-        <div class="feature">Water independence</div>
-        <div class="standard"><span class="cross">✗</span> Municipal supply only</div>
-        <div class="estate"><span class="check">✓</span> 1,000,000L private reserve</div>
+        <div class="feature" data-i18n="sx.cmp.r4.f">Water independence</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r4.s">Municipal supply only</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r4.e">1,000,000L private reserve</span></div>
       </div>
       <div class="comp-row">
-        <div class="feature">Dual access points</div>
-        <div class="standard"><span class="cross">✗</span> Single entry</div>
-        <div class="estate"><span class="check">✓</span> 3 independent access routes</div>
+        <div class="feature" data-i18n="sx.cmp.r5.f">Dual access points</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r5.s">Single entry</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r5.e">3 independent access routes</span></div>
       </div>
       <div class="comp-row">
-        <div class="feature">Private helipad</div>
-        <div class="standard"><span class="cross">✗</span> Not available</div>
-        <div class="estate"><span class="check">✓</span> Designated on-site</div>
+        <div class="feature" data-i18n="sx.cmp.r6.f">Private helipad</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r6.s">Not available</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r6.e">Designated on-site</span></div>
       </div>
       <div class="comp-row">
-        <div class="feature">Internal road network</div>
-        <div class="standard"><span class="cross">✗</span> Standard driveway</div>
-        <div class="estate"><span class="check">✓</span> 500m private roadway</div>
+        <div class="feature" data-i18n="sx.cmp.r7.f">Internal road network</div>
+        <div class="standard"><span class="cross">✗</span> <span data-i18n="sx.cmp.r7.s">Standard driveway</span></div>
+        <div class="estate"><span class="check">✓</span> <span data-i18n="sx.cmp.r7.e">500m private roadway</span></div>
       </div>
     </div>
   </div>
@@ -512,12 +528,12 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- CTA -->
 <section class="sec-cta" aria-label="Call to action">
   <div class="si">
-    <p class="sl reveal" style="justify-content:center">Private Showing</p>
-    <h2 class="reveal">Qualified Buyers<br><em>Only</em></h2>
-    <p class="reveal">The complete security specifications are available exclusively to verified qualified buyers. Request a private showing to receive the full technical dossier.</p>
+    <p class="sl reveal" style="justify-content:center" data-i18n="pcta.label">Private Showing</p>
+    <h2 class="reveal"><span data-i18n="sx.cta.h2.l1">Qualified Buyers</span><br><em data-i18n="sx.cta.h2.l2">Only</em></h2>
+    <p class="reveal" data-i18n="sx.cta.intro">The complete security specifications are available exclusively to verified qualified buyers. Request a private showing to receive the full technical dossier.</p>
     <div class="cta-actions reveal">
-      <a href="index.html#contact" class="btn-primary">Request Private Showing</a>
-      <a href="index.html#dossier" class="btn-ghost">Download Investment Dossier</a>
+      <a href="index.html#contact" class="btn-primary" data-i18n="pcta.btn.show">Request Private Showing</a>
+      <a href="index.html#dossier" class="btn-ghost" data-i18n="pcta.btn.dossier">Download Investment Dossier</a>
     </div>
   </div>
 </section>
@@ -528,27 +544,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <div class="ft-top">
       <div class="ft-brand">
         <span class="ft-logo">Caracas Luxury Estate</span>
-        <p>La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
-        <p style="margin-top:8px">The most secure private estate in Venezuela</p>
+        <p data-i18n-html="sub.ft.addr.html">La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
+        <p style="margin-top:8px" data-i18n="sub.ft.tag">The most secure private estate in Venezuela</p>
       </div>
       <nav class="ft-nav" aria-label="Footer navigation">
-        <a href="index.html">Overview</a>
-        <a href="security.html">Security &amp; Autonomy</a>
-        <a href="amenities.html">Amenities &amp; Lifestyle</a>
-        <a href="location.html">Location &amp; Views</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#contact">Private Showing</a>
-        <a href="index.html#dossier">Investment Dossier</a>
+        <a href="index.html" data-i18n="nav.overview">Overview</a>
+        <a href="security.html" data-i18n="crumb.security">Security &amp; Autonomy</a>
+        <a href="amenities.html" data-i18n="crumb.amenities">Amenities &amp; Lifestyle</a>
+        <a href="location.html" data-i18n="crumb.location">Location &amp; Views</a>
+        <a href="index.html#faq" data-i18n="sub.ft.nav.faq">FAQ</a>
+        <a href="index.html#contact" data-i18n="sub.ft.nav.show">Private Showing</a>
+        <a href="index.html#dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
       </nav>
     </div>
     <div class="ft-bottom">
-      <p>&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
+      <p data-i18n="sub.ft.copy">&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
       <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></div>
-      <p>Private showings by appointment only</p>
+      <p data-i18n="sub.ft.note">Private showings by appointment only</p>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js" defer></script>
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursorRing');

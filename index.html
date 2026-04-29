@@ -129,6 +129,7 @@ footer nav{position:static !important;background:none !important;padding:0 !impo
 .nav-logo-text{display:flex;flex-direction:column;gap:4px}
 .nav-logo-main{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold);letter-spacing:4.5px;font-weight:400;text-transform:uppercase;line-height:1;text-decoration:none;white-space:nowrap}
 .nav-logo-sub{font-size:9.5px;letter-spacing:3px;color:rgba(255,255,255,.62);text-transform:uppercase;font-weight:400;line-height:1;text-decoration:none;white-space:nowrap}
+.nav-right{display:flex;align-items:center;gap:28px}
 .nav-links{display:flex;gap:36px;align-items:center}
 .nav-links a{color:rgba(255,255,255,.78);text-decoration:none;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;padding:6px 0}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--t)}
@@ -137,6 +138,14 @@ footer nav{position:static !important;background:none !important;padding:0 !impo
 .nav-cta{border:1px solid rgba(201,168,76,.7)!important;color:var(--gold)!important;padding:11px 22px!important;letter-spacing:2.4px!important}
 .nav-cta:hover{background:var(--gold)!important;color:var(--ink)!important}
 .nav-cta::after{display:none!important}
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-switch{display:inline-flex;align-items:center;gap:0;padding:3px;border:1px solid rgba(201,168,76,.45);background:rgba(10,10,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;padding:7px 11px;cursor:pointer;transition:color .25s var(--t),background .25s var(--t);line-height:1;position:relative}
+.lang-btn::after{display:none!important}
+.lang-btn:hover{color:var(--gold-light)}
+.lang-btn.active{color:var(--ink);background:var(--gold)}
+.lang-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* ── HERO ── */
 .hero{height:100vh;min-height:720px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--ink)}
@@ -179,7 +188,7 @@ h1 strong{font-weight:500;display:block}
 /* ── DIVIDER ── */
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);opacity:.7}
 
-/* ── SECTIONS ── */
+/* ── SECTIONS ─��� */
 .si{max-width:1280px;margin:0 auto;padding:0 64px}
 .sl{font-size:11px;letter-spacing:3.2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:14px}
 .sl::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0}
@@ -403,8 +412,10 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   .ft-brand{grid-column:span 2}
 }
 @media(max-width:768px){
-  nav,nav.scrolled{padding:14px 22px}
+  nav,nav.scrolled{padding:14px 18px}
   .nav-links{display:none}
+  .nav-right{gap:0}
+  .lang-btn{font-size:10px;letter-spacing:1.2px;padding:6px 9px}
   .hero{min-height:640px}
   .hero-content{padding:0 22px 56px}
   .hero-hook{font-size:15px}
@@ -448,12 +459,19 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
       <span class="nav-logo-sub">La Trinidad &middot; Baruta &middot; Caracas</span>
     </span>
   </a>
-  <div class="nav-links">
-    <a href="#overview">Overview</a>
-    <a href="security.html">Security</a>
-    <a href="amenities.html">Amenities</a>
-    <a href="location.html">Location</a>
-    <a href="#contact" class="nav-cta">Private Showing</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#overview" data-i18n="nav.overview">Overview</a>
+      <a href="security.html" data-i18n="nav.security">Security</a>
+      <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+      <a href="location.html" data-i18n="nav.location">Location</a>
+      <a href="#contact" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
   </div>
 </nav>
 
@@ -466,29 +484,29 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
-      <span>Exclusive Private Listing · Caracas, Venezuela</span>
+      <span data-i18n="hero.eyebrow">Exclusive Private Listing · Caracas, Venezuela</span>
     </div>
 
-    <h1>Absolute Privacy.<br><em>Total Autonomy.</em><br><strong>Unrivaled Security.</strong></h1>
+    <h1><span data-i18n="hero.h1.line1">Absolute Privacy.</span><br><em data-i18n="hero.h1.line2">Total Autonomy.</em><br><strong data-i18n="hero.h1.line3">Unrivaled Security.</strong></h1>
 
-    <p class="hero-hook">In an era of global uncertainty, this <strong>self-sufficient sanctuary</strong> offers military-grade security, one month of full power and water independence, and the most prestigious view of the <strong>Ávila National Park</strong>. Welcome to the pinnacle of Venezuelan luxury.</p>
+    <p class="hero-hook" data-i18n-html="hero.hook.html">In an era of global uncertainty, this <strong>self-sufficient sanctuary</strong> offers military-grade security, one month of full power and water independence, and the most prestigious view of the <strong>Ávila National Park</strong>. Welcome to the pinnacle of Venezuelan luxury.</p>
 
     <div class="hero-actions">
       <a href="#dossier" class="btn-dossier">
         <span>
-          Download Investment Dossier
+          <span data-i18n="hero.btn.dossier">Download Investment Dossier</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </a>
-      <a href="#overview" class="btn-ghost">Explore the Estate</a>
+      <a href="#overview" class="btn-ghost" data-i18n="hero.btn.explore">Explore the Estate</a>
     </div>
   </div>
 
   <div class="hero-stats" aria-label="Property key figures">
-    <div class="hstat"><span class="hstat-n">15,000</span><span class="hstat-l">m² Estate</span></div>
-    <div class="hstat"><span class="hstat-n">6,000</span><span class="hstat-l">m² Built</span></div>
-    <div class="hstat"><span class="hstat-n">12</span><span class="hstat-l">Bedrooms</span></div>
-    <div class="hstat"><span class="hstat-n">10</span><span class="hstat-l">Bathrooms</span></div>
+    <div class="hstat"><span class="hstat-n">15,000</span><span class="hstat-l" data-i18n="hero.stat.estate">m² Estate</span></div>
+    <div class="hstat"><span class="hstat-n">6,000</span><span class="hstat-l" data-i18n="hero.stat.built">m² Built</span></div>
+    <div class="hstat"><span class="hstat-n">12</span><span class="hstat-l" data-i18n="hero.stat.bedrooms">Bedrooms</span></div>
+    <div class="hstat"><span class="hstat-n">10</span><span class="hstat-l" data-i18n="hero.stat.bathrooms">Bathrooms</span></div>
   </div>
 </header>
 
@@ -499,27 +517,27 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   <div class="si">
     <div class="ov-grid">
       <div class="ov-text reveal">
-        <p class="sl">The Estate</p>
-        <h2>Redefining <em>Exclusive</em><br>Residence in Venezuela</h2>
-        <p>This architectural masterpiece offers <strong>6,000m² of sophisticated living space</strong> set upon a sprawling 15,000m² private estate in the prestigious hills of Baruta — one of Caracas's most coveted and secure residential enclaves.</p>
-        <p>Featuring dual access points via Lomas de Chispia and Sorocaima, the property ensures both absolute privacy and strategic mobility. Built in 2006 and sold fully furnished with high-end international pieces.</p>
-        <p>Whether as a <strong>primary residence</strong>, a <strong>diplomatic headquarters</strong>, or an exclusive <strong>corporate retreat</strong> — this estate delivers a perfect fusion of opulence, technological independence, and 360-degree security.</p>
+        <p class="sl" data-i18n="ov.label">The Estate</p>
+        <h2><span data-i18n-html="ov.h2.line1">Redefining <em>Exclusive</em></span><br><span data-i18n-html="ov.h2.line2">Residence in Venezuela</span></h2>
+        <p data-i18n-html="ov.p1.html">This architectural masterpiece offers <strong>6,000m² of sophisticated living space</strong> set upon a sprawling 15,000m² private estate in the prestigious hills of Baruta — one of Caracas's most coveted and secure residential enclaves.</p>
+        <p data-i18n-html="ov.p2.html">Featuring dual access points via Lomas de Chispia and Sorocaima, the property ensures both absolute privacy and strategic mobility. Built in 2006 and sold fully furnished with high-end international pieces.</p>
+        <p data-i18n-html="ov.p3.html">Whether as a <strong>primary residence</strong>, a <strong>diplomatic headquarters</strong>, or an exclusive <strong>corporate retreat</strong> — this estate delivers a perfect fusion of opulence, technological independence, and 360-degree security.</p>
 
         <div class="price-block">
-          <p class="price-label">Asking Price · By Appointment Only</p>
+          <p class="price-label" data-i18n="ov.price.label">Asking Price · By Appointment Only</p>
           <p class="price-value">USD $10,000,000</p>
-          <p class="price-note">Sold fully furnished · Qualified buyers only</p>
+          <p class="price-note" data-i18n="ov.price.note">Sold fully furnished · Qualified buyers only</p>
         </div>
 
         <div class="facts" role="table" aria-label="Property specifications">
-          <div class="fact"><div class="fl">Total Area</div><div class="fv">15,000 m²</div></div>
-          <div class="fact"><div class="fl">Built Area</div><div class="fv">6,000 m²</div></div>
-          <div class="fact"><div class="fl">Bedrooms</div><div class="fv">12 Oversized</div></div>
-          <div class="fact"><div class="fl">Bathrooms</div><div class="fv">10 Designer</div></div>
-          <div class="fact"><div class="fl">Year Built</div><div class="fv">2006</div></div>
-          <div class="fact"><div class="fl">Parking</div><div class="fv">10+ Spaces</div></div>
-          <div class="fact"><div class="fl">Kitchens</div><div class="fv">4 Gourmet</div></div>
-          <div class="fact"><div class="fl">Furnishing</div><div class="fv">Fully Furnished</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.totalArea">Total Area</div><div class="fv">15,000 m²</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.builtArea">Built Area</div><div class="fv">6,000 m²</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.bedrooms">Bedrooms</div><div class="fv" data-i18n="ov.fact.bedrooms.v">12 Oversized</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.bathrooms">Bathrooms</div><div class="fv" data-i18n="ov.fact.bathrooms.v">10 Designer</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.year">Year Built</div><div class="fv">2006</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.parking">Parking</div><div class="fv" data-i18n="ov.fact.parking.v">10+ Spaces</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.kitchens">Kitchens</div><div class="fv" data-i18n="ov.fact.kitchens.v">4 Gourmet</div></div>
+          <div class="fact"><div class="fl" data-i18n="ov.fact.furnishing">Furnishing</div><div class="fv" data-i18n="ov.fact.furnishing.v">Fully Furnished</div></div>
         </div>
       </div>
 
@@ -535,96 +553,96 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
 <section class="gallery" id="gallery" aria-label="Property photo gallery">
   <div class="gal-header reveal">
     <div>
-      <p class="sl" style="color:var(--gold)">Gallery</p>
-      <h2 style="color:var(--white);margin-bottom:0">Every Detail,<br>a Masterpiece</h2>
+      <p class="sl" style="color:var(--gold)" data-i18n="gal.label">Gallery</p>
+      <h2 style="color:var(--white);margin-bottom:0"><span data-i18n="gal.h2.line1">Every Detail,</span><br><span data-i18n="gal.h2.line2">a Masterpiece</span></h2>
     </div>
     <div class="gal-meta">
-      <span class="gal-count">60 curated photographs</span>
-      <span class="gal-note">High resolution · Available upon request</span>
+      <span class="gal-count" data-i18n="gal.count">60 curated photographs</span>
+      <span class="gal-note" data-i18n="gal.note">High resolution · Available upon request</span>
     </div>
   </div>
 
   <div class="gal-grid">
     <div class="gi reveal">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2414-80BI8gDwGRGge2GZZh9d3zw9GOShQw.jpeg" alt="Dramatic double-height living space with floor-to-ceiling windows and panoramic Avila mountain views, stone column detail, La Trinidad estate Caracas" loading="lazy" width="1000" height="800">
-      <div class="gi-overlay"><span class="gi-label">Double Height Living &middot; Avila Views</span></div>
+      <div class="gi-overlay"><span class="gi-label" data-i18n="gal.l.living">Double Height Living &middot; Avila Views</span></div>
     </div>
     <div class="gi reveal d1">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2419-YsRzsvKiYg8ML8BnRGR0iCOSfiUFFA.jpeg" alt="Private library with floor-to-ceiling mahogany bookshelves and stunning stained glass windows depicting ocean waves, La Trinidad estate" loading="lazy" width="700" height="500">
-      <div class="gi-overlay"><span class="gi-label">Private Library &middot; Stained Glass</span></div>
+      <div class="gi-overlay"><span class="gi-label" data-i18n="gal.l.library">Private Library &middot; Stained Glass</span></div>
     </div>
     <div class="gi reveal d2">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2417-qIIzJG9KGqqgaRlzP8DGYmtmL0mhd5.jpeg" alt="Luxurious spa bathroom with freestanding sculptural bathtub, marble walls and heated towel rails, ultra-luxury Caracas estate" loading="lazy" width="700" height="500">
-      <div class="gi-overlay"><span class="gi-label">Spa Bathroom &middot; Freestanding Tub</span></div>
+      <div class="gi-overlay"><span class="gi-label" data-i18n="gal.l.spa">Spa Bathroom &middot; Freestanding Tub</span></div>
     </div>
     <div class="gi reveal d1">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2416-46cdTYfznRP3SfW6Q3CtXPqZcBrtoU.jpeg" alt="Master bedroom suite with cathedral ceiling, walnut furniture, ambient lighting and leather seating, private estate La Trinidad Caracas" loading="lazy" width="700" height="500">
-      <div class="gi-overlay"><span class="gi-label">Master Suite &middot; Cathedral Ceiling</span></div>
+      <div class="gi-overlay"><span class="gi-label" data-i18n="gal.l.master">Master Suite &middot; Cathedral Ceiling</span></div>
     </div>
     <div class="gi reveal d2">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2421-YXdG0yv0ZXjBYSuGO1D8r8q7uyFJqw.jpeg" alt="Exterior facade showing contemporary architecture with infinity pool, landscaped terraces and mountain backdrop, La Trinidad estate" loading="lazy" width="700" height="500">
-      <div class="gi-overlay"><span class="gi-label">Estate Exterior &middot; Infinity Pool</span></div>
+      <div class="gi-overlay"><span class="gi-label" data-i18n="gal.l.exterior">Estate Exterior &middot; Infinity Pool</span></div>
     </div>
   </div>
 
   <div class="gal-cta reveal">
-    <a href="amenities.html" class="btn-gallery">View Full Gallery &rarr;</a>
+    <a href="amenities.html" class="btn-gallery" data-i18n="gal.btn">View Full Gallery →</a>
   </div>
 </section>
 
 <!-- ═══ VIDEO ═══ -->
 <section class="video-sec" id="video" aria-label="Cinematic video tour">
   <div class="si">
-    <p class="sl reveal" style="justify-content:center">Cinematic Tour</p>
-    <h2 class="reveal" style="text-align:center">Experience It<br><em>in Motion</em></h2>
+    <p class="sl reveal" style="justify-content:center" data-i18n="vid.label">Cinematic Tour</p>
+    <h2 class="reveal" style="text-align:center"><span data-i18n="vid.h2.line1">Experience It</span><br><em data-i18n="vid.h2.line2">in Motion</em></h2>
     <div class="vid-wrap reveal">
       <video autoplay muted loop playsinline poster="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2424-fqO2yuSz3JovGcndDQ51BTsenxKktZ.jpeg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85">
         <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/grok-video-23193f7b-4afb-41aa-8d5e-f3727a77d031-dlWYTsLpjIM6ApPnshncsKd0FYRY1c.mp4" type="video/mp4">
       </video>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.6),transparent 40%,transparent 60%,rgba(10,10,10,.4))"></div>
     </div>
-    <p class="vid-cap reveal">Panoramic Views &middot; Pool Terrace &middot; Avila National Park</p>
+    <p class="vid-cap reveal" data-i18n="vid.cap">Panoramic Views · Pool Terrace · Avila National Park</p>
   </div>
 </section>
 
 <!-- ═══ SECURITY TEASER ═══ -->
 <section class="sec-teaser" id="security-overview" aria-label="Security and autonomy overview">
   <div class="si">
-    <p class="sl reveal">Security & Autonomy</p>
-    <h2 class="reveal" style="color:var(--white)">A Self-Sufficient<br><em>Sanctuary</em></h2>
+    <p class="sl reveal" data-i18n="sec.label">Security & Autonomy</p>
+    <h2 class="reveal" style="color:var(--white)"><span data-i18n="sec.h2.line1">A Self-Sufficient</span><br><em data-i18n="sec.h2.line2">Sanctuary</em></h2>
 
     <div class="sec-grid reveal">
       <div class="sc">
         <span class="sc-num">01</span>
-        <h3>Armored Infrastructure</h3>
-        <p>Military-grade reinforced perimeter walls and ballistic doors engineered to the highest international protection standards.</p>
+        <h3 data-i18n="sec.c1.h">Armored Infrastructure</h3>
+        <p data-i18n="sec.c1.p">Military-grade reinforced perimeter walls and ballistic doors engineered to the highest international protection standards.</p>
       </div>
       <div class="sc">
         <span class="sc-num">02</span>
-        <h3>Full Power Independence</h3>
-        <p>300 KVA diesel power plant providing up to 30 days of complete autonomy — independent from the public grid under any circumstance.</p>
+        <h3 data-i18n="sec.c2.h">Full Power Independence</h3>
+        <p data-i18n="sec.c2.p">300 KVA diesel power plant providing up to 30 days of complete autonomy — independent from the public grid under any circumstance.</p>
       </div>
       <div class="sc">
         <span class="sc-num">03</span>
-        <h3>Water Security</h3>
-        <p>Two reserve tanks totaling 1,000,000 litres of fresh water storage — complete independence from municipal supply.</p>
+        <h3 data-i18n="sec.c3.h">Water Security</h3>
+        <p data-i18n="sec.c3.p">Two reserve tanks totaling 1,000,000 litres of fresh water storage — complete independence from municipal supply.</p>
       </div>
       <div class="sc">
         <span class="sc-num">04</span>
-        <h3>Strategic Access</h3>
-        <p>500m of private internal roads, dual access points, and a designated private helipad for discreet, swift arrival and departure.</p>
+        <h3 data-i18n="sec.c4.h">Strategic Access</h3>
+        <p data-i18n="sec.c4.p">500m of private internal roads, dual access points, and a designated private helipad for discreet, swift arrival and departure.</p>
       </div>
     </div>
 
     <div class="sec-stats reveal">
-      <div class="ss"><span class="ss-n">300<small style="font-size:16px;color:var(--gold-dark)">KVA</small></span><span class="ss-l">Power Plant</span></div>
-      <div class="ss"><span class="ss-n">1M<small style="font-size:16px;color:var(--gold-dark)">L</small></span><span class="ss-l">Water Reserve</span></div>
-      <div class="ss"><span class="ss-n">500<small style="font-size:16px;color:var(--gold-dark)">m</small></span><span class="ss-l">Private Roads</span></div>
-      <div class="ss"><span class="ss-n">30<small style="font-size:16px;color:var(--gold-dark)">days</small></span><span class="ss-l">Full Autonomy</span></div>
+      <div class="ss"><span class="ss-n">300<small style="font-size:16px;color:var(--gold-dark)">KVA</small></span><span class="ss-l" data-i18n="sec.s1">Power Plant</span></div>
+      <div class="ss"><span class="ss-n">1M<small style="font-size:16px;color:var(--gold-dark)">L</small></span><span class="ss-l" data-i18n="sec.s2">Water Reserve</span></div>
+      <div class="ss"><span class="ss-n">500<small style="font-size:16px;color:var(--gold-dark)">m</small></span><span class="ss-l" data-i18n="sec.s3">Private Roads</span></div>
+      <div class="ss"><span class="ss-n">30<small style="font-size:16px;color:var(--gold-dark)" data-i18n="sec.s4.unit">days</small></span><span class="ss-l" data-i18n="sec.s4">Full Autonomy</span></div>
     </div>
 
     <div class="sec-link reveal">
-      <a href="security.html" class="btn-gallery">Full Security Details &rarr;</a>
+      <a href="security.html" class="btn-gallery" data-i18n="sec.btn">Full Security Details →</a>
     </div>
   </div>
 </section>
@@ -633,52 +651,52 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
 <section class="amenities" id="amenities-overview" aria-label="Amenities overview">
   <div class="si">
     <div class="am-intro reveal">
-      <p class="sl">Amenities</p>
-      <h2>Your Private<br><em>Country Club</em></h2>
-      <p>Specialized spaces rarely found in private residences — this estate is an entertainment, wellness, and lifestyle powerhouse designed for the world's most discerning individuals.</p>
+      <p class="sl" data-i18n="am.label">Amenities</p>
+      <h2><span data-i18n="am.h2.line1">Your Private</span><br><em data-i18n="am.h2.line2">Country Club</em></h2>
+      <p data-i18n="am.intro">Specialized spaces rarely found in private residences — this estate is an entertainment, wellness, and lifestyle powerhouse designed for the world's most discerning individuals.</p>
     </div>
 
     <div class="am-grid">
       <article class="am-card reveal">
-        <p class="am-cat">Living Quarters</p>
-        <h3>Master Suite & Bedrooms</h3>
+        <p class="am-cat" data-i18n="am.c1.cat">Living Quarters</p>
+        <h3 data-i18n="am.c1.h">Master Suite & Bedrooms</h3>
         <ul>
-          <li>12 Oversized bedrooms</li>
-          <li>10 Designer bathrooms</li>
-          <li>Walk-in closets & marble finishes</li>
-          <li>Private Jacuzzis in principal suites</li>
-          <li>Dedicated guest apartment</li>
-          <li>Internal panoramic elevator</li>
+          <li data-i18n="am.c1.l1">12 Oversized bedrooms</li>
+          <li data-i18n="am.c1.l2">10 Designer bathrooms</li>
+          <li data-i18n="am.c1.l3">Walk-in closets & marble finishes</li>
+          <li data-i18n="am.c1.l4">Private Jacuzzis in principal suites</li>
+          <li data-i18n="am.c1.l5">Dedicated guest apartment</li>
+          <li data-i18n="am.c1.l6">Internal panoramic elevator</li>
         </ul>
       </article>
       <article class="am-card reveal d1">
-        <p class="am-cat">Wellness & Entertainment</p>
-        <h3>Private Club Facilities</h3>
+        <p class="am-cat" data-i18n="am.c2.cat">Wellness & Entertainment</p>
+        <h3 data-i18n="am.c2.h">Private Club Facilities</h3>
         <ul>
-          <li>Professional gym & sauna</li>
-          <li>Turkish bath / hammam</li>
-          <li>Outdoor swimming pool</li>
-          <li>State-of-the-art cinema room</li>
-          <li>Game room</li>
-          <li>Basketball / multipurpose court</li>
+          <li data-i18n="am.c2.l1">Professional gym & sauna</li>
+          <li data-i18n="am.c2.l2">Turkish bath / hammam</li>
+          <li data-i18n="am.c2.l3">Outdoor swimming pool</li>
+          <li data-i18n="am.c2.l4">State-of-the-art cinema room</li>
+          <li data-i18n="am.c2.l5">Game room</li>
+          <li data-i18n="am.c2.l6">Basketball / multipurpose court</li>
         </ul>
       </article>
       <article class="am-card reveal d2">
-        <p class="am-cat">Unique Spaces</p>
-        <h3>One-of-a-Kind Amenities</h3>
+        <p class="am-cat" data-i18n="am.c3.cat">Unique Spaces</p>
+        <h3 data-i18n="am.c3.h">One-of-a-Kind Amenities</h3>
         <ul>
-          <li>Private chapel (50–100 guests)</li>
-          <li>Dedicated hair salon</li>
-          <li>Specialized shoe room</li>
-          <li>Library / studio</li>
-          <li>4 Gourmet kitchens · Viking appliances</li>
-          <li>Staff & driver quarters</li>
+          <li data-i18n="am.c3.l1">Private chapel (50–100 guests)</li>
+          <li data-i18n="am.c3.l2">Dedicated hair salon</li>
+          <li data-i18n="am.c3.l3">Specialized shoe room</li>
+          <li data-i18n="am.c3.l4">Library / studio</li>
+          <li data-i18n="am.c3.l5">4 Gourmet kitchens · Viking appliances</li>
+          <li data-i18n="am.c3.l6">Staff & driver quarters</li>
         </ul>
       </article>
     </div>
 
     <div class="am-link reveal">
-      <a href="amenities.html" class="btn-gallery" style="border-color:rgba(201,168,76,.35);color:var(--gold-dark)">View Full Amenities &rarr;</a>
+      <a href="amenities.html" class="btn-gallery" style="border-color:rgba(201,168,76,.35);color:var(--gold-dark)" data-i18n="am.btn">View Full Amenities →</a>
     </div>
   </div>
 </section>
@@ -688,19 +706,19 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   <div class="areas-grid">
     <div class="ac reveal">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2414-80BI8gDwGRGge2GZZh9d3zw9GOShQw.jpeg" alt="Double-height living space with floor-to-ceiling windows and Avila views, La Trinidad estate Caracas" loading="lazy" width="600" height="360">
-      <div class="ac-overlay"><p class="ac-name">Living Room</p><p class="ac-detail">Double Height &middot; Avila Views</p></div>
+      <div class="ac-overlay"><p class="ac-name" data-i18n="ar.1.n">Living Room</p><p class="ac-detail" data-i18n="ar.1.d">Double Height · Avila Views</p></div>
     </div>
     <div class="ac reveal d1">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2419-YsRzsvKiYg8ML8BnRGR0iCOSfiUFFA.jpeg" alt="Private library with mahogany shelving and stained glass art windows, luxury estate Caracas" loading="lazy" width="600" height="360">
-      <div class="ac-overlay"><p class="ac-name">Private Library</p><p class="ac-detail">Stained Glass &middot; Custom Shelving</p></div>
+      <div class="ac-overlay"><p class="ac-name" data-i18n="ar.2.n">Private Library</p><p class="ac-detail" data-i18n="ar.2.d">Stained Glass · Custom Shelving</p></div>
     </div>
     <div class="ac reveal d2">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2418-V29s72nDVckYxl658Yh5qxWTVianLf.jpeg" alt="Private beauty salon with professional stations and marble floors" loading="lazy" width="600" height="360">
-      <div class="ac-overlay"><p class="ac-name">Private Salon</p><p class="ac-detail">Professional Spa &middot; Marble Floors</p></div>
+      <div class="ac-overlay"><p class="ac-name" data-i18n="ar.3.n">Private Salon</p><p class="ac-detail" data-i18n="ar.3.d">Professional Spa · Marble Floors</p></div>
     </div>
     <div class="ac reveal d3">
       <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2416-46cdTYfznRP3SfW6Q3CtXPqZcBrtoU.jpeg" alt="Master bedroom suite with cathedral ceiling and elegant furnishings" loading="lazy" width="600" height="360">
-      <div class="ac-overlay"><p class="ac-name">Master Suite</p><p class="ac-detail">Cathedral Ceiling &middot; En Suite Spa</p></div>
+      <div class="ac-overlay"><p class="ac-name" data-i18n="ar.4.n">Master Suite</p><p class="ac-detail" data-i18n="ar.4.d">Cathedral Ceiling · En Suite Spa</p></div>
     </div>
   </div>
 </section>
@@ -710,27 +728,27 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   <div class="si">
     <div class="loc-grid">
       <div class="loc-info reveal">
-        <p class="sl">Location</p>
-        <h2>The Most Coveted<br><em>View</em> in Venezuela</h2>
-        <p>Perched in the prestigious hills of Baruta, the estate commands a direct, unobstructed panoramic view of the majestic Ávila National Park — a natural landmark visible from across the property.</p>
-        <p>La Trinidad offers the ideal balance between proximity to Caracas's commercial and diplomatic centers and the tranquility of an elevated, forested enclave with a naturally cooler micro-climate year-round.</p>
+        <p class="sl" data-i18n="loc.label">Location</p>
+        <h2><span data-i18n="loc.h2.line1">The Most Coveted</span><br><span data-i18n-html="loc.h2.line2"><em>View</em> in Venezuela</span></h2>
+        <p data-i18n="loc.p1">Perched in the prestigious hills of Baruta, the estate commands a direct, unobstructed panoramic view of the majestic Ávila National Park — a natural landmark visible from across the property.</p>
+        <p data-i18n="loc.p2">La Trinidad offers the ideal balance between proximity to Caracas's commercial and diplomatic centers and the tranquility of an elevated, forested enclave with a naturally cooler micro-climate year-round.</p>
         <div class="loc-tags">
-          <span class="loc-tag">Ávila National Park Views</span>
-          <span class="loc-tag">La Trinidad · Baruta</span>
-          <span class="loc-tag">Lomas de Chispia</span>
-          <span class="loc-tag">Dual Access Points</span>
-          <span class="loc-tag">Elevated Micro-Climate</span>
-          <span class="loc-tag">Exclusive Enclave</span>
+          <span class="loc-tag" data-i18n="loc.tag1">Ávila National Park Views</span>
+          <span class="loc-tag" data-i18n="loc.tag2">La Trinidad · Baruta</span>
+          <span class="loc-tag" data-i18n="loc.tag3">Lomas de Chispia</span>
+          <span class="loc-tag" data-i18n="loc.tag4">Dual Access Points</span>
+          <span class="loc-tag" data-i18n="loc.tag5">Elevated Micro-Climate</span>
+          <span class="loc-tag" data-i18n="loc.tag6">Exclusive Enclave</span>
         </div>
         <div class="loc-link">
-          <a href="location.html" class="btn-gallery" style="border-color:rgba(201,168,76,.3);color:var(--gold-dark);margin-top:8px;display:inline-flex">View Location Details &rarr;</a>
+          <a href="location.html" class="btn-gallery" style="border-color:rgba(201,168,76,.3);color:var(--gold-dark);margin-top:8px;display:inline-flex" data-i18n="loc.btn">View Location Details →</a>
         </div>
       </div>
       <div class="loc-map reveal d1" role="img" aria-label="Avila mountain views from the estate" style="background:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2424-fqO2yuSz3JovGcndDQ51BTsenxKktZ.jpeg') center/cover no-repeat;position:relative">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.55),rgba(10,10,10,.25))"></div>
         <span class="loc-map-icon" style="position:relative;font-size:28px;color:var(--gold)">&#9737;</span>
         <span style="position:relative">La Trinidad &middot; Baruta &middot; Caracas</span>
-        <span style="position:relative;font-size:10px;color:rgba(255,255,255,.7)">Direct Avila National Park Views</span>
+        <span style="position:relative;font-size:10px;color:rgba(255,255,255,.7)" data-i18n="loc.map.cap">Direct Avila National Park Views</span>
       </div>
     </div>
   </div>
@@ -739,28 +757,28 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
 <!-- ═══ FAQ ═══ -->
 <section class="faq" id="faq" aria-label="Frequently asked questions">
   <div class="si">
-    <p class="sl reveal">FAQ</p>
-    <h2 class="reveal">Common <em>Questions</em></h2>
+    <p class="sl reveal" data-i18n="faq.label">FAQ</p>
+    <h2 class="reveal"><span data-i18n="faq.h2.line1">Common</span> <em data-i18n="faq.h2.line2">Questions</em></h2>
     <div class="faq-grid reveal">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Where exactly is this luxury armored estate located?<span class="faq-icon">+</span></button>
-        <div class="faq-ans"><p>Lomas de Chispia / Sorocaima, La Trinidad, Baruta, Caracas — one of Venezuela's most exclusive and secure residential zones, with direct panoramic views of Ávila National Park. The exact address is provided only to verified qualified buyers.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q1">Where exactly is this luxury armored estate located?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i18n="faq.a1">Lomas de Chispia / Sorocaima, La Trinidad, Baruta, Caracas — one of Venezuela's most exclusive and secure residential zones, with direct panoramic views of Ávila National Park. The exact address is provided only to verified qualified buyers.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What is the asking price and what does it include?<span class="faq-icon">+</span></button>
-        <div class="faq-ans"><p>USD $10,000,000, sold fully furnished with curated high-end international pieces. Includes the 15,000m² estate, all structures, 300KVA power plant, water reserve infrastructure, and all fixed installations. Private showings by appointment only for qualified buyers.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q2">What is the asking price and what does it include?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i18n="faq.a2">USD $10,000,000, sold fully furnished with curated high-end international pieces. Includes the 15,000m² estate, all structures, 300KVA power plant, water reserve infrastructure, and all fixed installations. Private showings by appointment only for qualified buyers.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Is this property self-sufficient from public utilities?<span class="faq-icon">+</span></button>
-        <div class="faq-ans"><p>Yes, completely. A 300KVA diesel plant provides up to 30 days of uninterrupted power, while two reserve tanks deliver a combined 1,000,000 litres of stored water — total independence from municipal infrastructure under any circumstance.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q3">Is this property self-sufficient from public utilities?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i18n="faq.a3">Yes, completely. A 300KVA diesel plant provides up to 30 days of uninterrupted power, while two reserve tanks deliver a combined 1,000,000 litres of stored water — total independence from municipal infrastructure under any circumstance.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Is this estate suitable as diplomatic housing in Caracas?<span class="faq-icon">+</span></button>
-        <div class="faq-ans"><p>Yes. Military-grade security, full utility independence, private chapel, staff quarters, internal elevator, 4 gourmet kitchens, and 15,000m² grounds make this ideal as a diplomatic headquarters, corporate retreat, or high-net-worth primary residence.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q4">Is this estate suitable as diplomatic housing in Caracas?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i18n="faq.a4">Yes. Military-grade security, full utility independence, private chapel, staff quarters, internal elevator, 4 gourmet kitchens, and 15,000m² grounds make this ideal as a diplomatic headquarters, corporate retreat, or high-net-worth primary residence.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Does the estate have a helipad?<span class="faq-icon">+</span></button>
-        <div class="faq-ans"><p>Yes. The estate includes a designated private helipad space along with 500 metres of internal private roads and dual access points — providing maximum operational flexibility and discretion for arrivals and departures.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faq.q5">Does the estate have a helipad?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i18n="faq.a5">Yes. The estate includes a designated private helipad space along with 500 metres of internal private roads and dual access points — providing maximum operational flexibility and discretion for arrivals and departures.</p></div>
       </div>
     </div>
   </div>
@@ -769,14 +787,14 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
 <!-- ═══ DOSSIER CTA ═══ -->
 <section class="dossier-cta" id="dossier" aria-label="Download investment dossier">
   <div class="si">
-    <p class="sl reveal" style="justify-content:center">Investment Dossier</p>
-    <h2 class="reveal">Download the Private<br><em>Investment Prospectus</em></h2>
-    <p class="reveal">Reserved for serious enquiries. Enter your email to receive the confidential Investment & Security Dossier — a comprehensive overview of the estate for qualified buyers.</p>
+    <p class="sl reveal" style="justify-content:center" data-i18n="dos.label">Investment Dossier</p>
+    <h2 class="reveal"><span data-i18n="dos.h2.line1">Download the Private</span><br><em data-i18n="dos.h2.line2">Investment Prospectus</em></h2>
+    <p class="reveal" data-i18n="dos.intro">Reserved for serious enquiries. Enter your email to receive the confidential Investment & Security Dossier — a comprehensive overview of the estate for qualified buyers.</p>
     <div class="dossier-form reveal">
-      <input type="email" placeholder="your@email.com" aria-label="Email address for dossier">
-      <button type="button" onclick="handleDossier(this)">Request Dossier</button>
+      <input type="email" data-i18n-ph="dos.placeholder" placeholder="your@email.com" aria-label="Email address for dossier">
+      <button type="button" onclick="handleDossier(this)" data-i18n="dos.btn">Request Dossier</button>
     </div>
-    <p class="dossier-note reveal">Your information is handled with absolute discretion and will not be shared with third parties.</p>
+    <p class="dossier-note reveal" data-i18n="dos.note">Your information is handled with absolute discretion and will not be shared with third parties.</p>
   </div>
 </section>
 
@@ -785,64 +803,64 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
   <div class="si">
     <div class="con-grid">
       <div class="con-info reveal">
-        <p class="sl">Private Showings</p>
-        <h2>Schedule Your<br><em>Exclusive</em> Visit</h2>
-        <p>This property is presented exclusively to qualified buyers. All inquiries are handled with absolute discretion. Our team will respond within 24–48 hours.</p>
+        <p class="sl" data-i18n="con.label">Private Showings</p>
+        <h2><span data-i18n="con.h2.line1">Schedule Your</span><br><span data-i18n-html="con.h2.line2"><em>Exclusive</em> Visit</span></h2>
+        <p data-i18n="con.intro">This property is presented exclusively to qualified buyers. All inquiries are handled with absolute discretion. Our team will respond within 24–48 hours.</p>
 
         <div class="con-detail">
           <div class="con-detail-item">
-            <span class="con-detail-label">Email</span>
+            <span class="con-detail-label" data-i18n="con.d.email">Email</span>
             <span class="con-detail-value">info@caracasluxuryestate.com</span>
           </div>
           <div class="con-detail-item">
-            <span class="con-detail-label">Response</span>
-            <span class="con-detail-value">Within 24–48 hours · Qualified buyers only</span>
+            <span class="con-detail-label" data-i18n="con.d.response">Response</span>
+            <span class="con-detail-value" data-i18n="con.d.response.v">Within 24–48 hours · Qualified buyers only</span>
           </div>
           <div class="con-detail-item">
-            <span class="con-detail-label">Showings</span>
-            <span class="con-detail-value">By private appointment only</span>
+            <span class="con-detail-label" data-i18n="con.d.showings">Showings</span>
+            <span class="con-detail-value" data-i18n="con.d.showings.v">By private appointment only</span>
           </div>
         </div>
 
         <a href="https://YOUR-TYPEFORM-LINK" class="btn-typeform" target="_blank" rel="noopener noreferrer" aria-label="Complete qualification form">
-          Complete Qualification Form
+          <span data-i18n="con.btn.typeform">Complete Qualification Form</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
       <div class="con-form reveal d1">
-        <p class="form-title">Request a Private Showing</p>
-        <p class="form-subtitle">All fields are treated with strict confidentiality</p>
+        <p class="form-title" data-i18n="con.form.title">Request a Private Showing</p>
+        <p class="form-subtitle" data-i18n="con.form.subtitle">All fields are treated with strict confidentiality</p>
         <form novalidate id="contactForm">
           <div class="form-row">
-            <div class="fg"><label for="fn">First Name</label><input type="text" id="fn" placeholder="Your first name" autocomplete="given-name" required></div>
-            <div class="fg"><label for="ln">Last Name</label><input type="text" id="ln" placeholder="Your last name" autocomplete="family-name" required></div>
+            <div class="fg"><label for="fn" data-i18n="con.form.fn">First Name</label><input type="text" id="fn" data-i18n-ph="con.form.fn.ph" placeholder="Your first name" autocomplete="given-name" required></div>
+            <div class="fg"><label for="ln" data-i18n="con.form.ln">Last Name</label><input type="text" id="ln" data-i18n-ph="con.form.ln.ph" placeholder="Your last name" autocomplete="family-name" required></div>
           </div>
-          <div class="fg"><label for="em">Email Address</label><input type="email" id="em" placeholder="your@email.com" autocomplete="email" required></div>
-          <div class="fg"><label for="co">Country of Residence</label><input type="text" id="co" placeholder="Country" required></div>
+          <div class="fg"><label for="em" data-i18n="con.form.em">Email Address</label><input type="email" id="em" data-i18n-ph="dos.placeholder" placeholder="your@email.com" autocomplete="email" required></div>
+          <div class="fg"><label for="co" data-i18n="con.form.co">Country of Residence</label><input type="text" id="co" data-i18n-ph="con.form.co.ph" placeholder="Country" required></div>
           <div class="fg">
-            <label for="bt">Buyer Profile</label>
+            <label for="bt" data-i18n="con.form.bt">Buyer Profile</label>
             <select id="bt" required>
-              <option value="" disabled selected>Select your profile</option>
-              <option>Private Individual / Family</option>
-              <option>Diplomatic Mission</option>
-              <option>Corporate / Family Office</option>
-              <option>International Investor</option>
-              <option>Other</option>
+              <option value="" disabled selected data-i18n="con.form.bt.0">Select your profile</option>
+              <option data-i18n="con.form.bt.1">Private Individual / Family</option>
+              <option data-i18n="con.form.bt.2">Diplomatic Mission</option>
+              <option data-i18n="con.form.bt.3">Corporate / Family Office</option>
+              <option data-i18n="con.form.bt.4">International Investor</option>
+              <option data-i18n="con.form.bt.5">Other</option>
             </select>
           </div>
           <div class="fg">
-            <label for="fin">Financing Method</label>
+            <label for="fin" data-i18n="con.form.fin">Financing Method</label>
             <select id="fin" required>
-              <option value="" disabled selected>Select financing</option>
-              <option>Cash Purchase</option>
-              <option>Bank Financing</option>
-              <option>Other</option>
+              <option value="" disabled selected data-i18n="con.form.fin.0">Select financing</option>
+              <option data-i18n="con.form.fin.1">Cash Purchase</option>
+              <option data-i18n="con.form.fin.2">Bank Financing</option>
+              <option data-i18n="con.form.fin.3">Other</option>
             </select>
           </div>
-          <div class="fg"><label for="msg">Message</label><textarea id="msg" placeholder="I would like to schedule a private showing..."></textarea></div>
-          <button type="submit" class="btn-sub">Submit Inquiry</button>
-          <p class="form-disc">All inquiries handled with absolute discretion. Your information will not be shared with third parties.</p>
+          <div class="fg"><label for="msg" data-i18n="con.form.msg">Message</label><textarea id="msg" data-i18n-ph="con.form.msg.ph" placeholder="I would like to schedule a private showing..."></textarea></div>
+          <button type="submit" class="btn-sub" data-i18n="con.form.submit">Submit Inquiry</button>
+          <p class="form-disc" data-i18n="con.form.disc">All inquiries handled with absolute discretion. Your information will not be shared with third parties.</p>
         </form>
       </div>
     </div>
@@ -861,47 +879,48 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
             <span class="ft-logo-sub">La Trinidad &middot; Baruta &middot; Caracas</span>
           </div>
         </div>
-        <p>An ultra-luxury private estate set against the &Aacute;vila National Park, offering complete autonomy, military-grade security and timeless residential architecture.</p>
-        <p class="tagline">The most secure private residence in Venezuela.</p>
+        <p data-i18n="ft.brand.desc">An ultra-luxury private estate set against the Ávila National Park, offering complete autonomy, military-grade security and timeless residential architecture.</p>
+        <p class="tagline" data-i18n="ft.brand.tagline">The most secure private residence in Venezuela.</p>
       </div>
 
       <div class="ft-col">
-        <h4 class="ft-col-title">Explore</h4>
+        <h4 class="ft-col-title" data-i18n="ft.col.explore">Explore</h4>
         <nav class="ft-nav" aria-label="Footer navigation">
-          <a href="#overview">Overview</a>
-          <a href="security.html">Security &amp; Autonomy</a>
-          <a href="amenities.html">Amenities &amp; Lifestyle</a>
-          <a href="location.html">Location &amp; Views</a>
-          <a href="#faq">FAQ</a>
-          <a href="#dossier">Investment Dossier</a>
+          <a href="#overview" data-i18n="ft.nav.overview">Overview</a>
+          <a href="security.html" data-i18n="ft.nav.security">Security & Autonomy</a>
+          <a href="amenities.html" data-i18n="ft.nav.amenities">Amenities & Lifestyle</a>
+          <a href="location.html" data-i18n="ft.nav.location">Location & Views</a>
+          <a href="#faq" data-i18n="ft.nav.faq">FAQ</a>
+          <a href="#dossier" data-i18n="ft.nav.dossier">Investment Dossier</a>
         </nav>
       </div>
 
       <div class="ft-col">
-        <h4 class="ft-col-title">Private Inquiries</h4>
+        <h4 class="ft-col-title" data-i18n="ft.col.inquiries">Private Inquiries</h4>
         <div class="ft-contact">
           <div class="ft-contact-item">
-            <span class="ft-contact-label">Direct</span>
+            <span class="ft-contact-label" data-i18n="ft.c.direct">Direct</span>
             <span class="ft-contact-val"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></span>
           </div>
           <div class="ft-contact-item">
-            <span class="ft-contact-label">Showings</span>
-            <span class="ft-contact-val">By appointment only</span>
+            <span class="ft-contact-label" data-i18n="ft.c.showings">Showings</span>
+            <span class="ft-contact-val" data-i18n="ft.c.showings.v">By appointment only</span>
           </div>
           <div class="ft-contact-item">
-            <span class="ft-contact-label">Discretion</span>
-            <span class="ft-contact-val">Strict NDA &middot; Qualified buyers</span>
+            <span class="ft-contact-label" data-i18n="ft.c.discretion">Discretion</span>
+            <span class="ft-contact-val" data-i18n="ft.c.discretion.v">Strict NDA · Qualified buyers</span>
           </div>
         </div>
       </div>
     </div>
     <div class="ft-bottom">
-      <p>&copy; 2025 Caracas Luxury Estate &middot; All rights reserved</p>
-      <p class="ft-bottom-meta">Ultra-luxury private listing &middot; Information confidential</p>
+      <p data-i18n="ft.bottom.copy">© 2025 Caracas Luxury Estate · All rights reserved</p>
+      <p class="ft-bottom-meta" data-i18n="ft.bottom.meta">Ultra-luxury private listing · Information confidential</p>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js" defer></script>
 <script>
 // Nav scroll
 const nav=document.getElementById('nav');

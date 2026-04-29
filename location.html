@@ -81,6 +81,13 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;justify-cont
 .nav-cta{border:1px solid rgba(201,168,76,.5)!important;color:var(--gold)!important;padding:10px 22px}
 .nav-cta:hover{background:var(--gold)!important;color:var(--black)!important}
 .nav-cta::after{display:none!important}
+.nav-right{display:flex;align-items:center;gap:24px}
+.lang-switch{display:inline-flex;align-items:center;gap:0;padding:3px;border:1px solid rgba(201,168,76,.45);background:rgba(10,10,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:0;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;padding:7px 11px;cursor:pointer;transition:color .25s,background .25s;line-height:1;position:relative}
+.lang-btn::after{display:none!important}
+.lang-btn:hover{color:#e8c876}
+.lang-btn.active{color:#0a0a0a;background:var(--gold)}
+.lang-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* BREADCRUMB */
 .breadcrumb{padding:108px 72px 0;background:var(--black)}
@@ -228,8 +235,10 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
   footer{padding:48px 40px}
 }
 @media(max-width:768px){
-  nav{padding:14px 24px}
+  nav{padding:14px 18px}
   .nav-links{display:none}
+  .nav-right{gap:0}
+  .lang-btn{font-size:10px;letter-spacing:1.2px;padding:6px 9px}
   .breadcrumb,.page-hero,.si{padding-left:24px;padding-right:24px}
   .climate-grid{grid-template-columns:1fr}
   footer{padding:36px 24px}
@@ -248,21 +257,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <span class="nav-logo-main">Caracas Luxury Estate</span>
     <span class="nav-logo-sub">La Trinidad · Baruta · Caracas</span>
   </a>
-  <div class="nav-links">
-    <a href="index.html">Overview</a>
-    <a href="security.html">Security</a>
-    <a href="amenities.html">Amenities</a>
-    <a href="location.html" class="active">Location</a>
-    <a href="index.html#contact" class="nav-cta">Private Showing</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav.overview">Overview</a>
+      <a href="security.html" data-i18n="nav.security">Security</a>
+      <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+      <a href="location.html" class="active" data-i18n="nav.location">Location</a>
+      <a href="index.html#contact" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
   </div>
 </nav>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
-    <a href="index.html">Home</a>
+    <a href="index.html" data-i18n="crumb.home">Home</a>
     <span>/</span>
-    <span>Location &amp; Views</span>
+    <span data-i18n="crumb.location">Location &amp; Views</span>
   </div>
 </div>
 
@@ -270,16 +286,16 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <header class="page-hero">
   <div class="page-hero-grid">
     <div class="reveal">
-      <p class="page-tag">Location &amp; Views</p>
-      <h1>The Most Coveted<br><em>View</em> in Venezuela</h1>
-      <p class="page-hero-desc">Perched in the prestigious hills of Baruta, this estate commands a direct, unobstructed panoramic view of the majestic Ávila National Park — Venezuela's most iconic natural landmark.</p>
+      <p class="page-tag" data-i18n="lx.tag">Location &amp; Views</p>
+      <h1><span data-i18n="lx.h1.l1">The Most Coveted</span><br><span data-i18n-html="lx.h1.l2.html"><em>View</em> in Venezuela</span></h1>
+      <p class="page-hero-desc" data-i18n="lx.intro">Perched in the prestigious hills of Baruta, this estate commands a direct, unobstructed panoramic view of the majestic Ávila National Park — Venezuela's most iconic natural landmark.</p>
     </div>
     <div class="loc-hero-tags reveal d1">
-      <div class="lht"><span class="lht-label">Zone</span><span class="lht-val">La Trinidad, Baruta</span></div>
-      <div class="lht"><span class="lht-label">Access Point 1</span><span class="lht-val">Lomas de Chispia</span></div>
-      <div class="lht"><span class="lht-label">Access Point 2</span><span class="lht-val">Sorocaima</span></div>
-      <div class="lht"><span class="lht-label">Altitude</span><span class="lht-val">Elevated Hills · Baruta</span></div>
-      <div class="lht"><span class="lht-label">View</span><span class="lht-val">Direct Ávila National Park</span></div>
+      <div class="lht"><span class="lht-label" data-i18n="lx.tag1.l">Zone</span><span class="lht-val" data-i18n="lx.tag1.v">La Trinidad, Baruta</span></div>
+      <div class="lht"><span class="lht-label" data-i18n="lx.tag2.l">Access Point 1</span><span class="lht-val" data-i18n="lx.tag2.v">Lomas de Chispia</span></div>
+      <div class="lht"><span class="lht-label" data-i18n="lx.tag3.l">Access Point 2</span><span class="lht-val" data-i18n="lx.tag3.v">Sorocaima</span></div>
+      <div class="lht"><span class="lht-label" data-i18n="lx.tag4.l">Altitude</span><span class="lht-val" data-i18n="lx.tag4.v">Elevated Hills · Baruta</span></div>
+      <div class="lht"><span class="lht-label" data-i18n="lx.tag5.l">View</span><span class="lht-val" data-i18n="lx.tag5.v">Direct Ávila National Park</span></div>
     </div>
   </div>
 </header>
@@ -293,35 +309,35 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
       <div class="av-img reveal">
         <img src="living-aerial-1.jpg" alt="Panoramic view from the living room overlooking the estate grounds towards Avila National Park, La Trinidad Baruta Caracas" loading="lazy" width="800" height="560">
         <div class="av-img-badge">
-          <span>Visible from the estate</span>
-          <p>Ávila National Park</p>
+          <span data-i18n="lx.av.badge.t">Visible from the estate</span>
+          <p data-i18n="lx.av.badge.s">Ávila National Park</p>
         </div>
       </div>
       <div class="av-text reveal d1">
-        <p class="sl">The View</p>
-        <h2>Panoramic <em>Ávila</em><br>National Park Views</h2>
-        <p>The estate commands what is widely regarded as <strong>the most coveted panoramic view in Venezuela</strong> — a direct, unobstructed vista of the Ávila National Park, the majestic mountain range that defines the northern boundary of Caracas.</p>
-        <p>This view is visible from across the property — from the main living areas, principal suites, and terraces — providing a constant, breathtaking natural backdrop that elevates every moment of daily life within the estate.</p>
+        <p class="sl" data-i18n="lx.av.label">The View</p>
+        <h2 data-i18n-html="lx.av.h2.html">Panoramic <em>Ávila</em><br>National Park Views</h2>
+        <p data-i18n-html="lx.av.p1.html">The estate commands what is widely regarded as <strong>the most coveted panoramic view in Venezuela</strong> — a direct, unobstructed vista of the Ávila National Park, the majestic mountain range that defines the northern boundary of Caracas.</p>
+        <p data-i18n="lx.av.p2">This view is visible from across the property — from the main living areas, principal suites, and terraces — providing a constant, breathtaking natural backdrop that elevates every moment of daily life within the estate.</p>
         <div class="av-features">
           <div class="av-feat">
             <span class="av-feat-num">I</span>
             <div class="av-feat-body">
-              <h3>Direct, Unobstructed View</h3>
-              <p>No intermediary structures between the estate and the Ávila — a clear, uninterrupted panoramic sightline from multiple points across the property</p>
+              <h3 data-i18n="lx.av.f1.h">Direct, Unobstructed View</h3>
+              <p data-i18n="lx.av.f1.p">No intermediary structures between the estate and the Ávila — a clear, uninterrupted panoramic sightline from multiple points across the property</p>
             </div>
           </div>
           <div class="av-feat">
             <span class="av-feat-num">II</span>
             <div class="av-feat-body">
-              <h3>Visible from Living Areas</h3>
-              <p>Principal living rooms, master suites, library, and entertaining terraces all positioned to maximize the Ávila view throughout the day</p>
+              <h3 data-i18n="lx.av.f2.h">Visible from Living Areas</h3>
+              <p data-i18n="lx.av.f2.p">Principal living rooms, master suites, library, and entertaining terraces all positioned to maximize the Ávila view throughout the day</p>
             </div>
           </div>
           <div class="av-feat">
             <span class="av-feat-num">III</span>
             <div class="av-feat-body">
-              <h3>UNESCO Natural Landmark</h3>
-              <p>The Ávila — officially Waraira Repano — is a protected national park and one of Venezuela's most recognized natural and cultural landmarks</p>
+              <h3 data-i18n="lx.av.f3.h">UNESCO Natural Landmark</h3>
+              <p data-i18n="lx.av.f3.p">The Ávila — officially Waraira Repano — is a protected national park and one of Venezuela's most recognized natural and cultural landmarks</p>
             </div>
           </div>
         </div>
@@ -333,43 +349,43 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- ZONE MAP -->
 <section class="zone" id="zone" aria-label="Zone and location details">
   <div class="si">
-    <p class="sl reveal">Zone</p>
-    <h2 class="reveal" style="color:var(--white)">La Trinidad<br><em>Lomas de Chispia</em></h2>
+    <p class="sl reveal" data-i18n="lx.zn.label">Zone</p>
+    <h2 class="reveal" style="color:var(--white)"><span data-i18n="lx.zn.h2.l1">La Trinidad</span><br><em data-i18n="lx.zn.h2.l2">Lomas de Chispia</em></h2>
     <div class="zone-grid">
       <div class="zone-map reveal">
-        <p class="zone-map-title">Estate Location — Approximate Zone</p>
+        <p class="zone-map-title" data-i18n="lx.zn.map.t">Estate Location — Approximate Zone</p>
         <div class="zone-dot"></div>
-        <p class="zone-map-label">La Trinidad · Baruta · Caracas</p>
-        <p class="zone-map-sub">Lomas de Chispia / Sorocaima<br>Miranda State, Venezuela</p>
-        <p class="zone-map-note">Exact address provided exclusively to verified qualified buyers</p>
+        <p class="zone-map-label" data-i18n="lx.zn.map.l">La Trinidad · Baruta · Caracas</p>
+        <p class="zone-map-sub" data-i18n-html="lx.zn.map.s.html">Lomas de Chispia / Sorocaima<br>Miranda State, Venezuela</p>
+        <p class="zone-map-note" data-i18n="lx.zn.map.note">Exact address provided exclusively to verified qualified buyers</p>
       </div>
       <div class="zone-info reveal d1">
         <div class="zone-item">
           <span class="zone-item-num">01</span>
           <div>
-            <h3>La Trinidad</h3>
-            <p>One of Caracas's most prestigious and sought-after residential neighborhoods — known for its elevated position, security infrastructure, and concentration of high-net-worth residences and diplomatic compounds.</p>
+            <h3 data-i18n="lx.zn1.h">La Trinidad</h3>
+            <p data-i18n="lx.zn1.p">One of Caracas's most prestigious and sought-after residential neighborhoods — known for its elevated position, security infrastructure, and concentration of high-net-worth residences and diplomatic compounds.</p>
           </div>
         </div>
         <div class="zone-item">
           <span class="zone-item-num">02</span>
           <div>
-            <h3>Lomas de Chispia</h3>
-            <p>The primary access route — a private, controlled residential road within the La Trinidad enclave that provides the estate's main entry point with maximum privacy and security.</p>
+            <h3 data-i18n="lx.zn2.h">Lomas de Chispia</h3>
+            <p data-i18n="lx.zn2.p">The primary access route — a private, controlled residential road within the La Trinidad enclave that provides the estate's main entry point with maximum privacy and security.</p>
           </div>
         </div>
         <div class="zone-item">
           <span class="zone-item-num">03</span>
           <div>
-            <h3>Sorocaima</h3>
-            <p>The secondary independent access point — providing a completely separate entry and exit route for maximum operational flexibility and strategic redundancy.</p>
+            <h3 data-i18n="lx.zn3.h">Sorocaima</h3>
+            <p data-i18n="lx.zn3.p">The secondary independent access point — providing a completely separate entry and exit route for maximum operational flexibility and strategic redundancy.</p>
           </div>
         </div>
         <div class="zone-item">
           <span class="zone-item-num">04</span>
           <div>
-            <h3>Baruta Municipality</h3>
-            <p>Located within Baruta — consistently ranked as one of Caracas's safest and most organized municipalities, with well-maintained infrastructure and a high concentration of international institutions.</p>
+            <h3 data-i18n="lx.zn4.h">Baruta Municipality</h3>
+            <p data-i18n="lx.zn4.p">Located within Baruta — consistently ranked as one of Caracas's safest and most organized municipalities, with well-maintained infrastructure and a high concentration of international institutions.</p>
           </div>
         </div>
       </div>
@@ -380,26 +396,26 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- MICRO CLIMATE -->
 <section class="climate" id="climate" aria-label="Micro-climate and environment">
   <div class="si">
-    <p class="sl reveal">Environment</p>
-    <h2 class="reveal">An Elevated<br><em>Micro-Climate</em></h2>
+    <p class="sl reveal" data-i18n="lx.cl.label">Environment</p>
+    <h2 class="reveal"><span data-i18n="lx.cl.h2.l1">An Elevated</span><br><em data-i18n="lx.cl.h2.l2">Micro-Climate</em></h2>
     <div class="climate-grid">
       <div class="cl-card reveal">
         <div class="cl-icon">I</div>
-        <p class="cl-cat">Temperature</p>
-        <h3>Naturally Cooler</h3>
-        <p>The estate's elevated position in the Baruta hills provides a naturally cooler and more comfortable temperature year-round compared to Caracas's valley floor — reducing the reliance on air conditioning and enhancing daily living quality.</p>
+        <p class="cl-cat" data-i18n="lx.cl1.cat">Temperature</p>
+        <h3 data-i18n="lx.cl1.h">Naturally Cooler</h3>
+        <p data-i18n="lx.cl1.p">The estate's elevated position in the Baruta hills provides a naturally cooler and more comfortable temperature year-round compared to Caracas's valley floor — reducing the reliance on air conditioning and enhancing daily living quality.</p>
       </div>
       <div class="cl-card reveal d1">
         <div class="cl-icon">II</div>
-        <p class="cl-cat">Vegetation</p>
-        <h3>Lush Natural Surroundings</h3>
-        <p>The estate is surrounded by native tropical forest and lush gardens that contribute to the private micro-climate — providing natural shade, fresh air circulation, and a serene green environment visible from across the property.</p>
+        <p class="cl-cat" data-i18n="lx.cl2.cat">Vegetation</p>
+        <h3 data-i18n="lx.cl2.h">Lush Natural Surroundings</h3>
+        <p data-i18n="lx.cl2.p">The estate is surrounded by native tropical forest and lush gardens that contribute to the private micro-climate — providing natural shade, fresh air circulation, and a serene green environment visible from across the property.</p>
       </div>
       <div class="cl-card reveal d2">
         <div class="cl-icon">III</div>
-        <p class="cl-cat">Privacy</p>
-        <h3>Natural Green Buffer</h3>
-        <p>The surrounding native forest creates a natural visual and acoustic buffer — providing an additional layer of privacy beyond the armored perimeter infrastructure, ensuring complete seclusion within the estate grounds.</p>
+        <p class="cl-cat" data-i18n="lx.cl3.cat">Privacy</p>
+        <h3 data-i18n="lx.cl3.h">Natural Green Buffer</h3>
+        <p data-i18n="lx.cl3.p">The surrounding native forest creates a natural visual and acoustic buffer — providing an additional layer of privacy beyond the armored perimeter infrastructure, ensuring complete seclusion within the estate grounds.</p>
       </div>
     </div>
   </div>
@@ -409,34 +425,34 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <section class="proximity" id="proximity" aria-label="Proximity to key locations">
   <div class="si">
     <div class="prox-intro reveal">
-      <p class="sl">Proximity</p>
-      <h2>Strategic<br><em>Connectivity</em></h2>
-      <p>Despite its elevated, private position, the estate maintains excellent proximity to Caracas's key commercial, diplomatic, and infrastructure hubs — providing the best of both worlds: absolute privacy and strategic urban access.</p>
+      <p class="sl" data-i18n="lx.px.label">Proximity</p>
+      <h2><span data-i18n="lx.px.h2.l1">Strategic</span><br><em data-i18n="lx.px.h2.l2">Connectivity</em></h2>
+      <p data-i18n="lx.px.intro">Despite its elevated, private position, the estate maintains excellent proximity to Caracas's key commercial, diplomatic, and infrastructure hubs — providing the best of both worlds: absolute privacy and strategic urban access.</p>
     </div>
     <div class="prox-grid reveal">
       <div class="prox-item">
-        <div class="prox-item-info"><h3>La Carlota Airport</h3><p>Domestic flights and private aviation</p></div>
-        <div><div class="prox-item-dist">~20</div><div class="prox-item-unit">min drive</div></div>
+        <div class="prox-item-info"><h3 data-i18n="lx.px1.h">La Carlota Airport</h3><p data-i18n="lx.px1.p">Domestic flights and private aviation</p></div>
+        <div><div class="prox-item-dist">~20</div><div class="prox-item-unit" data-i18n="lx.px.unit">min drive</div></div>
       </div>
       <div class="prox-item">
-        <div class="prox-item-info"><h3>Diplomatic Zone (Las Mercedes)</h3><p>Embassies and international institutions</p></div>
-        <div><div class="prox-item-dist">~15</div><div class="prox-item-unit">min drive</div></div>
+        <div class="prox-item-info"><h3 data-i18n="lx.px2.h">Diplomatic Zone (Las Mercedes)</h3><p data-i18n="lx.px2.p">Embassies and international institutions</p></div>
+        <div><div class="prox-item-dist">~15</div><div class="prox-item-unit" data-i18n="lx.px.unit">min drive</div></div>
       </div>
       <div class="prox-item">
-        <div class="prox-item-info"><h3>Centro Comercial El Hatillo</h3><p>Luxury retail and fine dining</p></div>
-        <div><div class="prox-item-dist">~10</div><div class="prox-item-unit">min drive</div></div>
+        <div class="prox-item-info"><h3 data-i18n="lx.px3.h">Centro Comercial El Hatillo</h3><p data-i18n="lx.px3.p">Luxury retail and fine dining</p></div>
+        <div><div class="prox-item-dist">~10</div><div class="prox-item-unit" data-i18n="lx.px.unit">min drive</div></div>
       </div>
       <div class="prox-item">
-        <div class="prox-item-info"><h3>Valle Arriba Athletic Club</h3><p>Exclusive private sporting club</p></div>
-        <div><div class="prox-item-dist">~12</div><div class="prox-item-unit">min drive</div></div>
+        <div class="prox-item-info"><h3 data-i18n="lx.px4.h">Valle Arriba Athletic Club</h3><p data-i18n="lx.px4.p">Exclusive private sporting club</p></div>
+        <div><div class="prox-item-dist">~12</div><div class="prox-item-unit" data-i18n="lx.px.unit">min drive</div></div>
       </div>
       <div class="prox-item">
-        <div class="prox-item-info"><h3>Simón Bolívar International Airport</h3><p>International departures · Maiquetía</p></div>
-        <div><div class="prox-item-dist">~45</div><div class="prox-item-unit">min drive</div></div>
+        <div class="prox-item-info"><h3 data-i18n="lx.px5.h">Simón Bolívar International Airport</h3><p data-i18n="lx.px5.p">International departures · Maiquetía</p></div>
+        <div><div class="prox-item-dist">~45</div><div class="prox-item-unit" data-i18n="lx.px.unit">min drive</div></div>
       </div>
       <div class="prox-item">
-        <div class="prox-item-info"><h3>Chacao Financial District</h3><p>Banking and corporate headquarters</p></div>
-        <div><div class="prox-item-dist">~20</div><div class="prox-item-unit">min drive</div></div>
+        <div class="prox-item-info"><h3 data-i18n="lx.px6.h">Chacao Financial District</h3><p data-i18n="lx.px6.p">Banking and corporate headquarters</p></div>
+        <div><div class="prox-item-dist">~20</div><div class="prox-item-unit" data-i18n="lx.px.unit">min drive</div></div>
       </div>
     </div>
   </div>
@@ -447,25 +463,25 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
   <div class="si">
     <div class="inv-grid">
       <div class="inv-text reveal">
-        <p class="sl">Why Here</p>
-        <h2 style="color:var(--white)">Why <em>La Trinidad</em><br>for $10M</h2>
-        <p>In the context of global ultra-high-net-worth real estate, La Trinidad represents a singular value proposition — combining the scarcity of a truly self-sufficient compound with the irreplaceable asset of Venezuela's most prestigious address.</p>
+        <p class="sl" data-i18n="lx.inv.label">Why Here</p>
+        <h2 style="color:var(--white)" data-i18n-html="lx.inv.h2.html">Why <em>La Trinidad</em><br>for $10M</h2>
+        <p data-i18n="lx.inv.intro">In the context of global ultra-high-net-worth real estate, La Trinidad represents a singular value proposition — combining the scarcity of a truly self-sufficient compound with the irreplaceable asset of Venezuela's most prestigious address.</p>
         <div class="inv-points">
           <div class="inv-point">
             <div class="inv-point-dot"></div>
-            <p><strong>Irreplaceable location:</strong> A 15,000m² compound in La Trinidad cannot be replicated — land at this scale in this enclave is simply no longer available.</p>
+            <p data-i18n-html="lx.inv.p1.html"><strong>Irreplaceable location:</strong> A 15,000m² compound in La Trinidad cannot be replicated — land at this scale in this enclave is simply no longer available.</p>
           </div>
           <div class="inv-point">
             <div class="inv-point-dot"></div>
-            <p><strong>Strategic asset for uncertainty:</strong> Complete utility independence makes this estate uniquely valuable as global infrastructure reliability becomes a premium consideration.</p>
+            <p data-i18n-html="lx.inv.p2.html"><strong>Strategic asset for uncertainty:</strong> Complete utility independence makes this estate uniquely valuable as global infrastructure reliability becomes a premium consideration.</p>
           </div>
           <div class="inv-point">
             <div class="inv-point-dot"></div>
-            <p><strong>Diplomatic and corporate utility:</strong> The scale, security, and infrastructure position this property as a credible alternative to traditional diplomatic compounds in Caracas.</p>
+            <p data-i18n-html="lx.inv.p3.html"><strong>Diplomatic and corporate utility:</strong> The scale, security, and infrastructure position this property as a credible alternative to traditional diplomatic compounds in Caracas.</p>
           </div>
           <div class="inv-point">
             <div class="inv-point-dot"></div>
-            <p><strong>Venezuela's emerging market:</strong> As Venezuela's economic stabilization continues, premium real estate in established enclaves represents significant upside potential for early-positioned investors.</p>
+            <p data-i18n-html="lx.inv.p4.html"><strong>Venezuela's emerging market:</strong> As Venezuela's economic stabilization continues, premium real estate in established enclaves represents significant upside potential for early-positioned investors.</p>
           </div>
         </div>
       </div>
@@ -479,12 +495,12 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 <!-- CTA -->
 <section class="loc-cta" aria-label="Call to action">
   <div class="si">
-    <p class="sl reveal" style="justify-content:center">Private Showing</p>
-    <h2 class="reveal">Visit the Estate<br><em>in Person</em></h2>
-    <p class="reveal">The exact address and access details are provided exclusively to verified qualified buyers. Request a private showing to experience the location firsthand.</p>
+    <p class="sl reveal" style="justify-content:center" data-i18n="pcta.label">Private Showing</p>
+    <h2 class="reveal"><span data-i18n="lx.cta.h2.l1">Visit the Estate</span><br><em data-i18n="lx.cta.h2.l2">in Person</em></h2>
+    <p class="reveal" data-i18n="lx.cta.intro">The exact address and access details are provided exclusively to verified qualified buyers. Request a private showing to experience the location firsthand.</p>
     <div class="cta-actions reveal">
-      <a href="index.html#contact" class="btn-primary">Request Private Showing</a>
-      <a href="index.html#dossier" class="btn-ghost">Download Investment Dossier</a>
+      <a href="index.html#contact" class="btn-primary" data-i18n="pcta.btn.show">Request Private Showing</a>
+      <a href="index.html#dossier" class="btn-ghost" data-i18n="pcta.btn.dossier">Download Investment Dossier</a>
     </div>
   </div>
 </section>
@@ -495,27 +511,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <div class="ft-top">
       <div class="ft-brand">
         <span class="ft-logo">Caracas Luxury Estate</span>
-        <p>La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
-        <p style="margin-top:8px">The most secure private estate in Venezuela</p>
+        <p data-i18n-html="sub.ft.addr.html">La Trinidad · Lomas de Chispia<br>Baruta, Caracas, Venezuela</p>
+        <p style="margin-top:8px" data-i18n="sub.ft.tag">The most secure private estate in Venezuela</p>
       </div>
       <nav class="ft-nav">
-        <a href="index.html">Overview</a>
-        <a href="security.html">Security &amp; Autonomy</a>
-        <a href="amenities.html">Amenities &amp; Lifestyle</a>
-        <a href="location.html">Location &amp; Views</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#contact">Private Showing</a>
-        <a href="index.html#dossier">Investment Dossier</a>
+        <a href="index.html" data-i18n="nav.overview">Overview</a>
+        <a href="security.html" data-i18n="crumb.security">Security &amp; Autonomy</a>
+        <a href="amenities.html" data-i18n="crumb.amenities">Amenities &amp; Lifestyle</a>
+        <a href="location.html" data-i18n="crumb.location">Location &amp; Views</a>
+        <a href="index.html#faq" data-i18n="sub.ft.nav.faq">FAQ</a>
+        <a href="index.html#contact" data-i18n="sub.ft.nav.show">Private Showing</a>
+        <a href="index.html#dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
       </nav>
     </div>
     <div class="ft-bottom">
-      <p>&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
+      <p data-i18n="sub.ft.copy">&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
       <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></div>
-      <p>Private showings by appointment only</p>
+      <p data-i18n="sub.ft.note">Private showings by appointment only</p>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js" defer></script>
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursorRing');
