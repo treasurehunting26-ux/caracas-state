@@ -188,7 +188,7 @@ h1 strong{font-weight:500;display:block}
 /* ── DIVIDER ── */
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);opacity:.7}
 
-/* ── SECTIONS ─��� */
+/* ─��� SECTIONS ─��� */
 .si{max-width:1280px;margin:0 auto;padding:0 64px}
 .sl{font-size:11px;letter-spacing:3.2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:14px}
 .sl::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0}
@@ -492,7 +492,7 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
     <p class="hero-hook" data-i18n-html="hero.hook.html">In an era of global uncertainty, this <strong>self-sufficient sanctuary</strong> offers military-grade security, one month of full power and water independence, and the most prestigious view of the <strong>Ávila National Park</strong>. Welcome to the pinnacle of Venezuelan luxury.</p>
 
     <div class="hero-actions">
-      <a href="#dossier" class="btn-dossier">
+      <a href="/dossier" class="btn-dossier">
         <span>
           <span data-i18n="hero.btn.dossier">Download Investment Dossier</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -790,9 +790,13 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
     <p class="sl reveal" style="justify-content:center" data-i18n="dos.label">Investment Dossier</p>
     <h2 class="reveal"><span data-i18n="dos.h2.line1">Download the Private</span><br><em data-i18n="dos.h2.line2">Investment Prospectus</em></h2>
     <p class="reveal" data-i18n="dos.intro">Reserved for serious enquiries. Enter your email to receive the confidential Investment & Security Dossier — a comprehensive overview of the estate for qualified buyers.</p>
-    <div class="dossier-form reveal">
-      <input type="email" data-i18n-ph="dos.placeholder" placeholder="your@email.com" aria-label="Email address for dossier">
-      <button type="button" onclick="handleDossier(this)" data-i18n="dos.btn">Request Dossier</button>
+    <div class="dossier-form reveal" style="border:none;background:transparent;justify-content:center;display:flex">
+      <a href="/dossier" class="btn-dossier" style="margin:0 auto">
+        <span>
+          <span data-i18n="dos.btn">Request Dossier</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
     </div>
     <p class="dossier-note reveal" data-i18n="dos.note">Your information is handled with absolute discretion and will not be shared with third parties.</p>
   </div>
@@ -891,7 +895,7 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
           <a href="amenities.html" data-i18n="ft.nav.amenities">Amenities & Lifestyle</a>
           <a href="location.html" data-i18n="ft.nav.location">Location & Views</a>
           <a href="#faq" data-i18n="ft.nav.faq">FAQ</a>
-          <a href="#dossier" data-i18n="ft.nav.dossier">Investment Dossier</a>
+          <a href="/dossier" data-i18n="ft.nav.dossier">Investment Dossier</a>
         </nav>
       </div>
 
@@ -959,16 +963,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   btn.disabled=true;
 });
 
-// Dossier form
-function handleDossier(btn){
-  const input=btn.previousElementSibling;
-  if(!input.value||!input.value.includes('@')){input.style.borderColor='rgba(201,68,68,.5)';return}
-  btn.textContent='Dossier Coming Soon';
-  btn.style.background='#1a4a2e';
-  btn.style.color='rgba(255,255,255,.7)';
-  btn.disabled=true;
-  input.disabled=true;
-}
+// Dossier CTA now redirects to /dossier (full gated form)
 </script>
 </body>
 </html>
