@@ -850,7 +850,7 @@ const I18N = {
     /* dossier */
     'dos.label': 'Dossier de Inversión',
     'dos.h2.line1': 'Descargue el Prospecto',
-    'dos.h2.line2': 'Privado de <em>Inversión</em>',
+    'dos.h2.line2': 'Privado de Inversión',
     'dos.intro': 'Reservado para consultas serias. Ingrese su correo electrónico para recibir el Dossier confidencial de Inversión y Seguridad — una visión integral de la propiedad para compradores calificados.',
     'dos.placeholder': 'su@correo.com',
     'dos.btn': 'Solicitar Dossier',
@@ -1542,7 +1542,7 @@ const I18N = {
     /* dossier */
     'dos.label': 'Investment-Dossier',
     'dos.h2.line1': 'Das private Investment-',
-    'dos.h2.line2': '<em>Prospekt</em> herunterladen',
+    'dos.h2.line2': 'Prospekt herunterladen',
     'dos.intro': 'Reserviert für seriöse Anfragen. Geben Sie Ihre E-Mail-Adresse ein, um das vertrauliche Investment- und Sicherheitsdossier zu erhalten — eine umfassende Übersicht des Anwesens für qualifizierte Käufer.',
     'dos.placeholder': 'ihre@email.com',
     'dos.btn': 'Dossier anfragen',
@@ -1684,7 +1684,7 @@ const I18N = {
     'sx.wat1.u': 'Liter',
     'sx.wat1.d': 'Der Hauptreservetank fasst 600.000 Liter Frischwasser und sichert die Hauptversorgung des Anwesens unabhängig von der städtischen Infrastruktur. Positioniert für eine schwerkraftunterstützte Verteilung über alle Ebenen des Grundstücks.',
     'sx.wat2.l': 'Sekundärreservetank',
-    'sx.wat2.d': 'Ein sekundärer 400.000-Liter-Reservetank bietet zusätzliche Kapazität und Redundanz — sichert kontinuierliche Wasserversorgung auch in längeren Szenarien, in denen der Haupttank gewartet oder aufgefüllt werden muss.',
+    'sx.wat2.d': 'Ein sekundärer 400.000-Liter-Reservetank bietet zusätzliche Kapazität und Redundanz — sichert kontinuierliche Wasserversorgung auch in längeren Szenarien, in denen der Haupttank gewartet oder aufgef��llt werden muss.',
     'sx.wat.tot.l': 'Gesamtwasserspeicher',
     'sx.wat.tot.n': 'Haupt- + Sekundärreserve · Vollständige Unabhängigkeit von der Stadt',
     'sx.acc.label': 'Strategischer Zugang',
@@ -2097,10 +2097,17 @@ const I18N = {
     const dict = I18N[lang];
     document.documentElement.lang = lang;
 
-    /* text content */
+    /* text content — auto-detects HTML markup in translation values */
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
-      if (dict[key] !== undefined) el.textContent = dict[key];
+      if (dict[key] === undefined) return;
+      const val = dict[key];
+      // If the translation contains HTML tags, render as HTML; otherwise as text
+      if (typeof val === 'string' && /<[a-z][\s\S]*?>/i.test(val)) {
+        el.innerHTML = val;
+      } else {
+        el.textContent = val;
+      }
     });
 
     /* HTML content (for strings with <strong>, <em>, etc.) */
