@@ -15,7 +15,9 @@ export default async function handler(req, res) {
   const result = verifyDownloadToken(token)
 
   if (!result.ok) {
-    return sendPage(res, 403, expiredPage(result.reason))
+    // 410 Gone for expired (correct semantic), 403 for tampered/invalid
+    const status = result.reason === 'expired' ? 410 : 403
+    return sendPage(res, status, expiredPage(result.reason))
   }
 
   // TODO (when Supabase is wired): mark this lead as downloaded

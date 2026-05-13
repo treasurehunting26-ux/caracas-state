@@ -1,57 +1,77 @@
 /* api/_lib/blob.js
    Signed download URL for the dossier PDF.
    ─────────────────────────────────────────────
+   Backs the three promises shown on /dossier:
+     1. "Unique to you"            → token embeds a unique leadId
+     2. "Cryptographically signed" → HMAC-SHA256 with DOSSIER_SECRET,
+                                      verified in constant time (timingSafeEqual)
+     3. "Expires in 72 hours"      → expiresAt encoded inside the signed payload
+
    ACTIVATION (Vercel Blob):
      1. In Vercel dashboard → Storage → Create Blob store.
      2. Upload the final PDF privately. Note its blob URL.
      3. Set DOSSIER_BLOB_URL to that URL.
      4. Set BLOB_READ_WRITE_TOKEN (auto-injected when the store is connected).
+     5. Set DOSSIER_SECRET (min 32 chars). Generate with:
+          node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
 
-   Until activated, we generate a tracked link back to a placeholder PDF
-   path on the same site (/assets/dossier-placeholder.pdf).
-   The token-based URL still allows tracking who clicked.
+   Until activated, we still generate a tracked link back to a placeholder
+   PDF on the same site (/assets/dossier-placeholder.pdf). The token-based
+   URL allows tracking who clicked and enforces the 72h expiry.
    ───────────────────────────────────────────── */
 
-import { createHmac, randomBytes } from 'node:crypto'
+import crypto from 'node:crypto'
+import { createDossierToken, verifyDossierToken } from './token.js'
 
-const SECRET           = process.env.DOSSIER_LINK_SECRET || 'dev-only-replace-me-in-prod'
 const PUBLIC_BASE      = process.env.PUBLIC_BASE_URL     || 'https://caracasluxuryestate.com'
 const DOSSIER_BLOB_URL = process.env.DOSSIER_BLOB_URL    || ''
 const PLACEHOLDER_URL  = '/assets/dossier-placeholder.pdf'
 const EXPIRY_HOURS     = 72
+const EXPIRY_MS        = EXPIRY_HOURS * 3600 * 1000
 
-export function createDownloadToken(email) {
-  const exp   = Date.now() + EXPIRY_HOURS * 3600 * 1000
-  const nonce = randomBytes(8).toString('hex')
-  const payload = `${email}|${exp}|${nonce}`
-  const sig = createHmac('sha256', SECRET).update(payload).digest('hex').slice(0, 32)
-  // base64url(payload).sig
-  const b64 = Buffer.from(payload).toString('base64url')
-  return { token: `${b64}.${sig}`, expiresAt: new Date(exp).toISOString() }
+/**
+ * Create a signed token (delegates to ./token.js which uses HMAC-SHA256 +
+ * constant-time comparison). Each token embeds a unique leadId so two
+ * submissions from the same email get different links.
+ */
+export function createDownloadToken(email, { leadId } = {}) {
+  const id = leadId || crypto.randomUUID()
+  const token = createDossierToken({ email, leadId: id, ttlMs: EXPIRY_MS })
+  const expiresAt = new Date(Date.now() + EXPIRY_MS).toISOString()
+  return { token, expiresAt, leadId: id }
 }
 
+/**
+ * Verify an incoming download token. Returns one of:
+ *   { ok: true,  email, leadId, expiresAt }
+ *   { ok: false, reason: 'expired' | 'invalid_signature' | 'malformed' | 'server_misconfigured' }
+ */
 export function verifyDownloadToken(token) {
-  if (!token || typeof token !== 'string' || !token.includes('.')) return { ok: false }
-  const [b64, sig] = token.split('.')
-  let payload
-  try { payload = Buffer.from(b64, 'base64url').toString('utf8') } catch { return { ok: false } }
-  const expected = createHmac('sha256', SECRET).update(payload).digest('hex').slice(0, 32)
-  if (expected !== sig) return { ok: false, reason: 'bad-signature' }
-  const [email, expStr] = payload.split('|')
-  const exp = Number(expStr)
-  if (!Number.isFinite(exp) || Date.now() > exp) return { ok: false, reason: 'expired' }
-  return { ok: true, email, expiresAt: new Date(exp).toISOString() }
+  const r = verifyDossierToken(token)
+  if (!r.ok) return { ok: false, reason: r.reason }
+  return {
+    ok: true,
+    email:     r.payload.email,
+    leadId:    r.payload.leadId,
+    expiresAt: new Date(r.payload.expiresAt).toISOString(),
+  }
 }
 
-export function buildDownloadUrl(email) {
-  const { token, expiresAt } = createDownloadToken(email)
-  // /api/dossier/download?t=… verifies the token and 302-redirects to the
-  // private blob URL (or placeholder while not configured).
+/**
+ * Build the full URL that the user receives in the email.
+ * /api/dossier/download verifies the token and 302-redirects to the private
+ * blob URL (or to the placeholder PDF while DOSSIER_BLOB_URL is unset).
+ */
+export function buildDownloadUrl(email, { leadId } = {}) {
+  const { token, expiresAt, leadId: id } = createDownloadToken(email, { leadId })
   const url = `${PUBLIC_BASE}/api/dossier/download?t=${encodeURIComponent(token)}`
-  return { url, expiresAt }
+  return { url, expiresAt, leadId: id }
 }
 
+/**
+ * Resolves the actual file URL that download.js will redirect to once
+ * the token has been verified. Returns the placeholder while not configured.
+ */
 export function resolveDossierTarget() {
-  // Returns the actual file URL that the download endpoint will redirect to.
   return DOSSIER_BLOB_URL || `${PUBLIC_BASE}${PLACEHOLDER_URL}`
 }
