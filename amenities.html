@@ -633,6 +633,42 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
 },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── LIGHTBOX ──
+(function(){
+  const imgs = Array.from(document.querySelectorAll('.gal-masonry img'));
+  if(!imgs.length) return;
+  const lb = document.createElement('div');
+  lb.id = 'lightbox';
+  lb.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button><button class="lb-prev" aria-label="Previous">&#8249;</button><img class="lb-img" alt=""><button class="lb-next" aria-label="Next">&#8250;</button><div class="lb-caption"></div>';
+  document.body.appendChild(lb);
+  const style = document.createElement('style');
+  style.textContent = '#lightbox{position:fixed;inset:0;background:rgba(8,8,8,.96);display:none;align-items:center;justify-content:center;z-index:9999;padding:40px}#lightbox.open{display:flex}#lightbox .lb-img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6)}#lightbox button{position:absolute;background:none;border:1px solid rgba(201,168,76,.5);color:#c9a84c;width:48px;height:48px;font-size:24px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:all .25s}#lightbox button:hover{background:#c9a84c;color:#0a0a0a}#lightbox .lb-close{top:24px;right:24px}#lightbox .lb-prev{left:24px;top:50%;transform:translateY(-50%)}#lightbox .lb-next{right:24px;top:50%;transform:translateY(-50%)}#lightbox .lb-caption{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:Montserrat,sans-serif;text-align:center}@media(max-width:640px){#lightbox{padding:16px}#lightbox .lb-prev{left:8px}#lightbox .lb-next{right:8px}#lightbox .lb-close{top:12px;right:12px}}';
+  document.head.appendChild(style);
+  const lbImg = lb.querySelector('.lb-img');
+  const lbCap = lb.querySelector('.lb-caption');
+  let idx = 0;
+  function show(i){
+    idx = (i + imgs.length) % imgs.length;
+    lbImg.src = imgs[idx].src;
+    lbImg.alt = imgs[idx].alt || '';
+    const lbl = imgs[idx].closest('.gm')?.querySelector('.gm-label');
+    lbCap.textContent = lbl ? lbl.textContent : (imgs[idx].alt || '');
+  }
+  function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  imgs.forEach((img,i)=>{ img.style.cursor='zoom-in'; img.addEventListener('click',()=>open(i)); });
+  lb.querySelector('.lb-close').addEventListener('click',close);
+  lb.querySelector('.lb-prev').addEventListener('click',e=>{e.stopPropagation();show(idx-1)});
+  lb.querySelector('.lb-next').addEventListener('click',e=>{e.stopPropagation();show(idx+1)});
+  lb.addEventListener('click',e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(idx-1);
+    if(e.key==='ArrowRight') show(idx+1);
+  });
+})();
 </script>
 </body>
 </html>
