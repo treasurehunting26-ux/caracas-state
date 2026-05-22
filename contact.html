@@ -432,20 +432,48 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-document.getElementById('contactForm').addEventListener('submit',function(e){
+document.getElementById('contactForm').addEventListener('submit',async function(e){
   e.preventDefault();
   const fn=document.getElementById('fn').value.trim();
+  const ln=document.getElementById('ln').value.trim();
   const em=document.getElementById('em').value.trim();
+  const co=document.getElementById('co').value.trim();
   const bt=document.getElementById('bt').value;
   const fin=document.getElementById('fin').value;
+  const prev=document.getElementById('prev').value;
+  const src=document.getElementById('src').value.trim();
   const msg=document.getElementById('msg').value.trim();
-  if(!fn||!em||!bt||!fin||!msg){
-    var dict=(window.I18N&&window.I18N[document.documentElement.lang])||{};
+  var dict=(window.I18N&&window.I18N[document.documentElement.lang])||{};
+  if(!fn||!ln||!em||!co||!bt||!fin||!msg){
     alert(dict['cx.alert.fields']||'Please complete all required fields before submitting.');
     return;
   }
-  document.getElementById('formContent').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+  const btn=this.querySelector('button[type="submit"]');
+  const originalLabel=btn.innerHTML;
+  btn.disabled=true; btn.innerHTML='<span>Submitting…</span>';
+  try{
+    const r=await fetch('/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        first_name:fn,last_name:ln,email:em,country:co,
+        buyer_type:bt,financing:fin,previous:prev,
+        source:src,message:msg,
+        locale:document.documentElement.lang||'en'
+      })
+    });
+    if(!r.ok){
+      const data=await r.json().catch(()=>({}));
+      throw new Error(data.error||'submit-failed');
+    }
+    document.getElementById('formContent').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+    window.scrollTo({top:document.getElementById('formSuccess').offsetTop-80,behavior:'smooth'});
+  }catch(err){
+    console.error('[contact]',err);
+    alert(dict['cx.alert.error']||'There was a problem submitting your inquiry. Please try again or email info@caracasluxuryestate.com directly.');
+    btn.disabled=false; btn.innerHTML=originalLabel;
+  }
 });
 </script>
 </body>
