@@ -173,6 +173,11 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 .ft-nav a:hover{color:var(--gold)}
 .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .ft-bottom p{font-size:10px;color:rgba(255,255,255,.15);letter-spacing:1px}
+.ft-legal-row{display:flex;justify-content:center;gap:14px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(201,168,76,.08);flex-wrap:wrap}
+.ft-legal-row a{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.7);text-decoration:none;transition:color .25s}
+.ft-legal-row a:hover{color:var(--gold)}
+.ft-legal-row .ft-sep{font-size:10px;color:rgba(255,255,255,.25)}
+.ft-disclosure{max-width:780px;margin:14px auto 0;font-size:10px;line-height:1.65;color:rgba(255,255,255,.3);letter-spacing:.5px;text-align:center}
 .ft-email a{font-size:10px;color:rgba(201,168,76,.4);text-decoration:none;letter-spacing:1px;transition:color .3s}
 .ft-email a:hover{color:var(--gold)}
 
@@ -221,7 +226,7 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
       <a href="security.html" data-i18n="nav.security">Security</a>
       <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
       <a href="location.html" data-i18n="nav.location">Location</a>
-      <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+      <a href="#contact" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
     </div>
     <div class="lang-switch" role="group" aria-label="Language selector">
       <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
@@ -306,7 +311,7 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
       <div class="tf-block">
         <p class="tf-title" data-i18n="cx.tf.t">Qualification Form</p>
         <p class="tf-desc" data-i18n="cx.tf.d">Prefer a streamlined process? Complete our brief Typeform qualification — takes under 2 minutes and ensures a faster response.</p>
-        <a href="https://YOUR-TYPEFORM-LINK" class="btn-typeform" target="_blank" rel="noopener noreferrer">
+        <a href="/dossier" class="btn-typeform">
           <span data-i18n="cx.tf.btn">Complete Qualification Form</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -404,18 +409,27 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
         <a href="location.html" data-i18n="crumb.location">Location &amp; Views</a>
         <a href="index.html#faq" data-i18n="sub.ft.nav.faq">FAQ</a>
         <a href="contact.html" data-i18n="sub.ft.nav.show">Private Showing</a>
-        <a href="index.html#dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
+        <a href="/dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
       </nav>
     </div>
     <div class="ft-bottom">
-      <p data-i18n="sub.ft.copy">&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
+      <p data-i18n="sub.ft.copy">&copy; 2026 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
       <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">contact@caracasluxuryestate.com</a></div>
       <p data-i18n="sub.ft.note">Private showings by appointment only</p>
     </div>
+    <div class="ft-legal-row">
+      <a href="privacy.html" data-i18n="ft.legal.privacy">Privacy Policy</a>
+      <span class="ft-sep">·</span>
+      <a href="terms.html" data-i18n="ft.legal.terms">Terms of Use</a>
+      <span class="ft-sep">·</span>
+      <a href="contact.html" data-i18n="ft.legal.contact">Contact</a>
+    </div>
+    <p class="ft-disclosure" data-i18n="ft.disclosure">Private listing represented directly by ownership. Not a public real-estate solicitation. All transactions subject to NDA, qualified-buyer verification (KYC/AML), and applicable Venezuelan and international law. Information deemed reliable but not guaranteed; buyer to independently verify all details. Property location: La Trinidad, Caracas, Venezuela.</p>
   </div>
 </footer>
 
 <script src="i18n.js" defer></script>
+<script src="cookie-consent.js" defer></script>
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursorRing');
@@ -432,20 +446,48 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-document.getElementById('contactForm').addEventListener('submit',function(e){
+document.getElementById('contactForm').addEventListener('submit',async function(e){
   e.preventDefault();
   const fn=document.getElementById('fn').value.trim();
+  const ln=document.getElementById('ln').value.trim();
   const em=document.getElementById('em').value.trim();
+  const co=document.getElementById('co').value.trim();
   const bt=document.getElementById('bt').value;
   const fin=document.getElementById('fin').value;
+  const prev=document.getElementById('prev').value;
+  const src=document.getElementById('src').value.trim();
   const msg=document.getElementById('msg').value.trim();
-  if(!fn||!em||!bt||!fin||!msg){
-    var dict=(window.I18N&&window.I18N[document.documentElement.lang])||{};
+  var dict=(window.I18N&&window.I18N[document.documentElement.lang])||{};
+  if(!fn||!ln||!em||!co||!bt||!fin||!msg){
     alert(dict['cx.alert.fields']||'Please complete all required fields before submitting.');
     return;
   }
-  document.getElementById('formContent').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+  const btn=this.querySelector('button[type="submit"]');
+  const originalLabel=btn.innerHTML;
+  btn.disabled=true; btn.innerHTML='<span>Submitting…</span>';
+  try{
+    const r=await fetch('/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        first_name:fn,last_name:ln,email:em,country:co,
+        buyer_type:bt,financing:fin,previous:prev,
+        source:src,message:msg,
+        locale:document.documentElement.lang||'en'
+      })
+    });
+    if(!r.ok){
+      const data=await r.json().catch(()=>({}));
+      throw new Error(data.error||'submit-failed');
+    }
+    document.getElementById('formContent').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+    window.scrollTo({top:document.getElementById('formSuccess').offsetTop-80,behavior:'smooth'});
+  }catch(err){
+    console.error('[contact]',err);
+    alert(dict['cx.alert.error']||'There was a problem submitting your inquiry. Please try again or email info@caracasluxuryestate.com directly.');
+    btn.disabled=false; btn.innerHTML=originalLabel;
+  }
 });
 </script>
 </body>

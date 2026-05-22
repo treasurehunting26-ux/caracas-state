@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Military-Grade Security & Full Autonomy | Caracas Luxury Estate">
   <meta property="og:description" content="Armored walls, ballistic doors, 300KVA plant and 1M litre water reserve. The most self-sufficient private estate in Venezuela.">
-  <meta property="og:image" content="https://caracasluxuryestate.com/living-aerial-1.jpg">
+  <meta property="og:image" content="https://caracasluxuryestate.com/living-aerial-1.webp">
   <meta property="og:url" content="https://caracasluxuryestate.com/security.html">
   <meta property="og:site_name" content="Caracas Luxury Estate">
 
@@ -217,6 +217,11 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
 .ft-nav a:hover{color:var(--gold)}
 .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .ft-bottom p{font-size:10px;color:rgba(255,255,255,.15);letter-spacing:1px}
+.ft-legal-row{display:flex;justify-content:center;gap:14px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(201,168,76,.08);flex-wrap:wrap}
+.ft-legal-row a{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.7);text-decoration:none;transition:color .25s}
+.ft-legal-row a:hover{color:var(--gold)}
+.ft-legal-row .ft-sep{font-size:10px;color:rgba(255,255,255,.25)}
+.ft-disclosure{max-width:780px;margin:14px auto 0;font-size:10px;line-height:1.65;color:rgba(255,255,255,.3);letter-spacing:.5px;text-align:center}
 .ft-email a{font-size:10px;color:rgba(201,168,76,.4);text-decoration:none;letter-spacing:1px;transition:color .3s}
 .ft-email a:hover{color:var(--gold)}
 
@@ -264,7 +269,7 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
       <a href="security.html" class="active" data-i18n="nav.security">Security</a>
       <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
       <a href="location.html" data-i18n="nav.location">Location</a>
-      <a href="index.html#contact" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
+      <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Private Showing</a>
     </div>
     <div class="lang-switch" role="group" aria-label="Language selector">
       <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
@@ -532,8 +537,8 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
     <h2 class="reveal"><span data-i18n="sx.cta.h2.l1">Qualified Buyers</span><br><em data-i18n="sx.cta.h2.l2">Only</em></h2>
     <p class="reveal" data-i18n="sx.cta.intro">The complete security specifications are available exclusively to verified qualified buyers. Request a private showing to receive the full technical dossier.</p>
     <div class="cta-actions reveal">
-      <a href="index.html#contact" class="btn-primary" data-i18n="pcta.btn.show">Request Private Showing</a>
-      <a href="index.html#dossier" class="btn-ghost" data-i18n="pcta.btn.dossier">Download Investment Dossier</a>
+      <a href="contact.html" class="btn-primary" data-i18n="pcta.btn.show">Request Private Showing</a>
+      <a href="/dossier" class="btn-ghost" data-i18n="pcta.btn.dossier">Download Investment Dossier</a>
     </div>
   </div>
 </section>
@@ -553,19 +558,28 @@ footer{background:#030303;padding:52px 72px;border-top:1px solid rgba(201,168,76
         <a href="amenities.html" data-i18n="crumb.amenities">Amenities &amp; Lifestyle</a>
         <a href="location.html" data-i18n="crumb.location">Location &amp; Views</a>
         <a href="index.html#faq" data-i18n="sub.ft.nav.faq">FAQ</a>
-        <a href="index.html#contact" data-i18n="sub.ft.nav.show">Private Showing</a>
-        <a href="index.html#dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
+        <a href="contact.html" data-i18n="sub.ft.nav.show">Private Showing</a>
+        <a href="/dossier" data-i18n="sub.ft.nav.dos">Investment Dossier</a>
       </nav>
     </div>
     <div class="ft-bottom">
-      <p data-i18n="sub.ft.copy">&copy; 2025 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
+      <p data-i18n="sub.ft.copy">&copy; 2026 · Ultra-Luxury Private Listing · Caracas, Venezuela</p>
       <div class="ft-email"><a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a></div>
       <p data-i18n="sub.ft.note">Private showings by appointment only</p>
     </div>
+    <div class="ft-legal-row">
+      <a href="privacy.html" data-i18n="ft.legal.privacy">Privacy Policy</a>
+      <span class="ft-sep">·</span>
+      <a href="terms.html" data-i18n="ft.legal.terms">Terms of Use</a>
+      <span class="ft-sep">·</span>
+      <a href="contact.html" data-i18n="ft.legal.contact">Contact</a>
+    </div>
+    <p class="ft-disclosure" data-i18n="ft.disclosure">Private listing represented directly by ownership. Not a public real-estate solicitation. All transactions subject to NDA, qualified-buyer verification (KYC/AML), and applicable Venezuelan and international law. Information deemed reliable but not guaranteed; buyer to independently verify all details. Property location: La Trinidad, Caracas, Venezuela.</p>
   </div>
 </footer>
 
 <script src="i18n.js" defer></script>
+<script src="cookie-consent.js" defer></script>
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursorRing');
