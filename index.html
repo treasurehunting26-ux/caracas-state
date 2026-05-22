@@ -188,7 +188,7 @@ h1 strong{font-weight:500;display:block}
 /* ── DIVIDER ── */
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);opacity:.7}
 
-/* ─����������� SECTIONS ─��� */
+/* ─������������� SECTIONS ─��� */
 .si{max-width:1280px;margin:0 auto;padding:0 64px}
 .sl{font-size:11px;letter-spacing:3.2px;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:14px}
 .sl::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0}
@@ -385,7 +385,12 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
 .ft-contact-val a:hover{color:var(--gold)}
 .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
 .ft-bottom p{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.5px}
-.ft-bottom .ft-bottom-meta{font-size:11px;color:rgba(255,255,255,.4);font-style:italic}
+    .ft-bottom .ft-bottom-meta{font-size:11px;color:rgba(255,255,255,.4);font-style:italic}
+    .ft-bottom .ft-legal{display:flex;justify-content:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+    .ft-bottom .ft-legal a{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.7);text-decoration:none;transition:color .25s}
+    .ft-bottom .ft-legal a:hover{color:#c9a84c}
+    .ft-bottom .ft-sep{font-size:10px;color:rgba(255,255,255,.25)}
+    .ft-bottom .ft-disclosure{max-width:780px;margin:18px auto 0;font-size:10px;line-height:1.65;color:rgba(255,255,255,.35);font-style:normal;letter-spacing:.5px;text-align:center;padding-top:18px;border-top:1px solid rgba(201,168,76,.08)}
 
 /* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--t),transform .8s var(--t)}
@@ -938,13 +943,22 @@ footer{background:var(--ink);padding:72px 64px 36px;border-top:1px solid rgba(20
       </div>
     </div>
     <div class="ft-bottom">
-      <p data-i18n="ft.bottom.copy">© 2025 Caracas Luxury Estate · All rights reserved</p>
+      <p data-i18n="ft.bottom.copy">© 2026 Caracas Luxury Estate · All rights reserved</p>
       <p class="ft-bottom-meta" data-i18n="ft.bottom.meta">Ultra-luxury private listing · Information confidential</p>
+      <div class="ft-legal">
+        <a href="privacy.html" data-i18n="ft.legal.privacy">Privacy Policy</a>
+        <span class="ft-sep">·</span>
+        <a href="terms.html" data-i18n="ft.legal.terms">Terms of Use</a>
+        <span class="ft-sep">·</span>
+        <a href="contact.html" data-i18n="ft.legal.contact">Contact</a>
+      </div>
+      <p class="ft-disclosure" data-i18n="ft.disclosure">Private listing represented directly by ownership. Not a public real-estate solicitation. All transactions subject to NDA, qualified-buyer verification (KYC/AML), and applicable Venezuelan and international law. Information deemed reliable but not guaranteed; buyer to independently verify all details. Property location: La Trinidad, Caracas, Venezuela.</p>
     </div>
   </div>
 </footer>
 
 <script src="i18n.js" defer></script>
+<script src="cookie-consent.js" defer></script>
 <script>
 // Nav scroll
 const nav=document.getElementById('nav');
