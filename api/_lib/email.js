@@ -11,7 +11,7 @@
 
 const RESEND_KEY  = process.env.RESEND_API_KEY || ''
 const FROM        = process.env.DOSSIER_FROM     || 'Caracas Luxury Estate <dossier@caracasluxuryestate.com>'
-const REPLY_TO    = process.env.DOSSIER_REPLY_TO || 'info@caracasluxuryestate.com'
+const REPLY_TO    = process.env.DOSSIER_REPLY_TO || 'contact@caracasluxuryestate.com'
 
 export async function sendDossierEmail({ to, fullName, downloadUrl, expiresHours = 72 }) {
   const subject = 'Your Investment & Security Dossier — Caracas Luxury Estate'
