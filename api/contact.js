@@ -5,7 +5,7 @@
 
 const RESEND_KEY  = process.env.RESEND_API_KEY || ''
 const FROM        = process.env.DOSSIER_FROM     || 'Caracas Luxury Estate <dossier@caracasluxuryestate.com>'
-const TO_INTERNAL = process.env.CONTACT_TO       || process.env.DOSSIER_REPLY_TO || 'info@caracasluxuryestate.com'
+const TO_INTERNAL = process.env.CONTACT_TO       || process.env.DOSSIER_REPLY_TO || 'contact@caracasluxuryestate.com'
 
 const RATE = new Map() // ip -> [timestamps]
 const RATE_WINDOW_MS = 60 * 60 * 1000   // 1h

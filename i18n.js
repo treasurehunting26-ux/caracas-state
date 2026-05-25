@@ -679,7 +679,7 @@ const I18N = {
     'dx.err.rate': 'Too many requests from this address. Please try again later or contact us directly.',
     'dx.err.disposable': 'Disposable email addresses are not accepted. Please use your professional or personal email.',
     'dx.err.validation': 'Please review the highlighted fields and try again.',
-    'dx.err.generic': 'Something went wrong. Please try again or write to info@caracasluxuryestate.com.',
+    'dx.err.generic': 'Something went wrong. Please try again or write to contact@caracasluxuryestate.com.',
     'dx.err.network': 'Network error. Please check your connection and try again.',
 
     /* dossier success page */
@@ -695,7 +695,7 @@ const I18N = {
     'dxs.note.html': '<strong>Not seeing the email?</strong> It can take up to 5 minutes to arrive. Please also check your spam folder, and add <em>dossier@caracasluxuryestate.com</em> to your contacts to ensure all future communications reach you.',
     'dxs.cta.show': 'Request Private Showing',
     'dxs.cta.back': 'Return to Overview',
-    'dxs.ft.html': 'Caracas Luxury Estate · <a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a>'
+    'dxs.ft.html': 'Caracas Luxury Estate · <a href="mailto:contact@caracasluxuryestate.com">contact@caracasluxuryestate.com</a>'
   },
 
   es: {
@@ -1375,7 +1375,7 @@ const I18N = {
     'dx.err.rate': 'Demasiadas solicitudes desde esta dirección. Inténtelo más tarde o contáctenos directamente.',
     'dx.err.disposable': 'No se aceptan correos desechables. Utilice su correo profesional o personal.',
     'dx.err.validation': 'Por favor revise los campos resaltados e inténtelo de nuevo.',
-    'dx.err.generic': 'Algo salió mal. Inténtelo de nuevo o escríbanos a info@caracasluxuryestate.com.',
+    'dx.err.generic': 'Algo salió mal. Inténtelo de nuevo o escríbanos a contact@caracasluxuryestate.com.',
     'dx.err.network': 'Error de red. Verifique su conexión e inténtelo de nuevo.',
 
     /* dossier success page */
@@ -1391,7 +1391,7 @@ const I18N = {
     'dxs.note.html': '<strong>¿No ve el correo?</strong> Puede tardar hasta 5 minutos en llegar. Revise también su carpeta de spam y añada <em>dossier@caracasluxuryestate.com</em> a sus contactos para asegurar que todas las comunicaciones futuras le lleguen.',
     'dxs.cta.show': 'Solicitar Visita Privada',
     'dxs.cta.back': 'Volver al Resumen',
-    'dxs.ft.html': 'Caracas Luxury Estate · <a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a>'
+    'dxs.ft.html': 'Caracas Luxury Estate · <a href="mailto:contact@caracasluxuryestate.com">contact@caracasluxuryestate.com</a>'
   },
 
   de: {
@@ -2071,7 +2071,7 @@ const I18N = {
     'dx.err.rate': 'Zu viele Anfragen von dieser Adresse. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.',
     'dx.err.disposable': 'Wegwerf-E-Mail-Adressen werden nicht akzeptiert. Bitte verwenden Sie Ihre berufliche oder persönliche E-Mail.',
     'dx.err.validation': 'Bitte überprüfen Sie die markierten Felder und versuchen Sie es erneut.',
-    'dx.err.generic': 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an info@caracasluxuryestate.com.',
+    'dx.err.generic': 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an contact@caracasluxuryestate.com.',
     'dx.err.network': 'Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
 
     /* dossier success page */
@@ -2087,7 +2087,7 @@ const I18N = {
     'dxs.note.html': '<strong>Keine E-Mail erhalten?</strong> Die Zustellung kann bis zu 5 Minuten dauern. Bitte prüfen Sie auch Ihren Spam-Ordner und fügen Sie <em>dossier@caracasluxuryestate.com</em> zu Ihren Kontakten hinzu, damit alle künftigen Mitteilungen Sie erreichen.',
     'dxs.cta.show': 'Privatbesichtigung anfragen',
     'dxs.cta.back': 'Zurück zur Übersicht',
-    'dxs.ft.html': 'Caracas Luxury Estate · <a href="mailto:info@caracasluxuryestate.com">info@caracasluxuryestate.com</a>'
+    'dxs.ft.html': 'Caracas Luxury Estate · <a href="mailto:contact@caracasluxuryestate.com">contact@caracasluxuryestate.com</a>'
   }
 };
 

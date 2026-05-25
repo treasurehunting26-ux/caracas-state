@@ -76,7 +76,7 @@ function preparingPage(email) {
     <h1>Your Dossier is<br><em>Being Prepared</em></h1>
     <p>Thank you. Your request was successfully verified for the address ending in <strong>${maskEmail(email)}</strong>.</p>
     <p>Our team is finalising the latest revision of the confidential Investment &amp; Security Dossier. The complete document will be delivered to you by email within the next 24&nbsp;hours.</p>
-    <p class="sm">For any urgent enquiry, reply directly to the email you received or write to info@caracasluxuryestate.com.</p>
+    <p class="sm">For any urgent enquiry, reply directly to the email you received or write to contact@caracasluxuryestate.com.</p>
     <a class="btn" href="/contact">Request Private Showing</a>
   `)
 }
