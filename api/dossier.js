@@ -3,7 +3,7 @@
    Vercel Function (Node.js runtime). */
 
 import { saveLead }          from './_lib/leads.js'
-import { sendDossierEmail }  from './_lib/email.js'
+import { sendDossierEmail, sendLeadNotification }  from './_lib/email.js'
 import { buildDownloadUrl }  from './_lib/blob.js'
 
 const ALLOWED_CATEGORIES = new Set([
@@ -97,6 +97,9 @@ export default async function handler(req, res) {
 
   // ── Send email (logs always, Resend if configured)
   await sendDossierEmail({ to: email, fullName, downloadUrl, expiresHours: 72 })
+
+  // ── Notify owner of the new lead (fire-and-forget, never block the response)
+  sendLeadNotification(lead).catch(err => console.error('[lead-notify]', err))
 
   // Done — never echo the download URL in the response (force email verification)
   return json(res, 200, { ok: true, expiresAt })
