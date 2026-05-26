@@ -68,8 +68,8 @@ function renderDossierEmail({ fullName, downloadUrl, expiresHours }) {
           <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#3a3a3a">Dear ${escapeHtml(firstName)},</p>
           <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#3a3a3a">Thank you for your interest in our private listing in Lomas de Chispia. As requested, the confidential <strong>Investment &amp; Security Dossier</strong> is available for your review at the secure link below.</p>
           <p style="margin:0 0 32px;font-size:15px;line-height:1.7;color:#3a3a3a">This document contains the comprehensive overview of the estate, including property specifications, security infrastructure, autonomy systems, location analysis, and acquisition process.</p>
-          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto"><tr><td>
-            <a href="${downloadUrl}" style="display:inline-block;background:#c9a84c;color:#0a0a0a;text-decoration:none;padding:18px 36px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600">Access the Dossier</a>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto"><tr><td align="center" bgcolor="#c9a84c" style="background-color:#c9a84c;padding:18px 36px;mso-padding-alt:18px 36px">
+            <a href="${downloadUrl}" style="display:block;color:#0a0a0a;text-decoration:none;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;mso-line-height-rule:exactly;line-height:1">Access the Dossier</a>
           </td></tr></table>
           <p style="margin:32px 0 0;font-size:12px;line-height:1.7;color:#7a7a7a;text-align:center">This link is private to you and expires in ${expiresHours} hours.<br>Please do not forward this message.</p>
         </td></tr>
