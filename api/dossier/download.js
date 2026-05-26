@@ -30,8 +30,22 @@ export default async function handler(req, res) {
   }))
 
   if (DOSSIER_BLOB_URL) {
-    res.writeHead(302, { Location: DOSSIER_BLOB_URL })
-    return res.end()
+    try {
+      const upstream = await fetch(DOSSIER_BLOB_URL)
+      if (!upstream.ok) {
+        console.error('[dossier-download] upstream-error', upstream.status)
+        return sendPage(res, 502, expiredPage('upstream'))
+      }
+      const buf = Buffer.from(await upstream.arrayBuffer())
+      res.setHeader('Content-Type', 'application/pdf')
+      res.setHeader('Content-Length', buf.length)
+      res.setHeader('Content-Disposition', 'attachment; filename="Caracas-Luxury-Estate-Dossier.pdf"')
+      res.setHeader('Cache-Control', 'private, no-store')
+      return res.end(buf)
+    } catch (err) {
+      console.error('[dossier-download] fetch-failed', err.message)
+      return sendPage(res, 502, expiredPage('upstream'))
+    }
   }
 
   // Fallback while the PDF is being finalised
