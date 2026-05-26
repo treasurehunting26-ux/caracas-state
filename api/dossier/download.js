@@ -31,9 +31,13 @@ export default async function handler(req, res) {
 
   if (DOSSIER_BLOB_URL) {
     try {
-      const upstream = await fetch(DOSSIER_BLOB_URL)
+      const isPrivateBlob = /\.private\.blob\.vercel-storage\.com/.test(DOSSIER_BLOB_URL)
+      const fetchOpts = isPrivateBlob && process.env.BLOB_READ_WRITE_TOKEN
+        ? { headers: { authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}` } }
+        : {}
+      const upstream = await fetch(DOSSIER_BLOB_URL, fetchOpts)
       if (!upstream.ok) {
-        console.error('[dossier-download] upstream-error', upstream.status)
+        console.error('[dossier-download] upstream-error', upstream.status, await upstream.text().catch(() => ''))
         return sendPage(res, 502, expiredPage('upstream'))
       }
       const buf = Buffer.from(await upstream.arrayBuffer())
