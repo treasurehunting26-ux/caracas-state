@@ -201,7 +201,6 @@ function renderDossierEmail({ fullName, downloadUrl, expiresHours }) {
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto"><tr><td align="center" bgcolor="#c9a84c" style="background-color:#c9a84c;border-radius:2px">
             <a href="${downloadUrl}" target="_blank" style="background-color:#c9a84c;color:#0a0a0a;display:inline-block;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-decoration:none;text-transform:uppercase;padding:18px 44px;border:1px solid #c9a84c">Access the Dossier &rarr;</a>
           </td></tr></table>
-          <p style="margin:24px 0 0;font-size:12px;line-height:1.7;color:#7a7a7a;text-align:center">If the button doesn&rsquo;t work, copy and paste this link into your browser:<br><a href="${downloadUrl}" style="color:#c9a84c;text-decoration:underline;word-break:break-all">${downloadUrl}</a></p>
           <p style="margin:32px 0 0;font-size:12px;line-height:1.7;color:#7a7a7a;text-align:center">This link is private to you and expires in ${expiresHours} hours.<br>Please do not forward this message.</p>
         </td></tr>
         <tr><td style="padding:24px 48px 40px;border-top:1px solid #e8e3d3">
