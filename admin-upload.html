@@ -32,13 +32,14 @@
     .result{margin-top:20px;padding:16px;border-radius:2px;font-size:13px;display:none;line-height:1.6}
     .result.ok{background:rgba(100,200,100,.08);border:1px solid rgba(100,200,100,.2);color:#8bc98b}
     .result.err{background:rgba(200,80,80,.08);border:1px solid rgba(200,80,80,.2);color:#c98b8b}
+    .note{margin-top:16px;font-size:11px;color:#3a3a3a;line-height:1.6;text-align:center}
   </style>
 </head>
 <body>
 <div class="card">
   <div class="wordmark">Caracas Luxury Estate — Admin</div>
   <h1>Upload Dossier PDF</h1>
-  <p>Select the exported PDF from Canva. It will replace the current dossier file in secure storage and update automatically.</p>
+  <p>Select the exported PDF from Canva. It uploads directly to secure storage — no file size limit.</p>
 
   <div class="drop" id="drop">
     <input type="file" id="file" accept="application/pdf,.pdf">
@@ -56,13 +57,17 @@
 
   <div class="progress" id="progress">
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-label" id="progressLabel">Uploading...</div>
+    <div class="progress-label" id="progressLabel">Uploading directly to secure storage...</div>
   </div>
 
   <div class="result" id="result"></div>
+  <p class="note">After uploading, update <strong>DOSSIER_BLOB_URL</strong> in Vercel with the new URL shown above, then redeploy.</p>
 </div>
 
-<script>
+<!-- Vercel Blob client SDK (ESM via CDN) -->
+<script type="module">
+  import { upload } from 'https://cdn.jsdelivr.net/npm/@vercel/blob@0.27.1/+esm'
+
   const fileInput  = document.getElementById('file')
   const drop       = document.getElementById('drop')
   const fileInfo   = document.getElementById('fileInfo')
@@ -92,7 +97,7 @@
     e.preventDefault()
     drop.classList.remove('over')
     const f = e.dataTransfer.files[0]
-    if (f && f.type === 'application/pdf') {
+    if (f) {
       const dt = new DataTransfer()
       dt.items.add(f)
       fileInput.files = dt.files
@@ -112,44 +117,34 @@
     btn.disabled = true
     resultEl.style.display = 'none'
     progressEl.style.display = 'block'
-    fillEl.style.width = '10%'
-    labelEl.textContent = 'Uploading...'
+    fillEl.style.width = '5%'
+    labelEl.textContent = 'Starting upload...'
 
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('password', pass)
+      // Pathname encodes password for server-side validation
+      const pathname = `${pass}:::dossier/caracas-luxury-estate-dossier.pdf`
 
-      const xhr = new XMLHttpRequest()
-      xhr.upload.addEventListener('progress', e => {
-        if (e.lengthComputable) {
-          const pct = Math.round((e.loaded / e.total) * 80)
-          fillEl.style.width = pct + '%'
-          labelEl.textContent = 'Uploading... ' + pct + '%'
-        }
-      })
-
-      const res = await new Promise((resolve, reject) => {
-        xhr.open('POST', '/api/admin/upload-dossier')
-        xhr.onload = () => resolve({ status: xhr.status, body: xhr.responseText })
-        xhr.onerror = () => reject(new Error('Network error'))
-        xhr.send(formData)
+      const blob = await upload(pathname, file, {
+        access: 'public',
+        handleUploadUrl: '/api/admin/upload-dossier',
+        onUploadProgress: ({ percentage }) => {
+          fillEl.style.width = percentage + '%'
+          labelEl.textContent = 'Uploading... ' + percentage + '%'
+        },
       })
 
       fillEl.style.width = '100%'
-      labelEl.textContent = 'Processing...'
+      labelEl.textContent = 'Upload complete.'
 
-      const data = JSON.parse(res.body)
-      if (res.status === 200 && data.ok) {
-        resultEl.className = 'result ok'
-        resultEl.innerHTML = '<strong>Upload successful.</strong><br>The dossier has been updated. New visitors will receive the updated PDF immediately.'
-      } else {
-        resultEl.className = 'result err'
-        resultEl.innerHTML = '<strong>Error:</strong> ' + (data.error || 'Unknown error') + (res.status === 401 ? ' — Wrong password.' : '')
-      }
+      resultEl.className = 'result ok'
+      resultEl.innerHTML = `<strong>Upload successful.</strong><br>
+        New URL: <code style="font-size:11px;word-break:break-all">${blob.url}</code><br><br>
+        <strong>Action required:</strong> Go to Vercel &rarr; Settings &rarr; Environment Variables &rarr; update <code>DOSSIER_BLOB_URL</code> with the URL above, then Redeploy.`
+
     } catch (err) {
+      console.error('[upload] error', err)
       resultEl.className = 'result err'
-      resultEl.innerHTML = '<strong>Upload failed:</strong> ' + err.message
+      resultEl.innerHTML = '<strong>Upload failed:</strong> ' + (err.message || String(err))
     } finally {
       progressEl.style.display = 'none'
       resultEl.style.display = 'block'
