@@ -10,14 +10,14 @@
     .card{background:#111;border:1px solid #2a2a2a;max-width:500px;width:100%;padding:40px;border-radius:2px}
     .wordmark{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;font-weight:700;margin-bottom:32px}
     h1{font-size:20px;font-weight:400;font-family:Georgia,serif;margin-bottom:8px}
-    p{font-size:13px;color:#7a7a7a;line-height:1.6;margin-bottom:32px}
+    p.sub{font-size:13px;color:#7a7a7a;line-height:1.6;margin-bottom:32px}
     .drop{border:1.5px dashed #333;border-radius:2px;padding:48px 24px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
     .drop:hover,.drop.over{border-color:#c9a84c;background:rgba(201,168,76,.04)}
     .drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-    .drop-icon{font-size:32px;margin-bottom:12px;color:#333}
+    .drop-icon{font-size:28px;margin-bottom:12px;color:#333}
     .drop-label{font-size:13px;color:#5a5a5a}
     .drop-label strong{color:#c9a84c}
-    .file-info{margin-top:16px;font-size:12px;color:#c9a84c;display:none}
+    .file-info{margin-top:12px;font-size:12px;color:#c9a84c;display:none;text-align:center}
     .pass-row{margin-top:24px}
     .pass-row label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#5a5a5a;display:block;margin-bottom:8px}
     .pass-row input{width:100%;background:#0a0a0a;border:1px solid #2a2a2a;color:#fafaf7;padding:12px 16px;font-size:13px;border-radius:1px;outline:none}
@@ -27,19 +27,20 @@
     .btn:not(:disabled):hover{background:#e0bb5e}
     .progress{margin-top:16px;display:none}
     .progress-bar{height:3px;background:#1a1a1a;border-radius:2px;overflow:hidden}
-    .progress-fill{height:100%;background:#c9a84c;width:0%;transition:width .3s}
+    .progress-fill{height:100%;background:#c9a84c;width:0%;transition:width .4s}
     .progress-label{font-size:11px;color:#5a5a5a;text-align:center;margin-top:8px}
-    .result{margin-top:20px;padding:16px;border-radius:2px;font-size:13px;display:none;line-height:1.6}
+    .result{margin-top:20px;padding:16px;border-radius:2px;font-size:13px;display:none;line-height:1.6;word-break:break-all}
     .result.ok{background:rgba(100,200,100,.08);border:1px solid rgba(100,200,100,.2);color:#8bc98b}
     .result.err{background:rgba(200,80,80,.08);border:1px solid rgba(200,80,80,.2);color:#c98b8b}
     .note{margin-top:16px;font-size:11px;color:#3a3a3a;line-height:1.6;text-align:center}
+    code{background:#1a1a1a;padding:2px 6px;border-radius:2px;font-size:11px}
   </style>
 </head>
 <body>
 <div class="card">
   <div class="wordmark">Caracas Luxury Estate — Admin</div>
   <h1>Upload Dossier PDF</h1>
-  <p>Select the exported PDF from Canva. It uploads directly to secure storage — no file size limit.</p>
+  <p class="sub">Select the exported PDF from Canva. It uploads directly to Blob — no size limit.</p>
 
   <div class="drop" id="drop">
     <input type="file" id="file" accept="application/pdf,.pdf">
@@ -57,17 +58,14 @@
 
   <div class="progress" id="progress">
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-label" id="progressLabel">Uploading directly to secure storage...</div>
+    <div class="progress-label" id="progressLabel">Uploading...</div>
   </div>
 
   <div class="result" id="result"></div>
-  <p class="note">After uploading, update <strong>DOSSIER_BLOB_URL</strong> in Vercel with the new URL shown above, then redeploy.</p>
+  <p class="note">After uploading, copy the new URL and update <code>DOSSIER_BLOB_URL</code> in Vercel, then Redeploy.</p>
 </div>
 
-<!-- Vercel Blob client SDK (ESM via CDN) -->
-<script type="module">
-  import { upload } from 'https://cdn.jsdelivr.net/npm/@vercel/blob@0.27.1/+esm'
-
+<script>
   const fileInput  = document.getElementById('file')
   const drop       = document.getElementById('drop')
   const fileInfo   = document.getElementById('fileInfo')
@@ -78,68 +76,80 @@
   const labelEl    = document.getElementById('progressLabel')
   const resultEl   = document.getElementById('result')
 
+  let selectedFile = null
+
+  function showFile(f) {
+    selectedFile = f
+    fileInfo.style.display = 'block'
+    fileInfo.textContent = f.name + ' — ' + (f.size / 1024 / 1024).toFixed(1) + ' MB'
+    checkReady()
+  }
+
   function checkReady() {
-    btn.disabled = !(fileInput.files.length && passInput.value.trim())
+    btn.disabled = !(selectedFile && passInput.value.trim())
   }
 
   fileInput.addEventListener('change', () => {
-    if (fileInput.files[0]) {
-      const f = fileInput.files[0]
-      fileInfo.style.display = 'block'
-      fileInfo.textContent = f.name + ' — ' + (f.size / 1024 / 1024).toFixed(1) + ' MB'
-    }
-    checkReady()
+    if (fileInput.files[0]) showFile(fileInput.files[0])
   })
-
   drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over') })
   drop.addEventListener('dragleave', () => drop.classList.remove('over'))
   drop.addEventListener('drop', e => {
-    e.preventDefault()
-    drop.classList.remove('over')
-    const f = e.dataTransfer.files[0]
-    if (f) {
-      const dt = new DataTransfer()
-      dt.items.add(f)
-      fileInput.files = dt.files
-      fileInfo.style.display = 'block'
-      fileInfo.textContent = f.name + ' — ' + (f.size / 1024 / 1024).toFixed(1) + ' MB'
-      checkReady()
-    }
+    e.preventDefault(); drop.classList.remove('over')
+    if (e.dataTransfer.files[0]) showFile(e.dataTransfer.files[0])
   })
-
   passInput.addEventListener('input', checkReady)
 
   btn.addEventListener('click', async () => {
-    const file = fileInput.files[0]
-    const pass = passInput.value.trim()
-    if (!file || !pass) return
-
+    if (!selectedFile || !passInput.value.trim()) return
     btn.disabled = true
     resultEl.style.display = 'none'
     progressEl.style.display = 'block'
     fillEl.style.width = '5%'
-    labelEl.textContent = 'Starting upload...'
+    labelEl.textContent = 'Requesting upload token...'
 
     try {
-      // Pathname encodes password for server-side validation
-      const pathname = `${pass}:::dossier/caracas-luxury-estate-dossier.pdf`
+      // Step 1: get a presigned upload URL from our API (validates password)
+      const tokenRes = await fetch('/api/admin/upload-dossier?password=' + encodeURIComponent(passInput.value.trim()))
+      const tokenData = await tokenRes.json()
+      if (!tokenRes.ok || !tokenData.uploadUrl) throw new Error(tokenData.error || 'Failed to get upload token')
 
-      const blob = await upload(pathname, file, {
-        access: 'public',
-        handleUploadUrl: '/api/admin/upload-dossier',
-        onUploadProgress: ({ percentage }) => {
-          fillEl.style.width = percentage + '%'
-          labelEl.textContent = 'Uploading... ' + percentage + '%'
-        },
+      fillEl.style.width = '15%'
+      labelEl.textContent = 'Uploading to secure storage...'
+
+      // Step 2: PUT the file directly to the presigned URL using XHR for progress
+      await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest()
+        xhr.open('PUT', tokenData.uploadUrl)
+        xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob')
+        xhr.upload.onprogress = e => {
+          if (e.lengthComputable) {
+            const pct = Math.round(15 + (e.loaded / e.total) * 80)
+            fillEl.style.width = pct + '%'
+            labelEl.textContent = 'Uploading... ' + Math.round((e.loaded / e.total) * 100) + '%'
+          }
+        }
+        xhr.onload = () => xhr.status < 300 ? resolve() : reject(new Error('Upload HTTP ' + xhr.status + ': ' + xhr.responseText))
+        xhr.onerror = () => reject(new Error('Network error during upload'))
+        xhr.send(selectedFile)
       })
 
       fillEl.style.width = '100%'
-      labelEl.textContent = 'Upload complete.'
+      labelEl.textContent = 'Finalizing...'
+
+      // Step 3: confirm upload and get final blob URL
+      const confirmRes = await fetch('/api/admin/upload-dossier', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uploadId: tokenData.uploadId, password: passInput.value.trim() }),
+      })
+      const confirmData = await confirmRes.json()
+      if (!confirmRes.ok) throw new Error(confirmData.error || 'Confirmation failed')
 
       resultEl.className = 'result ok'
-      resultEl.innerHTML = `<strong>Upload successful.</strong><br>
-        New URL: <code style="font-size:11px;word-break:break-all">${blob.url}</code><br><br>
-        <strong>Action required:</strong> Go to Vercel &rarr; Settings &rarr; Environment Variables &rarr; update <code>DOSSIER_BLOB_URL</code> with the URL above, then Redeploy.`
+      resultEl.innerHTML = '<strong>Upload successful.</strong><br><br>' +
+        'New URL:<br><code>' + (confirmData.url || tokenData.finalUrl) + '</code><br><br>' +
+        '<strong>Next:</strong> Copy the URL above &rarr; Vercel Settings &rarr; update <code>DOSSIER_BLOB_URL</code> &rarr; Redeploy.'
 
     } catch (err) {
       console.error('[upload] error', err)
